@@ -1,0 +1,6 @@
+.env
+.venv/
+.summary_cache.json
+__pycache__/
+*.pyc
+*.pyo

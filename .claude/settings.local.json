@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(launchctl load *)",
+      "Bash(launchctl list *)",
+      "Read(//Users/rikook/Desktop/**)"
+    ]
+  }
+}
