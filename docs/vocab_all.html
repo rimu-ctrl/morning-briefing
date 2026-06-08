@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>영어 아카이브</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/supabase-config.js"></script>
+  <script src="assets/vocab-sync.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", sans-serif;
@@ -1494,32 +1497,27 @@
 <footer>총 114개 · 알파벳 순</footer>
 
 <script>
-  const STATUS_KEY = 'vocabStatus';
   let currentFilter = 'all';
-  function getStatus() { return JSON.parse(localStorage.getItem(STATUS_KEY) || '{}'); }
-  function saveStatus(s) { localStorage.setItem(STATUS_KEY, JSON.stringify(s)); }
-  function toggleStar(wid) { const s=getStatus(); s[wid]=s[wid]==='starred'?null:'starred'; if(!s[wid])delete s[wid]; saveStatus(s); applyStatus(); }
-  function toggleCheck(wid) { const s=getStatus(); s[wid]=s[wid]==='learned'?null:'learned'; if(!s[wid])delete s[wid]; saveStatus(s); applyStatus(); }
   function setFilter(f) { currentFilter=f; document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); event.target.classList.add('active'); applyStatus(); }
   function applyStatus() {
-    const s=getStatus(); let lc=0, sc=0;
+    let lc=0, sc=0;
     document.querySelectorAll('.av').forEach(el=>{
-      const wid=el.dataset.word.replace(/ /g,'_').replace(/\//g,'_');
-      const st=s[wid];
-      el.classList.toggle('is-starred',st==='starred'); el.classList.toggle('is-learned',st==='learned');
-      el.querySelector('.star').textContent=st==='starred'?'★':'☆';
-      el.querySelector('.check').textContent=st==='learned'?'●':'○';
-      if(st==='learned')lc++; if(st==='starred')sc++;
+      const wid = vocabSync.wordIdOf(el.dataset.word);
+      const st = vocabSync.statusOf(wid);
+      el.classList.toggle('is-starred', st.starred); el.classList.toggle('is-learned', st.learned);
+      el.querySelector('.star').textContent = st.starred ? '★' : '☆';
+      el.querySelector('.check').textContent = st.learned ? '●' : '○';
+      if(st.learned) lc++; if(st.starred) sc++;
       let show=true;
-      if(currentFilter==='starred')show=st==='starred';
-      else if(currentFilter==='learned')show=st==='learned';
-      else if(currentFilter==='todo')show=!st;
+      if(currentFilter==='starred')show=st.starred;
+      else if(currentFilter==='learned')show=st.learned;
+      else if(currentFilter==='todo')show=!st.starred && !st.learned;
       el.classList.toggle('hidden',!show);
     });
     document.getElementById('learned-count').textContent=lc;
     document.getElementById('starred-count').textContent=sc;
   }
-  document.addEventListener('DOMContentLoaded', applyStatus);
+  vocabSync.onChange(applyStatus);
 </script>
 </body>
 </html>
