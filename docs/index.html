@@ -24,7 +24,9 @@
     .header-date { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; }
     .header-date .wd { font-weight: 300; opacity: 0.6; margin-left: 0.4rem; }
     .header-tags { margin-top: 1rem; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
-    .tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.73rem; color: rgba(255,255,255,0.65); }
+    .tag { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.73rem; color: rgba(255,255,255,0.65); font-family: inherit; cursor: pointer; transition: background 0.15s, border-color 0.15s, color 0.15s; }
+    .tag:hover { background: rgba(255,255,255,0.13); color: rgba(255,255,255,0.9); }
+    .tag.active { background: #4361ee; border-color: #4361ee; color: #fff; }
     .header-count { margin-top: 1.1rem; font-size: 0.75rem; opacity: 0.35; }
 
     /* ── 2단 레이아웃 ── */
@@ -263,6 +265,22 @@
     };
   })();
 
+  // ── 카테고리 태그 필터 ──
+  window.onTagClick = function(event, btn) {
+    event.preventDefault();
+    const target = document.getElementById(btn.dataset.target);
+    const sections = document.querySelectorAll('.section, .vocab-panel');
+    const wasActive = btn.classList.contains('active');
+    document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+    if (wasActive) {
+      sections.forEach(s => s.classList.remove('hidden'));
+    } else {
+      btn.classList.add('active');
+      sections.forEach(s => s.classList.toggle('hidden', s !== target));
+    }
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   // ── 기사 보관(🔖) / 메모(📝) ──
   function unitOf(el) { return el.closest('.article-unit'); }
   function urlOf(el) { return unitOf(el).dataset.url; }
@@ -309,18 +327,18 @@
     2026년 6월 8일<span class="wd">월요일</span>
   </div>
   <div class="header-tags">
-    <span class="tag">🎨 UX/프로덕트</span>
-    <span class="tag">🤖 AI&로보틱스</span>
-    <span class="tag">🚗 모빌리티</span>
-    <span class="tag">💻 IT/개발</span>
-    <span class="tag">📚 영어</span>
+    <button class="tag" data-target="cat-ux" onclick="onTagClick(event, this)">🎨 UX/프로덕트</button>
+    <button class="tag" data-target="cat-ai" onclick="onTagClick(event, this)">🤖 AI&로보틱스</button>
+    <button class="tag" data-target="cat-mobility" onclick="onTagClick(event, this)">🚗 모빌리티</button>
+    <button class="tag" data-target="cat-it" onclick="onTagClick(event, this)">💻 IT/개발</button>
+    <button class="tag" data-target="cat-vocab" onclick="onTagClick(event, this)">📚 영어</button>
   </div>
-  <p class="header-count">기사 40개 · 11:10 업데이트</p>
+  <p class="header-count">기사 40개 · 11:23 업데이트</p>
 </header>
 
 <div class="layout">
   <div class="articles">
-    <section class="section">
+    <section class="section" id="cat-ux" data-category="ux">
       <h2 class="section-title" style="color:#4361ee">
         <span class="section-bar" style="background:#4361ee"></span>
         🎨 UX/프로덕트 디자인
@@ -337,7 +355,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">1분 전</span>
+              <span class="ago">0분 전</span>
             </div>
             <p class="card-title">Anthropic 엔지니어가 정리한 AI와 일하는 5가지 원칙</p>
             <div class="keywords"><span class="kw">#Anthropic</span><span class="kw">#엔지니어가</span><span class="kw">#정리한</span><span class="kw">#AI와</span></div>
@@ -372,7 +390,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">1분 전</span>
+              <span class="ago">0분 전</span>
             </div>
             <p class="card-title">[클코나잇 2] 발표자에게 직접 물어보세요! 사전 질문 오픈</p>
             <div class="keywords"><span class="kw">#클코나잇</span><span class="kw">#발표자에게</span><span class="kw">#직접</span><span class="kw">#물어보세요</span></div>
@@ -407,7 +425,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">1분 전</span>
+              <span class="ago">0분 전</span>
             </div>
             <p class="card-title">안드레 카파시는, 왜 지금 엔트로픽에 갔나</p>
             <div class="keywords"><span class="kw">#안드레</span><span class="kw">#카파시는</span><span class="kw">#지금</span><span class="kw">#엔트로픽에</span></div>
@@ -442,7 +460,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">1분 전</span>
+              <span class="ago">0분 전</span>
             </div>
             <p class="card-title">돌 넣으면 돌 나오고, 금 넣으면 금 나오는 AI의 함정</p>
             <div class="keywords"><span class="kw">#넣으면</span><span class="kw">#나오고</span><span class="kw">#넣으면</span><span class="kw">#나오는</span></div>
@@ -477,7 +495,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">1분 전</span>
+              <span class="ago">0분 전</span>
             </div>
             <p class="card-title">정말로 지금은 Codex가 Claude Code보다 나을까?</p>
             <div class="keywords"><span class="kw">#정말로</span><span class="kw">#지금은</span><span class="kw">#Codex가</span><span class="kw">#Claude</span></div>
@@ -513,7 +531,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               <span class="ivi-badge">IVI</span>
               <span class="source">UX Collective</span>
-              <span class="ago">6시간 전</span>
+              <span class="ago">7시간 전</span>
             </div>
             <p class="card-title">You’re still archiving. Your files have already become substrate.</p>
             <div class="keywords"><span class="kw">#You</span><span class="kw">#Your</span><span class="kw">#still</span><span class="kw">#archiving</span></div>
@@ -688,13 +706,83 @@
       </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section" id="cat-ai" data-category="ai">
       <h2 class="section-title" style="color:#e63946">
         <span class="section-bar" style="background:#e63946"></span>
         🤖 AI & 로보틱스
         <span class="section-count">10개</span>
       </h2>
       <div class="grid">
+      <div class="article-unit" data-url="https://www.aitimes.com/news/articleView.html?idxno=211452">
+        <a href="https://www.aitimes.com/news/articleView.html?idxno=211452" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
+        <span class="ph-emoji">🤖</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              
+              <span class="source">AI타임스</span>
+              <span class="ago">-536분 전</span>
+            </div>
+            <p class="card-title">크래프톤 “엔비디아 'RTX 스파크'에 게임 최적화…로보틱스 협력도 확장”</p>
+            <div class="keywords"><span class="kw">#크래프톤</span><span class="kw">#“엔비디아</span><span class="kw">#'RTX</span><span class="kw">#스파크'에</span></div>
+            <p class="summary">크래프톤(대표 김창한)은 7일 서울 강남구 PC방에서 PUBG 팬들을 위한 이벤트를 진행, 엔비디아와 협력 확대를 논의했다고 밝혔다. '배틀그라운드' 이용자들을 위해 마련된 이벤트로, 장병규 크래프톤 의장과 젠슨 황 엔비디아 CEO가 직접 소통의 시간을 가졌다. 이번 만남을 계기로 두 회사는 AI 기술 협력을 가속하기로 했다. 크래프톤 주요 타이틀을 차세대 AI PC용 온디바이스 슈퍼칩 ‘RTX 스파크’ 플랫폼에 최적화할 예정이다.로보틱스 분야에서도 논의를 진행했다. 지난해 4월에는 김창한 크래프톤 대표가 미국 캘리포니아 엔비디아</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>크래프톤이 엔비디아와 협력 확대를 논의하며 PUBG 팬 이벤트를 개최.</li><li>장병규 의장과 젠슨 황 CEO가 참석, 소통 시간을 가짐.</li><li>AI 기술 협력을 가속화하고, 크래프톤 게임을 RTX 스파크 플랫폼에 최적화할 계획.</li><li>로보틱스 분야에서도 협력 논의가 이루어짐.</li><li>지난해 4월, 김창한 대표가 엔비디아를 방문한 바 있음.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://news.google.com/rss/articles/CBMibkFVX3lxTFBjQk16WnlYLWVVejdIS0Fvc1hScmpkQnRzQ0NXY3B3eEwxaVBSWmN5NnZVMUhsMlA5X0czUnJNOVpEZS1jTjV3U1dJandoNGVLalF4VTNnVURKcWg3dDlPY0hvV0l6S2ZmcFVLZHh3?oc=5">
+        <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFBjQk16WnlYLWVVejdIS0Fvc1hScmpkQnRzQ0NXY3B3eEwxaVBSWmN5NnZVMUhsMlA5X0czUnJNOVpEZS1jTjV3U1dJandoNGVLalF4VTNnVURKcWg3dDlPY0hvV0l6S2ZmcFVLZHh3?oc=5" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
+        <span class="ph-emoji">🤖</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              
+              <span class="source">Google News</span>
+              <span class="ago">8분 전</span>
+            </div>
+            <p class="card-title">GS건설, 대동로보틱스와 건설현장 로봇 기술 도입…‘피지컬 AI’ 실증 본격화 - 이지경제</p>
+            <div class="keywords"><span class="kw">#GS건설</span><span class="kw">#대동로보틱스와</span><span class="kw">#건설현장</span><span class="kw">#로봇</span></div>
+            
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>GS건설은 대동로보틱스와 협력하여 건설현장에서 로봇 기술을 도입한다.</li><li>이번 파트너십을 통해 '피지컬 AI' 기술의 실증이 본격화된다.</li><li>로봇 기술은 건설 현장의 효율성을 개선하고 안전성을 높이는 데 기여할 것으로 기대된다.</li><li>GS건설은 혁신적인 건설 솔루션을 통해 경쟁력을 강화할 계획이다.</li><li>해당 기술은 한국 건설업계의 디지털 전환을 가속화할 전망이다.</li></ul>
+        </div>
+      </div>
       <div class="article-unit" data-url="https://news.google.com/rss/articles/CBMiYEFVX3lxTE90S0dXXzF0Q25maXR0RXhkT3hrVmx6OUlUMUwzRTh6a051d2RxclhHSVFrY21HSm9LWUI2dVBUUVBONThhS0dJTDBQVWltWElhQ0x2aE1SRkdnZW1LZ2gzeQ?oc=5">
         <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE90S0dXXzF0Q25maXR0RXhkT3hrVmx6OUlUMUwzRTh6a051d2RxclhHSVFrY21HSm9LWUI2dVBUUVBONThhS0dJTDBQVWltWElhQ0x2aE1SRkdnZW1LZ2gzeQ?oc=5" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
@@ -705,7 +793,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">Google News</span>
-              <span class="ago">46분 전</span>
+              <span class="ago">59분 전</span>
             </div>
             <p class="card-title">GS건설, 피지컬 AI 로봇으로 건설현장 바꾼다…대동로보틱스와 업무협약 - 네이트</p>
             <div class="keywords"><span class="kw">#GS건설</span><span class="kw">#피지컬</span><span class="kw">#AI</span><span class="kw">#로봇으로</span></div>
@@ -730,6 +818,41 @@
           <ul class="kr-bullets"><li>GS건설이 대동로보틱스와 협력하여 피지컬 AI 로봇을 개발하기로 했다.</li><li>이 로봇은 건설현장에서의 안전성과 효율성을 높이는 데 기여할 예정이다.</li><li>협약을 통해 두 회사는 기술 개발 및 상용화에 대한 공동 연구를 진행한다.</li><li>GS건설은 초기 단계부터 AI 기술을 접목하여 미래 건설 시장을 선도할 계획이다.</li><li>이번 협약은 건설 산업의 디지털 전환을 촉진할 것으로 기대된다.</li></ul>
         </div>
       </div>
+      <div class="article-unit" data-url="https://news.google.com/rss/articles/CBMid0FVX3lxTFBUWUhaSGh4c3FuN0NxUHFkY0dRbFNqeEltaXVqbmVmTjc4djYwUVZXMWJ5eDNpaG44amppQU1pRU5peWpvcnRMZktvemJIbzdGQ2dKTHZmLUhYbThTOW90d0xZSThucG1hQWVqa1BiVEk1RHF6MC1j0gF3QVVfeXFMUFRZSFpIaHhzcW43Q3FQcWRjR1FsU2p4SW1pdWpuZWZONzh2NjBRVlcxYnl4M2lobjhqamlBTWlFTml5am9ydExmS296YkhvN0ZDZ0pMdmYtSFhtOFM5b3R3TFlJOG5wbWFBZWprUGJUSTVEcXowLWM?oc=5">
+        <a href="https://news.google.com/rss/articles/CBMid0FVX3lxTFBUWUhaSGh4c3FuN0NxUHFkY0dRbFNqeEltaXVqbmVmTjc4djYwUVZXMWJ5eDNpaG44amppQU1pRU5peWpvcnRMZktvemJIbzdGQ2dKTHZmLUhYbThTOW90d0xZSThucG1hQWVqa1BiVEk1RHF6MC1j0gF3QVVfeXFMUFRZSFpIaHhzcW43Q3FQcWRjR1FsU2p4SW1pdWpuZWZONzh2NjBRVlcxYnl4M2lobjhqamlBTWlFTml5am9ydExmS296YkhvN0ZDZ0pMdmYtSFhtOFM5b3R3TFlJOG5wbWFBZWprUGJUSTVEcXowLWM?oc=5" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
+        <span class="ph-emoji">🤖</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              
+              <span class="source">Google News</span>
+              <span class="ago">1시간 전</span>
+            </div>
+            <p class="card-title">AIA생명, 생성형 AI 상담지원 플랫폼 'AICSR' 오픈 - 뉴스프리존</p>
+            <div class="keywords"><span class="kw">#AIA생명</span><span class="kw">#생성형</span><span class="kw">#AI</span><span class="kw">#상담지원</span></div>
+            
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>AIA생명이 생성형 AI 상담지원 플랫폼 'AICSR'를 새롭게 출시함.</li><li>이 플랫폼은 고객 상담을 개선하고 효율성을 높이는 데 목표를 두고 있음.</li><li>AI 기술을 활용하여 실시간으로 고객의 요구에 대응할 수 있도록 설계됨.</li><li>금융 및 보험 산업에서 AI의 활용을 강화하는 사례로 주목받고 있음.</li><li>AICSR은 고객 경험을 혁신하고 회사의 경쟁력을 높이는 데 기여할 것으로 기대됨.</li></ul>
+        </div>
+      </div>
       <div class="article-unit" data-url="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5BX0hJcV8xSHMydHFZQkhzM0lmUVQ5UldwSkNrVU5NaUtaYzRkTHVoTmFnVGluUk00NW9od21UaE9KUy13ZGMyNGdDQkYzLWxvU0E0?oc=5">
         <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE5BX0hJcV8xSHMydHFZQkhzM0lmUVQ5UldwSkNrVU5NaUtaYzRkTHVoTmFnVGluUk00NW9od21UaE9KUy13ZGMyNGdDQkYzLWxvU0E0?oc=5" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
@@ -740,7 +863,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">Google News</span>
-              <span class="ago">54분 전</span>
+              <span class="ago">1시간 전</span>
             </div>
             <p class="card-title">AIA생명, 생성형AI 상담지원 플랫폼 'AICSR' 오픈 - 네이트</p>
             <div class="keywords"><span class="kw">#AIA생명</span><span class="kw">#생성형AI</span><span class="kw">#상담지원</span><span class="kw">#플랫폼</span></div>
@@ -799,111 +922,6 @@
         <div class="kr-summary">
           <p class="kr-label">🇰🇷 핵심 요약</p>
           <ul class="kr-bullets"><li>기존 시스템은 자연어 질문을 API 호출로 변환하는 데 특화되어 있었다.</li><li>사용자들은 데이터 수집을 위한 수작업이 번거로웠다.</li><li>새로운 시스템을 통해 사용자는 간단한 영어로 요청을 입력할 수 있게 되었다.</li><li>이는 여러 대시보드와 BI 도구의 활용을 최소화하여 효율성을 높였다.</li><li>AI의 변화는 전체 작업 방식을 혁신적으로 변화시켰다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://news.google.com/rss/articles/CBMiakFVX3lxTE9pcEFSN21XV28zdlZEbmNDcXk4OTZEd2tOZTJLYzBoQXp5bkl1WXRGV1pEWTVtY1NldUVLVkdTTDc2OHFndmEyR0duTERxZVZyb2VYZWo0UFJObFZrUFY1cGtGQTlfYWZ6WWc?oc=5">
-        <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE9pcEFSN21XV28zdlZEbmNDcXk4OTZEd2tOZTJLYzBoQXp5bkl1WXRGV1pEWTVtY1NldUVLVkdTTDc2OHFndmEyR0duTERxZVZyb2VYZWo0UFJObFZrUFY1cGtGQTlfYWZ6WWc?oc=5" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
-        <span class="ph-emoji">🤖</span>
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">Google News</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">자재 운반 로봇이 현장으로…GS건설, 대동로보틱스와 '피지컬 AI' 검증 - 월요신문</p>
-            <div class="keywords"><span class="kw">#자재</span><span class="kw">#운반</span><span class="kw">#로봇이</span><span class="kw">#현장으로…GS건설</span></div>
-            
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>GS건설과 대동로보틱스가 자재 운반 로봇의 '피지컬 AI' 검증을 시작했다.</li><li>로봇은 건설 현장에서 자재를 자동으로 운반하여 효율성을 높인다.</li><li>이번 협업으로 로봇 기술이 현장에 실제 적용될 수 있는 가능성을 탐색한다.</li><li>GS건설은 디지털 혁신을 통해 건설 현장의 생산성 향상을 목표로 한다.</li><li>피지컬 AI는 로봇이 실시간으로 환경을 인식하고 반응하는 기술을 의미한다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://news.google.com/rss/articles/CBMic0FVX3lxTE5VYVdDMS1hNm9ENXN1QWNBdGI5Zk5UTEVrZ0ViSl8wa0EtTDFOYXVuSnlhQ0laUmhjSHFod3J1QkZQY3Z2M2pMTXhYYk9UV3RLN3ZYWUdXRXpKZnI3c3ZOajdfVjktdmxOQ2k1SzRZYVFfcWvSAXdBVV95cUxQVFlIWkhoeHNxbjdDcVBxZGNHUWxTanhJbWl1am5lZk43OHY2MFFWVzFieXgzaWhuOGpqaUFNaUVOaXlqb3J0TGZLb3piSG83RkNnSkx2Zi1IWG04UzlvdHdMWUk4bnBtYUFlamtQYlRJNURxejAtYw?oc=5">
-        <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE5VYVdDMS1hNm9ENXN1QWNBdGI5Zk5UTEVrZ0ViSl8wa0EtTDFOYXVuSnlhQ0laUmhjSHFod3J1QkZQY3Z2M2pMTXhYYk9UV3RLN3ZYWUdXRXpKZnI3c3ZOajdfVjktdmxOQ2k1SzRZYVFfcWvSAXdBVV95cUxQVFlIWkhoeHNxbjdDcVBxZGNHUWxTanhJbWl1am5lZk43OHY2MFFWVzFieXgzaWhuOGpqaUFNaUVOaXlqb3J0TGZLb3piSG83RkNnSkx2Zi1IWG04UzlvdHdMWUk4bnBtYUFlamtQYlRJNURxejAtYw?oc=5" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
-        <span class="ph-emoji">🤖</span>
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">Google News</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">AIA생명, 생성형 AI 상담지원 플랫폼 'AICSR' 오픈 - 뉴스프리존</p>
-            <div class="keywords"><span class="kw">#AIA생명</span><span class="kw">#생성형</span><span class="kw">#AI</span><span class="kw">#상담지원</span></div>
-            
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>AIA생명이 생성형 AI 상담지원 플랫폼 'AICSR'을 공식 출시했다.</li><li>이 플랫폼은 고객 상담의 효율성을 높이고, 맞춤형 서비스를 제공한다.</li><li>AI 기술을 통해 상담사와 고객 간의 소통을 지원하며, 정보 제공을 자동화한다.</li><li>AICSR는 보험 상담 분야에 혁신을 가져올 것으로 기대된다.</li><li>AIA생명은 지속적으로 디지털 전환을 추진하고 있다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5SbXgxREl1QkpEZ0dEcjQ5NTRSQkotbFd5WDBjRUxJV1RkOUU3MklPOVNlVnN2b3NuSXFndEJPelkxQ0FKYUM5NGxUQ2hScTU2bTVzODMwdVkzLTJPMkZXSXh2MS1KRW1w?oc=5">
-        <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5SbXgxREl1QkpEZ0dEcjQ5NTRSQkotbFd5WDBjRUxJV1RkOUU3MklPOVNlVnN2b3NuSXFndEJPelkxQ0FKYUM5NGxUQ2hScTU2bTVzODMwdVkzLTJPMkZXSXh2MS1KRW1w?oc=5" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
-        <span class="ph-emoji">🤖</span>
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">Google News</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">건설현장도 '피지컬 AI' 시대…GS건설, 로봇 실증 착수 - ebn.co.kr</p>
-            <div class="keywords"><span class="kw">#건설현장도</span><span class="kw">#'피지컬</span><span class="kw">#AI'</span><span class="kw">#시대…GS건설</span></div>
-            
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>GS건설이 건설현장에서 로봇 기술을 활용한 '피지컬 AI' 실증 테스트를 시작함.</li><li>이 로봇은 건설 현장에서 위험한 작업을 수행하고 안전성을 높이는 목적.</li><li>실증 테스트는 특정 작업을 자동화하고 효율성을 향상시키기 위해 진행됨.</li><li>GS건설은 기술 개발을 통해 인력 부족 문제를 해결하고 경쟁력을 강화할 계획.</li><li>향후 상용화를 통해 건설 업계의 혁신을 꾀할 방침.</li></ul>
         </div>
       </div>
       <div class="article-unit" data-url="https://techcrunch.com/2026/06/07/is-this-the-dawn-of-the-tokenpocalypse/">
@@ -986,7 +1004,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               
               <span class="source">TechCrunch AI</span>
-              <span class="ago">9시간 전</span>
+              <span class="ago">10시간 전</span>
             </div>
             <p class="card-title">OpenAI is still working on that ‘super app’</p>
             <div class="keywords"><span class="kw">#OpenAI</span><span class="kw">#still</span><span class="kw">#working</span><span class="kw">#super</span></div>
@@ -1049,13 +1067,57 @@
       </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section" id="cat-mobility" data-category="mobility">
       <h2 class="section-title" style="color:#0a9396">
         <span class="section-bar" style="background:#0a9396"></span>
         🚗 모빌리티 & 자율주행
         <span class="section-count">10개</span>
       </h2>
       <div class="grid">
+      <div class="article-unit" data-url="http://www.autoherald.co.kr/news/articleView.html?idxno=60723">
+        <a href="http://www.autoherald.co.kr/news/articleView.html?idxno=60723" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img">
+        <img src="https://cdn.autoherald.co.kr/news/photo/202606/60723_116257_3042.jpg" alt="" loading="lazy"
+             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              <span class="ivi-badge">IVI</span>
+              <span class="source">오토헤럴드</span>
+              <span class="ago">-506분 전</span>
+            </div>
+            <p class="card-title">"비싼 옵션 필요없다" 자동차를 첨단 디지털 공간으로 바꾸는 법</p>
+            <div class="keywords"><span class="kw">#"비싼</span><span class="kw">#옵션</span><span class="kw">#필요없다"</span><span class="kw">#자동차를</span></div>
+            <p class="summary">구글 안드로이드 오토(구글)
+
+
+
+[오토헤럴드 김흥식 기자] 자동차와 스마트폰의 경계가 빠르게 허물어지고 있다. 과거에는 스마트폰을 거치대에 올려 내비게이션으로 활용하는 정도였다면 지금은 차량 디스플레이와 스마트폰이 하나의 플랫폼처럼 작동하는 '폰 커넥티비티' 시대가 됐다.
+
+대표적인 폰 커넥티비티 애플 카플레이와 안드로이드 오토는 이제 단순한 화면 미러링 '폰 프로젝션'의 기능을 넘어서고 있다. 평균 100만 원 이상을 부담하는 고가 옵션이 없어도 AI 음성비서, 실시간 교통 정보, 전기차 전용 경로 탐색 등 최신 커넥티드 서비스를 이용할 수 있어 사실상 가장 활용도가 높은 첨단 기능으로 자리 잡고 있다.
+
+두 플랫폼의 시작은 비교적 단순했다. 애플은 2014년 카플레이를, 구글은 2015년 안드로이드 오</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>자동차와 스마트폰의 경계가 허물어지며 '폰 커넥티비티' 시대가 도래했다.</li><li>애플 카플레이와 구글 안드로이드 오토는 단순한 화면 미러링을 넘어선 기능을 제공한다.</li><li>고가 옵션 없이도 AI 음성비서, 실시간 교통 정보 등 최신 커넥티드 서비스를 이용할 수 있다.</li><li>이들 플랫폼은 우수한 활용도로 인해 첨단 기능으로 자리 잡았다.</li><li>카플레이는 2014년, 안드로이드 오토는 2015년부터 시작되었다.</li></ul>
+        </div>
+      </div>
       <div class="article-unit" data-url="http://www.autoherald.co.kr/news/articleView.html?idxno=60724">
         <a href="http://www.autoherald.co.kr/news/articleView.html?idxno=60724" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img">
@@ -1067,7 +1129,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">오토헤럴드</span>
-              <span class="ago">-495분 전</span>
+              <span class="ago">-481분 전</span>
             </div>
             <p class="card-title">[모빌리티 인사이트] "차량 데이터는 누구의 것인가" 트럼프가 던진 새로운 화두</p>
             <div class="keywords"><span class="kw">#모빌리티</span><span class="kw">#인사이트</span><span class="kw">#"차량</span><span class="kw">#데이터는</span></div>
@@ -1109,7 +1171,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">오토헤럴드</span>
-              <span class="ago">-450분 전</span>
+              <span class="ago">-436분 전</span>
             </div>
             <p class="card-title">'머스크 시연 행사 8월로 예고' 9년 기다린 테슬라 로드스터 또 연기</p>
             <div class="keywords"><span class="kw">#'머스크</span><span class="kw">#시연</span><span class="kw">#행사</span><span class="kw">#8월로</span></div>
@@ -1153,7 +1215,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">오토헤럴드</span>
-              <span class="ago">-429분 전</span>
+              <span class="ago">-416분 전</span>
             </div>
             <p class="card-title">현대차, 미래 모빌리티 전환 대응 기술인력 채용…15일부터 서류 접수</p>
             <div class="keywords"><span class="kw">#현대차</span><span class="kw">#미래</span><span class="kw">#모빌리티</span><span class="kw">#전환</span></div>
@@ -1188,50 +1250,6 @@
           <ul class="kr-bullets"><li>현대차, 미래 모빌리티 기술 인력 신규 채용 계획 발표.</li><li>하반기에 국내 생산공장 및 R&D 부문에서 인력 모집.</li><li>전동화 및 스마트 제조 환경에 맞춘 전문 인재 필요.</li><li>지원서 접수는 15일부터 24일까지 실시.</li><li>고등학교 졸업자 이상, 연령과 성별 제한 없음.</li></ul>
         </div>
       </div>
-      <div class="article-unit" data-url="http://www.autoherald.co.kr/news/articleView.html?idxno=60719">
-        <a href="http://www.autoherald.co.kr/news/articleView.html?idxno=60719" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://cdn.autoherald.co.kr/news/photo/202606/60719_116249_35.jpg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">오토헤럴드</span>
-              <span class="ago">-417분 전</span>
-            </div>
-            <p class="card-title">중국 도로에 등장한 아이오닉 V '800V 초급속 충전·EREV까지'</p>
-            <div class="keywords"><span class="kw">#중국</span><span class="kw">#도로에</span><span class="kw">#등장한</span><span class="kw">#아이오닉</span></div>
-            <p class="summary">날카로운 LED 조명과 기존 픽셀 디자인을 발전시킨 아이오닉 V.&nbsp;(CarNewsChina)
-
-
-
-[오토헤럴드 김흥식 기자] 현대차가 중국 시장 공략을 위해 개발 중인 새로운 전기 세단 '아이오닉 V'가 공개를 앞두고 모습을 드러냈다. 중국 현지에서 촬영된 시험주행 차량에 이어 외관과 일부 제원까지 확인되면서 관심이 쏠리고 있다.
-
-지난 4월 베이징모터쇼에서 세계 최초 공개된 아이오닉 V는 공기역학 성능을 강조한 패스트백 스타일로 낮고 길게 뻗은 차체 비율을&nbsp;특징으로 한다.&nbsp;차체 길이는 약 4.8m 수준으로 알려졌다.
-
-중국 도로에서 포착한 아이오닉 V는 프레임리스 도어와 매립형 도어 핸들, 날카로운 형상의 LED 조명 시스템을 적용했다. 기존 아이오닉 시리즈의 픽셀 디자인 언어를</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>현대차의 새로운 전기 세단 '아이오닉 V'가 중국에서 시험주행 중 공개됨.</li><li>아이오닉 V는 공기역학 성능을 강조한 패스트백 스타일의 디자인을 채택.</li><li>차량 길이는 약 4.8m이며, 프레임리스 도어와 매립형 도어 핸들을 특징으로 함.</li><li>날카로운 형상의 LED 조명 시스템이 적용되어 현대적인 외관을 강조.</li><li>아이오닉 V는 800V 초급속 충전 및 EREV 기능을 제공할 예정.</li></ul>
-        </div>
-      </div>
       <div class="article-unit" data-url="https://electrek.co/2026/06/07/survey-sunday-what-will-it-take-for-fleets-to-realize-electric-works-today/">
         <a href="https://electrek.co/2026/06/07/survey-sunday-what-will-it-take-for-fleets-to-realize-electric-works-today/" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img">
@@ -1243,7 +1261,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               <span class="ivi-badge">IVI</span>
               <span class="source">Electrek</span>
-              <span class="ago">6시간 전</span>
+              <span class="ago">7시간 전</span>
             </div>
             <p class="card-title">Survey Sunday: what will it take for fleets to realize electric works – TODAY?</p>
             <div class="keywords"><span class="kw">#Survey</span><span class="kw">#Sunday</span><span class="kw">#TODAY</span><span class="kw">#fleets</span></div>
@@ -1283,7 +1301,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               
               <span class="source">Electrek</span>
-              <span class="ago">7시간 전</span>
+              <span class="ago">8시간 전</span>
             </div>
             <p class="card-title">E-quipment highlight: 25-ton LiuGong 870HE electric wheel loader</p>
             <div class="keywords"><span class="kw">#quipment</span><span class="kw">#highlight</span><span class="kw">#LiuGong</span><span class="kw">#electric</span></div>
@@ -1456,7 +1474,7 @@
       </div>
       </div>
     </section>
-    <section class="section">
+    <section class="section" id="cat-it" data-category="it">
       <h2 class="section-title" style="color:#7209b7">
         <span class="section-bar" style="background:#7209b7"></span>
         💻 IT/개발 테크
@@ -1473,7 +1491,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               
               <span class="source">ZDNet</span>
-              <span class="ago">9분 전</span>
+              <span class="ago">22분 전</span>
             </div>
             <p class="card-title">I tried the Surface Laptop Ultra at Computex, and it's clear: Microsoft means business</p>
             <div class="keywords"><span class="kw">#Surface</span><span class="kw">#Laptop</span><span class="kw">#Ultra</span><span class="kw">#Computex</span></div>
@@ -1508,7 +1526,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">전자신문</span>
-              <span class="ago">33분 전</span>
+              <span class="ago">46분 전</span>
             </div>
             <p class="card-title">이언주, 與 최고위원 사퇴 “6·3 지방선거 결과 책임 통감”</p>
             <div class="keywords"><span class="kw">#이언주</span><span class="kw">#최고위원</span><span class="kw">#사퇴</span><span class="kw">#“6·3</span></div>
@@ -1543,7 +1561,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">전자신문</span>
-              <span class="ago">35분 전</span>
+              <span class="ago">48분 전</span>
             </div>
             <p class="card-title">화장실 가다 '매시드 포테이토'에 꽈당…“23억 배상하라” 아웃백 상대 소송</p>
             <div class="keywords"><span class="kw">#화장실</span><span class="kw">#가다</span><span class="kw">#'매시드</span><span class="kw">#포테이토'에</span></div>
@@ -1578,7 +1596,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">전자신문</span>
-              <span class="ago">37분 전</span>
+              <span class="ago">50분 전</span>
             </div>
             <p class="card-title">[李 대통령, 취임 1주년 기자회견]취임 1주년 맞은 李 대통령 “대체 불가 대한민국 만들겠다”</p>
             <div class="keywords"><span class="kw">#대통령</span><span class="kw">#취임</span><span class="kw">#1주년</span><span class="kw">#기자회견]취임</span></div>
@@ -1614,7 +1632,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">지디넷코리아</span>
-              <span class="ago">41분 전</span>
+              <span class="ago">54분 전</span>
             </div>
             <p class="card-title">李대통령 "초격차 산업 강국으로...첨단기술 경쟁력 확보"</p>
             <div class="keywords"><span class="kw">#李대통령</span><span class="kw">#"초격차</span><span class="kw">#산업</span><span class="kw">#강국으로...첨단기술</span></div>
@@ -1653,7 +1671,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">지디넷코리아</span>
-              <span class="ago">45분 전</span>
+              <span class="ago">58분 전</span>
             </div>
             <p class="card-title">미래에셋증권, 싱가포르 증권사와 ‘외국인 통합계좌’ 출시 협업</p>
             <div class="keywords"><span class="kw">#미래에셋증권</span><span class="kw">#싱가포르</span><span class="kw">#증권사와</span><span class="kw">#‘외국인</span></div>
@@ -1827,14 +1845,14 @@ UOB 케이히안은 싱가포르 증권거래소에 상장된 UOB 케이히안 �
     </section>
   </div>
   
-      <aside class="vocab-panel">
+      <aside class="vocab-panel" id="cat-vocab" data-category="vocab">
         <div class="vocab-head">
           <span class="vocab-icon">📚</span>
           <div style="flex:1">
             <p class="vocab-title">오늘의 영어</p>
             <p class="vocab-sub">단어 20 · 숙어 10</p>
           </div>
-          <a href="vocab_all.html" class="vocab-archive-btn" target="_blank">전체 보기 →</a>
+          <a href="vocab_all.html" class="vocab-archive-btn">전체 보기 →</a>
         </div>
 
         <div class="vocab-section-label">📖 단어 (20)</div>
@@ -2249,7 +2267,7 @@ UOB 케이히안은 싱가포르 증권거래소에 상장된 UOB 케이히안 �
         }
         vocabSync.onChange(applyStatus);
       </script>
-  <footer>자동 생성 · 2026.06.08 11:10</footer>
+  <footer>자동 생성 · 2026.06.08 11:23</footer>
 </div>
 
 </body>
