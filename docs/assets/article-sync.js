@@ -2,14 +2,16 @@
 (function () {
   const sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
 
-  let saved = {};        // { article_url: { bookmarked: bool, memo: string, title: string } }
+  let saved = {};        // { article_url: { bookmarked: bool, memo: string, title: string, updated_at: string } }
   let onChange = function () {};
 
   async function load() {
-    const { data, error } = await sb.from('saved_articles').select('article_url, title, bookmarked, memo');
+    const { data, error } = await sb.from('saved_articles')
+      .select('article_url, title, bookmarked, memo, updated_at')
+      .order('updated_at', { ascending: false });
     if (!error && data) {
       saved = {};
-      data.forEach(r => { saved[r.article_url] = { bookmarked: !!r.bookmarked, memo: r.memo || '', title: r.title || '' }; });
+      data.forEach(r => { saved[r.article_url] = { bookmarked: !!r.bookmarked, memo: r.memo || '', title: r.title || '', updated_at: r.updated_at }; });
     }
     onChange();
   }
@@ -41,10 +43,17 @@
     persist(url);
   }
 
+  function getBookmarked() {
+    return Object.entries(saved)
+      .filter(([, s]) => s.bookmarked)
+      .map(([url, s]) => ({ url, title: s.title, memo: s.memo, updated_at: s.updated_at }));
+  }
+
   window.articleSync = {
     of: (url) => saved[url] || { bookmarked: false, memo: '', title: '' },
     onChange: (fn) => { onChange = fn; load(); },
     toggleBookmark,
     setMemo,
+    getBookmarked,
   };
 })();
