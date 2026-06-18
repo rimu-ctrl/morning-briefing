@@ -103,8 +103,8 @@
   </div>
   <p class="hd-sub">전체 단어 · 알파벳 순 정렬</p>
   <div class="stats">
-    <p class="stat">단어 <span>84</span>개</p>
-    <p class="stat">숙어/표현 <span>30</span>개</p>
+    <p class="stat">단어 <span>100</span>개</p>
+    <p class="stat">숙어/표현 <span>40</span>개</p>
     <p class="stat">암기완료 <span id="learned-count">0</span>개</p>
     <p class="stat">복습중 <span id="starred-count">0</span>개</p>
   </div>
@@ -118,7 +118,7 @@
 </div>
 
 <main>
-  <p class="section-title">단어 (84)</p>
+  <p class="section-title">단어 (100)</p>
   <ul class="av-list">
           <li class="av" data-word="abstraction">
             <div class="av-top">
@@ -155,6 +155,18 @@
             </div>
             <p class="av-meaning">지지하다; 옹호자</p>
             <p class="av-example">"Designers should advocate for the user in every product meeting."</p>
+          </li>
+          <li class="av" data-word="affinity">
+            <div class="av-top">
+              <span class="av-word">affinity</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('affinity')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('affinity')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">유사성, 친화도 (affinity diagram의)</p>
+            <p class="av-example">"We grouped the research notes into themes using an affinity diagram."</p>
           </li>
           <li class="av" data-word="affordance">
             <div class="av-top">
@@ -216,6 +228,18 @@
             <p class="av-meaning">기준으로 삼다; 비교 기준</p>
             <p class="av-example">"We benchmarked competitor apps to identify UX gaps."</p>
           </li>
+          <li class="av" data-word="cadence">
+            <div class="av-top">
+              <span class="av-word">cadence</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('cadence')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('cadence')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">(작업의) 리듬, 주기</p>
+            <p class="av-example">"The team settled into a two-week release cadence."</p>
+          </li>
           <li class="av" data-word="catalyst">
             <div class="av-top">
               <span class="av-word">catalyst</span>
@@ -227,6 +251,18 @@
             </div>
             <p class="av-meaning">촉매, 변화를 일으키는 요인</p>
             <p class="av-example">"The pandemic was a catalyst for remote-first product design."</p>
+          </li>
+          <li class="av" data-word="churn">
+            <div class="av-top">
+              <span class="av-word">churn</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('churn')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('churn')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">이탈(률)</p>
+            <p class="av-example">"Confusing onboarding was the biggest driver of churn."</p>
           </li>
           <li class="av" data-word="cognitive load">
             <div class="av-top">
@@ -251,6 +287,18 @@
             </div>
             <p class="av-meaning">일관되고 통일된</p>
             <p class="av-example">"A cohesive brand identity builds user trust across all platforms."</p>
+          </li>
+          <li class="av" data-word="cohort">
+            <div class="av-top">
+              <span class="av-word">cohort</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('cohort')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('cohort')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">코호트 (특정 기준으로 묶인 사용자 집단)</p>
+            <p class="av-example">"We compared retention across the January and February cohorts."</p>
           </li>
           <li class="av" data-word="compelling">
             <div class="av-top">
@@ -324,6 +372,18 @@
             <p class="av-meaning">엄선하다, 큐레이션하다</p>
             <p class="av-example">"The dashboard curates only the most relevant KPIs for each user role."</p>
           </li>
+          <li class="av" data-word="delight">
+            <div class="av-top">
+              <span class="av-word">delight</span>
+              <span class="av-type">v/n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('delight')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('delight')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">기쁨을 주다; (사용자를) 감동시키는 요소</p>
+            <p class="av-example">"A small confetti animation delighted users after checkout."</p>
+          </li>
           <li class="av" data-word="dependency">
             <div class="av-top">
               <span class="av-word">dependency</span>
@@ -396,6 +456,30 @@
             <p class="av-meaning">생태계 (제품·서비스 환경)</p>
             <p class="av-example">"Apple's ecosystem keeps users locked into its products and services."</p>
           </li>
+          <li class="av" data-word="edge case">
+            <div class="av-top">
+              <span class="av-word">edge case</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('edge_case')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('edge_case')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">예외 상황, 극단적인 경우</p>
+            <p class="av-example">"QA found an edge case where the form crashed with an empty file."</p>
+          </li>
+          <li class="av" data-word="empathy">
+            <div class="av-top">
+              <span class="av-word">empathy</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('empathy')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('empathy')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">공감</p>
+            <p class="av-example">"Empathy interviews revealed pain points we'd never have guessed."</p>
+          </li>
           <li class="av" data-word="empirical">
             <div class="av-top">
               <span class="av-word">empirical</span>
@@ -407,6 +491,18 @@
             </div>
             <p class="av-meaning">경험적인, 실증적인</p>
             <p class="av-example">"Design decisions should be backed by empirical evidence, not assumptions."</p>
+          </li>
+          <li class="av" data-word="extensible">
+            <div class="av-top">
+              <span class="av-word">extensible</span>
+              <span class="av-type">adj</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('extensible')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('extensible')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">확장 가능한 (구조·코드가)</p>
+            <p class="av-example">"We built the component library to be extensible for future brands."</p>
           </li>
           <li class="av" data-word="facilitate">
             <div class="av-top">
@@ -540,6 +636,18 @@
             <p class="av-meaning">가설</p>
             <p class="av-example">"We tested the hypothesis that a shorter form would increase completions."</p>
           </li>
+          <li class="av" data-word="ideate">
+            <div class="av-top">
+              <span class="av-word">ideate</span>
+              <span class="av-type">v</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('ideate')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('ideate')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">아이디어를 내다, 구상하다</p>
+            <p class="av-example">"The workshop's first hour was spent ideating freely, without judgment."</p>
+          </li>
           <li class="av" data-word="idempotent">
             <div class="av-top">
               <span class="av-word">idempotent</span>
@@ -563,6 +671,18 @@
             </div>
             <p class="av-meaning">포용적인, 모든 사용자를 고려하는</p>
             <p class="av-example">"Inclusive design benefits people with and without disabilities alike."</p>
+          </li>
+          <li class="av" data-word="inference">
+            <div class="av-top">
+              <span class="av-word">inference</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('inference')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('inference')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">추론 (AI 모델이 결과를 도출하는 과정)</p>
+            <p class="av-example">"Running inference on-device reduced latency significantly."</p>
           </li>
           <li class="av" data-word="intuitive">
             <div class="av-top">
@@ -623,6 +743,18 @@
             </div>
             <p class="av-meaning">지연 시간</p>
             <p class="av-example">"High latency in the API response made the interface feel sluggish."</p>
+          </li>
+          <li class="av" data-word="latent space">
+            <div class="av-top">
+              <span class="av-word">latent space</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('latent_space')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('latent_space')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">잠재 공간 (AI 모델이 데이터 특징을 압축해 표현하는 공간)</p>
+            <p class="av-example">"Similar images cluster together in the model's latent space."</p>
           </li>
           <li class="av" data-word="legacy">
             <div class="av-top">
@@ -696,6 +828,18 @@
             <p class="av-meaning">(위험·문제를) 완화·줄이다</p>
             <p class="av-example">"Regular usability tests help mitigate costly design mistakes."</p>
           </li>
+          <li class="av" data-word="mockup">
+            <div class="av-top">
+              <span class="av-word">mockup</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('mockup')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('mockup')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">목업, 시각적 시제품</p>
+            <p class="av-example">"We reviewed three mockups before picking a direction to prototype."</p>
+          </li>
           <li class="av" data-word="modular">
             <div class="av-top">
               <span class="av-word">modular</span>
@@ -707,6 +851,18 @@
             </div>
             <p class="av-meaning">모듈식의, 조립식의</p>
             <p class="av-example">"A modular design system allows teams to build pages like Lego blocks."</p>
+          </li>
+          <li class="av" data-word="multimodal">
+            <div class="av-top">
+              <span class="av-word">multimodal</span>
+              <span class="av-type">adj</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('multimodal')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('multimodal')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">멀티모달 (텍스트·이미지·음성을 함께 처리하는)</p>
+            <p class="av-example">"The new multimodal model can describe an image and answer questions about it."</p>
           </li>
           <li class="av" data-word="nascent">
             <div class="av-top">
@@ -924,6 +1080,18 @@
             <p class="av-meaning">반응형의; 빠르게 반응하는</p>
             <p class="av-example">"Responsive design ensures the app works across all screen sizes."</p>
           </li>
+          <li class="av" data-word="retention">
+            <div class="av-top">
+              <span class="av-word">retention</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('retention')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('retention')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">잔존율, 사용자 유지율</p>
+            <p class="av-example">"Improving day-7 retention mattered more than chasing new signups."</p>
+          </li>
           <li class="av" data-word="robust">
             <div class="av-top">
               <span class="av-word">robust</span>
@@ -1019,6 +1187,30 @@
             </div>
             <p class="av-meaning">구체적인, 실질적인</p>
             <p class="av-example">"We need tangible outcomes from this workshop, not just sticky notes."</p>
+          </li>
+          <li class="av" data-word="telemetry">
+            <div class="av-top">
+              <span class="av-word">telemetry</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('telemetry')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('telemetry')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">원격 측정 데이터 (시스템 상태·사용 데이터 수집)</p>
+            <p class="av-example">"Vehicle telemetry showed the sensor was misaligned after the crash."</p>
+          </li>
+          <li class="av" data-word="teleoperation">
+            <div class="av-top">
+              <span class="av-word">teleoperation</span>
+              <span class="av-type">n</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('teleoperation')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('teleoperation')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">원격 조작 (사람이 멀리서 로봇·차량을 조작하는 것)</p>
+            <p class="av-example">"Some robotaxis fall back to teleoperation when they get stuck."</p>
           </li>
           <li class="av" data-word="throughput">
             <div class="av-top">
@@ -1129,8 +1321,20 @@
             <p class="av-example">"Strategic use of whitespace improves readability and visual hierarchy."</p>
           </li>
   </ul>
-  <p class="section-title">숙어 &amp; 표현 (30)</p>
+  <p class="section-title">숙어 &amp; 표현 (40)</p>
   <ul class="av-list">
+          <li class="av" data-word="ahead of the curve">
+            <div class="av-top">
+              <span class="av-word">ahead of the curve</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('ahead_of_the_curve')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('ahead_of_the_curve')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">시대를 앞서가는, 선도하는</p>
+            <p class="av-example">"Adopting AI tools early kept the team ahead of the curve."</p>
+          </li>
           <li class="av" data-word="at the end of the day">
             <div class="av-top">
               <span class="av-word">at the end of the day</span>
@@ -1170,7 +1374,7 @@
           <li class="av" data-word="bandwidth">
             <div class="av-top">
               <span class="av-word">bandwidth</span>
-              <span class="av-type">n (fig)</span>
+              <span class="av-type">n</span>
               <div class="av-actions">
                 <button class="av-btn star" onclick="toggleStar('bandwidth')" title="복습">☆</button>
                 <button class="av-btn check" onclick="toggleCheck('bandwidth')" title="암기완료">○</button>
@@ -1227,6 +1431,18 @@
             <p class="av-meaning">나중에 다시 논의하다</p>
             <p class="av-example">"Let's circle back on pricing once we have more user data."</p>
           </li>
+          <li class="av" data-word="cut corners">
+            <div class="av-top">
+              <span class="av-word">cut corners</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('cut_corners')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('cut_corners')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">(품질을 희생하며) 절차를 줄이다, 대충 하다</p>
+            <p class="av-example">"Don't cut corners on accessibility testing just to hit the deadline."</p>
+          </li>
           <li class="av" data-word="deep dive">
             <div class="av-top">
               <span class="av-word">deep dive</span>
@@ -1239,18 +1455,6 @@
             <p class="av-meaning">깊이 있는 분석·탐구</p>
             <p class="av-example">"We did a deep dive into competitor apps before defining our strategy."</p>
           </li>
-          <li class="av" data-word="dog fooding">
-            <div class="av-top">
-              <span class="av-word">dog fooding</span>
-              <span class="av-type">idiom</span>
-              <div class="av-actions">
-                <button class="av-btn star" onclick="toggleStar('dog_fooding')" title="복습">☆</button>
-                <button class="av-btn check" onclick="toggleCheck('dog_fooding')" title="암기완료">○</button>
-              </div>
-            </div>
-            <p class="av-meaning">자사 제품을 직접 사용해 테스트하다</p>
-            <p class="av-example">"Dog fooding the app daily helps us catch bugs before users do."</p>
-          </li>
           <li class="av" data-word="double down">
             <div class="av-top">
               <span class="av-word">double down</span>
@@ -1262,6 +1466,18 @@
             </div>
             <p class="av-meaning">더 강하게 밀어붙이다, 배로 노력하다</p>
             <p class="av-example">"After the positive A/B test, we doubled down on that design direction."</p>
+          </li>
+          <li class="av" data-word="eat your own dog food">
+            <div class="av-top">
+              <span class="av-word">eat your own dog food</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('eat_your_own_dog_food')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('eat_your_own_dog_food')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">자사 제품을 직접 사용해보다</p>
+            <p class="av-example">"We eat our own dog food — the whole team uses the beta build daily."</p>
           </li>
           <li class="av" data-word="flip the script">
             <div class="av-top">
@@ -1286,6 +1502,18 @@
             </div>
             <p class="av-meaning">판도를 바꾸는 것</p>
             <p class="av-example">"Real-time collaboration in Figma was a game changer for design teams."</p>
+          </li>
+          <li class="av" data-word="get the ball rolling">
+            <div class="av-top">
+              <span class="av-word">get the ball rolling</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('get_the_ball_rolling')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('get_the_ball_rolling')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">시작하다, 착수하다</p>
+            <p class="av-example">"Let's get the ball rolling with a quick kickoff call tomorrow."</p>
           </li>
           <li class="av" data-word="give the green light">
             <div class="av-top">
@@ -1335,6 +1563,18 @@
             <p class="av-meaning">즉시 열정적으로 시작하다</p>
             <p class="av-example">"The new designer hit the ground running and shipped a redesign in week one."</p>
           </li>
+          <li class="av" data-word="in the loop">
+            <div class="av-top">
+              <span class="av-word">in the loop</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('in_the_loop')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('in_the_loop')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">정보를 공유받는, 소식을 아는 상태인</p>
+            <p class="av-example">"Please keep the design team in the loop on any scope changes."</p>
+          </li>
           <li class="av" data-word="in the pipeline">
             <div class="av-top">
               <span class="av-word">in the pipeline</span>
@@ -1383,6 +1623,18 @@
             <p class="av-meaning">쉽게 달성 가능한 목표</p>
             <p class="av-example">"Fixing broken links is low-hanging fruit — quick wins with real impact."</p>
           </li>
+          <li class="av" data-word="make or break">
+            <div class="av-top">
+              <span class="av-word">make or break</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('make_or_break')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('make_or_break')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">성패를 좌우하는</p>
+            <p class="av-example">"The first 30 seconds of onboarding can make or break retention."</p>
+          </li>
           <li class="av" data-word="move the needle">
             <div class="av-top">
               <span class="av-word">move the needle</span>
@@ -1419,6 +1671,18 @@
             <p class="av-meaning">일시 보류 중인</p>
             <p class="av-example">"The tablet version has been on the back burner while we fix mobile."</p>
           </li>
+          <li class="av" data-word="on the fence">
+            <div class="av-top">
+              <span class="av-word">on the fence</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('on_the_fence')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('on_the_fence')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">결정을 못 내리고 망설이는</p>
+            <p class="av-example">"Stakeholders were still on the fence about the pricing model."</p>
+          </li>
           <li class="av" data-word="on the same page">
             <div class="av-top">
               <span class="av-word">on the same page</span>
@@ -1443,6 +1707,30 @@
             <p class="av-meaning">불편함, 사용자가 겪는 문제</p>
             <p class="av-example">"The biggest pain point was the confusing filter system in search."</p>
           </li>
+          <li class="av" data-word="push the envelope">
+            <div class="av-top">
+              <span class="av-word">push the envelope</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('push_the_envelope')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('push_the_envelope')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">한계를 뛰어넘다, 혁신을 추구하다</p>
+            <p class="av-example">"The concept car pushed the envelope on what an in-car display could do."</p>
+          </li>
+          <li class="av" data-word="quick win">
+            <div class="av-top">
+              <span class="av-word">quick win</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('quick_win')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('quick_win')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">빠르게 얻을 수 있는 성과</p>
+            <p class="av-example">"Renaming that confusing button was an easy quick win."</p>
+          </li>
           <li class="av" data-word="raise the bar">
             <div class="av-top">
               <span class="av-word">raise the bar</span>
@@ -1454,6 +1742,18 @@
             </div>
             <p class="av-meaning">기준을 높이다</p>
             <p class="av-example">"Apple's design has consistently raised the bar for the entire industry."</p>
+          </li>
+          <li class="av" data-word="rule of thumb">
+            <div class="av-top">
+              <span class="av-word">rule of thumb</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('rule_of_thumb')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('rule_of_thumb')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">경험에 기반한 대략적인 기준</p>
+            <p class="av-example">"As a rule of thumb, keep onboarding under five screens."</p>
           </li>
           <li class="av" data-word="run it up the flagpole">
             <div class="av-top">
@@ -1479,6 +1779,18 @@
             <p class="av-meaning">범위가 점진적으로 확장되는 현상</p>
             <p class="av-example">"Scope creep killed the timeline — we need clearer sign-off on requirements."</p>
           </li>
+          <li class="av" data-word="think outside the box">
+            <div class="av-top">
+              <span class="av-word">think outside the box</span>
+              <span class="av-type">idiom</span>
+              <div class="av-actions">
+                <button class="av-btn star" onclick="toggleStar('think_outside_the_box')" title="복습">☆</button>
+                <button class="av-btn check" onclick="toggleCheck('think_outside_the_box')" title="암기완료">○</button>
+              </div>
+            </div>
+            <p class="av-meaning">고정관념을 깨고 창의적으로 생각하다</p>
+            <p class="av-example">"The brief asked us to think outside the box for the new nav pattern."</p>
+          </li>
           <li class="av" data-word="touch base">
             <div class="av-top">
               <span class="av-word">touch base</span>
@@ -1494,7 +1806,7 @@
   </ul>
 </main>
 
-<footer>총 114개 · 알파벳 순</footer>
+<footer>총 140개 · 알파벳 순</footer>
 
 <script>
   let currentFilter = 'all';
