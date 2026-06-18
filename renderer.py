@@ -3,15 +3,17 @@
 카드 레이아웃: 대표 이미지 → 메타 → 제목 → 키워드 → 요약
 """
 
+import json
 from datetime import datetime, timezone
 from typing import Dict, List
 
 from vocabulary import get_daily_words
 
 CATEGORY_META = {
-    "UX/프로덕트 디자인":   {"color": "#4361ee", "gradient": "135deg, #4361ee, #7209b7", "emoji": "🎨"},
-    "자동차/모빌리티 테크": {"color": "#0a9396", "gradient": "135deg, #0a9396, #005f73", "emoji": "🚗"},
-    "IT/테크 트렌드":       {"color": "#7209b7", "gradient": "135deg, #7209b7, #3a0ca3", "emoji": "💻"},
+    "UX/프로덕트 디자인":   {"color": "#4361ee", "gradient": "135deg, #4361ee, #7209b7", "emoji": "🎨", "slug": "ux"},
+    "AI & 로보틱스":        {"color": "#e63946", "gradient": "135deg, #e63946, #f3722c", "emoji": "🤖", "slug": "ai"},
+    "모빌리티 & 자율주행":  {"color": "#0a9396", "gradient": "135deg, #0a9396, #005f73", "emoji": "🚗", "slug": "mobility"},
+    "IT/개발 테크":         {"color": "#7209b7", "gradient": "135deg, #7209b7, #3a0ca3", "emoji": "💻", "slug": "it"},
 }
 
 WEEKDAYS = ["월", "화", "수", "목", "금", "토", "일"]
@@ -72,7 +74,7 @@ def render_card(article: dict, category: str) -> str:
         </div>"""
 
     return f"""
-      <div class="article-unit">
+      <div class="article-unit" data-url="{article['url']}">
         <a href="{article['url']}" class="card" target="_blank" rel="noopener noreferrer">
           {img_html}
           <div class="card-body">
@@ -85,8 +87,20 @@ def render_card(article: dict, category: str) -> str:
             <p class="card-title">{article['title']}</p>
             {keywords_html}
             {summary_html}
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
           </div>
         </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
         {kr_summary_html}
       </div>"""
 
@@ -117,15 +131,29 @@ def render_vocab_panel(generated_at: datetime) -> str:
     words_html  = _vocab_items_html(daily["words"], offset=0)
     idioms_html = _vocab_items_html(daily["idioms"], offset=20)
 
+    quiz_pool = [
+        {"word": w["word"], "meaning": w["meaning"], "example": w["example"]}
+        for w in daily["words"] + daily["idioms"]
+    ]
+    quiz_json = json.dumps(quiz_pool, ensure_ascii=False).replace("</", "<\\/")
+
     return f"""
-      <aside class="vocab-panel">
+      <aside class="vocab-panel" id="cat-vocab" data-category="vocab">
         <div class="vocab-head">
           <span class="vocab-icon">📚</span>
           <div style="flex:1">
             <p class="vocab-title">오늘의 영어</p>
             <p class="vocab-sub">단어 20 · 숙어 10</p>
           </div>
-          <a href="vocab_all.html" class="vocab-archive-btn" target="_blank">전체 보기 →</a>
+          <a href="vocab_all.html" class="vocab-archive-btn">전체 보기 →</a>
+        </div>
+
+        <div class="quiz-box">
+          <p class="quiz-label">🎯 오늘의 복습 퀴즈</p>
+          <p class="quiz-word" id="quiz-word">…</p>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+          <button class="quiz-next hidden" id="quiz-next" onclick="pickQuizQuestion()">다음 문제 →</button>
         </div>
 
         <div class="vocab-section-label">📖 단어 (20)</div>
@@ -138,37 +166,79 @@ def render_vocab_panel(generated_at: datetime) -> str:
       </aside>
 
       <script>
-        const STATUS_KEY = 'vocabStatus';
-        function getStatus() {{
-          return JSON.parse(localStorage.getItem(STATUS_KEY) || '{{}}');
-        }}
-        function saveStatus(s) {{
-          localStorage.setItem(STATUS_KEY, JSON.stringify(s));
-        }}
-        function toggleStar(wid) {{
-          const s = getStatus();
-          s[wid] = s[wid] === 'starred' ? null : 'starred';
-          if (!s[wid]) delete s[wid];
-          saveStatus(s); applyStatus();
-        }}
-        function toggleCheck(wid) {{
-          const s = getStatus();
-          s[wid] = s[wid] === 'learned' ? null : 'learned';
-          if (!s[wid]) delete s[wid];
-          saveStatus(s); applyStatus();
-        }}
         function applyStatus() {{
-          const s = getStatus();
           document.querySelectorAll('.vi').forEach(el => {{
-            const wid = el.dataset.word.replace(/ /g,'_').replace(/\\//g,'_');
-            const status = s[wid];
-            el.classList.toggle('is-starred',  status === 'starred');
-            el.classList.toggle('is-learned',  status === 'learned');
-            el.querySelector('.star').textContent = status === 'starred' ? '★' : '☆';
-            el.querySelector('.check').textContent = status === 'learned' ? '●' : '○';
+            const wid = vocabSync.wordIdOf(el.dataset.word);
+            const st = vocabSync.statusOf(wid);
+            el.classList.toggle('is-starred', st.starred);
+            el.classList.toggle('is-learned', st.learned);
+            el.querySelector('.star').textContent = st.starred ? '★' : '☆';
+            el.querySelector('.check').textContent = st.learned ? '●' : '○';
           }});
         }}
-        document.addEventListener('DOMContentLoaded', applyStatus);
+        vocabSync.onChange(applyStatus);
+
+        // ── 오늘의 복습 퀴즈 ──
+        const QUIZ_POOL = {quiz_json};
+        let quizAnswered = false;
+
+        function shuffleArr(arr) {{
+          for (let i = arr.length - 1; i > 0; i--) {{
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+          }}
+          return arr;
+        }}
+
+        function pickQuizQuestion() {{
+          quizAnswered = false;
+          const idx = Math.floor(Math.random() * QUIZ_POOL.length);
+          const correct = QUIZ_POOL[idx];
+          const rest = QUIZ_POOL.filter((_, i) => i !== idx);
+          shuffleArr(rest);
+          const options = shuffleArr([correct, ...rest.slice(0, 3)]);
+
+          document.getElementById('quiz-word').textContent = correct.word;
+          const optsEl = document.getElementById('quiz-options');
+          optsEl.innerHTML = '';
+          options.forEach(opt => {{
+            const btn = document.createElement('button');
+            btn.className = 'quiz-opt';
+            btn.textContent = opt.meaning;
+            btn.onclick = () => checkQuizAnswer(btn, opt, correct);
+            optsEl.appendChild(btn);
+          }});
+
+          const fb = document.getElementById('quiz-feedback');
+          fb.classList.add('hidden');
+          fb.innerHTML = '';
+          document.getElementById('quiz-next').classList.add('hidden');
+        }}
+
+        function checkQuizAnswer(btn, opt, correct) {{
+          if (quizAnswered) return;
+          quizAnswered = true;
+          document.querySelectorAll('.quiz-opt').forEach(o => {{
+            o.disabled = true;
+            if (o.textContent === correct.meaning) o.classList.add('quiz-correct');
+          }});
+          if (opt !== correct) btn.classList.add('quiz-wrong');
+
+          const fb = document.getElementById('quiz-feedback');
+          fb.innerHTML = '';
+          const title = document.createElement('p');
+          title.className = 'quiz-fb-title';
+          title.textContent = opt === correct ? '✅ 정답이에요!' : ('❌ 오답이에요! 정답은 "' + correct.meaning + '"');
+          const ex = document.createElement('p');
+          ex.className = 'quiz-fb-example';
+          ex.textContent = '"' + correct.example + '"';
+          fb.appendChild(title);
+          fb.appendChild(ex);
+          fb.classList.remove('hidden');
+          document.getElementById('quiz-next').classList.remove('hidden');
+        }}
+
+        pickQuizQuestion();
       </script>"""
 
 
@@ -181,13 +251,14 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
 
     sections_html = ""
     for category, articles in articles_by_category.items():
-        meta = CATEGORY_META.get(category, {"color": "#333", "emoji": "📰"})
+        meta = CATEGORY_META.get(category, {"color": "#333", "emoji": "📰", "slug": ""})
         color = meta["color"]
         emoji = meta["emoji"]
+        slug = meta.get("slug", "")
         cards_html = "".join(render_card(a, category) for a in articles) if articles \
             else '<p class="empty">오늘 새 기사가 없습니다.</p>'
         sections_html += f"""
-    <section class="section">
+    <section class="section" id="cat-{slug}" data-category="{slug}">
       <h2 class="section-title" style="color:{color}">
         <span class="section-bar" style="background:{color}"></span>
         {emoji} {category}
@@ -225,7 +296,10 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
     .header-date {{ font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; }}
     .header-date .wd {{ font-weight: 300; opacity: 0.6; margin-left: 0.4rem; }}
     .header-tags {{ margin-top: 1rem; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }}
-    .tag {{ background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.73rem; color: rgba(255,255,255,0.65); }}
+    .tag {{ background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 0.3rem 0.9rem; font-size: 0.73rem; color: rgba(255,255,255,0.65); font-family: inherit; cursor: pointer; transition: background 0.15s, border-color 0.15s, color 0.15s; }}
+    .tag:hover {{ background: rgba(255,255,255,0.13); color: rgba(255,255,255,0.9); }}
+    .tag.active {{ background: #4361ee; border-color: #4361ee; color: #fff; }}
+    .tag-link {{ text-decoration: none; display: inline-flex; align-items: center; }}
     .header-count {{ margin-top: 1.1rem; font-size: 0.75rem; opacity: 0.35; }}
 
     /* ── 2단 레이아웃 ── */
@@ -234,7 +308,7 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
       margin: 0 auto;
       padding: 2rem 1.5rem 5rem;
       display: grid;
-      grid-template-columns: 1fr 300px;
+      grid-template-columns: 1fr 460px;
       gap: 1.8rem;
       align-items: start;
     }}
@@ -285,6 +359,31 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
     .summary {{ font-size: 0.78rem; color: #6b7280; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }}
     .empty {{ color: #bbb; font-size: 0.85rem; }}
 
+    /* ── 보관 / 메모 툴바 ── */
+    .card-toolbar {{ display: flex; gap: 0.4rem; margin-top: 0.1rem; }}
+    .tb-btn {{
+      display: inline-flex; align-items: center; gap: 0.25rem;
+      background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 20px;
+      padding: 3px 10px; font-size: 0.68rem; font-weight: 600; color: #9ca3af;
+      cursor: pointer; transition: all 0.15s; position: relative; z-index: 2;
+    }}
+    .tb-btn:hover {{ background: #f3f4f6; color: #6b7280; }}
+    .tb-btn.active {{ background: #fffbeb; border-color: #fde68a; color: #d97706; }}
+    .tb-icon {{ font-size: 0.78rem; }}
+
+    .hidden {{ display: none !important; }}
+    .memo-box {{
+      margin-top: 0.5rem; background: #fffbeb; border: 1px solid #fde68a;
+      border-radius: 10px; padding: 0.65rem 0.8rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }}
+    .memo-input {{
+      width: 100%; min-height: 64px; resize: vertical; border: none; background: transparent;
+      font-family: inherit; font-size: 0.78rem; color: #78350f; line-height: 1.6; outline: none;
+    }}
+    .memo-input::placeholder {{ color: #d6a85c; }}
+    .memo-hint {{ font-size: 0.64rem; color: #ca8a04; opacity: 0.65; margin-top: 0.25rem; text-align: right; }}
+
     /* ── 한국어 핵심 요약 ── */
     .kr-summary {{
       background: #f8faff;
@@ -320,23 +419,52 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
       transition: background 0.15s;
     }}
     .vocab-archive-btn:hover {{ background: rgba(255,255,255,0.15); }}
+
+    /* ── 단어 퀴즈 ── */
+    .quiz-box {{
+      margin: 0.9rem 1.2rem; padding: 0.9rem 1rem;
+      background: linear-gradient(135deg, #f8faff, #eef0fd);
+      border: 1px solid #e0e7ff; border-radius: 12px;
+    }}
+    .quiz-label {{ font-size: 0.66rem; font-weight: 700; color: #4361ee; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; }}
+    .quiz-word {{ font-size: 1.1rem; font-weight: 800; color: #1a1a2e; margin-bottom: 0.7rem; }}
+    .quiz-options {{ display: flex; flex-direction: column; gap: 0.4rem; }}
+    .quiz-opt {{
+      text-align: left; background: #fff; border: 1px solid #dde1ea; border-radius: 8px;
+      padding: 0.5rem 0.7rem; font-size: 0.78rem; color: #374151; cursor: pointer;
+      font-family: inherit; transition: all 0.15s;
+    }}
+    .quiz-opt:hover:not(:disabled) {{ border-color: #4361ee; background: #f8faff; }}
+    .quiz-opt:disabled {{ cursor: default; opacity: 0.6; }}
+    .quiz-opt.quiz-correct {{ background: #f0fdf4; border-color: #22c55e; color: #15803d; opacity: 1; font-weight: 600; }}
+    .quiz-opt.quiz-wrong {{ background: #fef2f2; border-color: #ef4444; color: #b91c1c; opacity: 1; }}
+    .quiz-feedback {{ margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px dashed #d8dcef; }}
+    .quiz-fb-title {{ font-size: 0.8rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.3rem; }}
+    .quiz-fb-example {{ font-size: 0.72rem; color: #6b7280; font-style: italic; line-height: 1.5; }}
+    .quiz-next {{
+      margin-top: 0.7rem; background: #4361ee; color: #fff; border: none; border-radius: 8px;
+      padding: 0.45rem 0.9rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;
+      font-family: inherit;
+    }}
+    .quiz-next:hover {{ background: #3451d1; }}
+
     .vocab-section-label {{
       font-size: 0.68rem; font-weight: 700; color: #9ca3af;
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 0.6rem 1.2rem 0.3rem;
       background: #f9fafb; border-top: 1px solid #f3f4f6;
     }}
-    .vocab-list {{ list-style: none; padding: 0; }}
-    .vocab-list::-webkit-scrollbar {{ width: 4px; }}
-    .vocab-list::-webkit-scrollbar-thumb {{ background: #e5e7eb; border-radius: 2px; }}
+    .vocab-list {{
+      list-style: none; padding: 0.4rem 0.8rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;
+    }}
 
-    .vi {{ padding: 0.65rem 1.2rem; border-bottom: 1px solid #f3f4f6; transition: background 0.15s; }}
-    .vi:last-child {{ border-bottom: none; }}
+    .vi {{ padding: 0.6rem 0.7rem; border: 1px solid #f3f4f6; border-radius: 8px; transition: background 0.15s; }}
     .vi.is-learned {{ background: #f0fdf4; }}
     .vi.is-starred {{ background: #fffbeb; }}
     .vi-top {{ display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.15rem; }}
     .vi-num {{ font-size: 0.6rem; color: #d1d5db; font-weight: 700; width: 1.1rem; flex-shrink: 0; }}
-    .vi-word {{ font-size: 0.86rem; font-weight: 700; color: #1a1a2e; flex: 1; }}
+    .vi-word {{ font-size: 0.86rem; font-weight: 700; color: #1a1a2e; flex: 1; min-width: 0; overflow-wrap: anywhere; }}
     .vi-type {{ font-size: 0.6rem; color: #4361ee; background: #eef0fd; padding: 1px 5px; border-radius: 3px; font-weight: 600; flex-shrink: 0; }}
     .vi-actions {{ display: flex; gap: 0.25rem; margin-left: 0.3rem; }}
     .vi-btn {{
@@ -347,8 +475,8 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
     .vi-btn:hover {{ color: #6b7280; }}
     .vi.is-starred .vi-btn.star {{ color: #f59e0b; }}
     .vi.is-learned .vi-btn.check {{ color: #22c55e; }}
-    .vi-meaning {{ font-size: 0.76rem; color: #374151; font-weight: 500; margin-bottom: 0.2rem; }}
-    .vi-example {{ font-size: 0.71rem; color: #9ca3af; line-height: 1.5; font-style: italic; }}
+    .vi-meaning {{ font-size: 0.76rem; color: #374151; font-weight: 500; margin-bottom: 0.2rem; overflow-wrap: break-word; }}
+    .vi-example {{ font-size: 0.71rem; color: #9ca3af; line-height: 1.5; font-style: italic; overflow-wrap: break-word; }}
 
     /* ── 잠금 화면 ── */
     #lock-screen {{
@@ -398,8 +526,13 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
     }}
     @media (max-width: 420px) {{
       .grid {{ grid-template-columns: 1fr; }}
+      .vocab-list {{ grid-template-columns: 1fr; }}
     }}
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/supabase-config.js"></script>
+  <script src="assets/vocab-sync.js"></script>
+  <script src="assets/article-sync.js"></script>
 </head>
 <body>
 
@@ -434,6 +567,61 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
       }}
     }};
   }})();
+
+  // ── 카테고리 태그 필터 ──
+  window.onTagClick = function(event, btn) {{
+    event.preventDefault();
+    const target = document.getElementById(btn.dataset.target);
+    const sections = document.querySelectorAll('.section, .vocab-panel');
+    const wasActive = btn.classList.contains('active');
+    document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+    if (wasActive) {{
+      sections.forEach(s => s.classList.remove('hidden'));
+    }} else {{
+      btn.classList.add('active');
+      sections.forEach(s => s.classList.toggle('hidden', s !== target));
+    }}
+    if (target) target.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+  }};
+
+  // ── 기사 보관(🔖) / 메모(📝) ──
+  function unitOf(el) {{ return el.closest('.article-unit'); }}
+  function urlOf(el) {{ return unitOf(el).dataset.url; }}
+  function titleOf(el) {{ return unitOf(el).querySelector('.card-title').textContent.trim(); }}
+
+  window.onToggleBookmark = function(event, btn) {{
+    event.preventDefault();
+    event.stopPropagation();
+    articleSync.toggleBookmark(urlOf(btn), titleOf(btn));
+  }};
+
+  window.onToggleMemo = function(event, btn) {{
+    event.preventDefault();
+    event.stopPropagation();
+    const box = unitOf(btn).querySelector('.memo-box');
+    box.classList.toggle('hidden');
+    if (!box.classList.contains('hidden')) box.querySelector('.memo-input').focus();
+  }};
+
+  window.onSaveMemo = function(textarea) {{
+    const unit = unitOf(textarea);
+    articleSync.setMemo(unit.dataset.url, unit.querySelector('.card-title').textContent.trim(), textarea.value);
+  }};
+
+  function applyArticleStatus() {{
+    document.querySelectorAll('.article-unit').forEach(unit => {{
+      const s = articleSync.of(unit.dataset.url);
+      const bookmarkBtn = unit.querySelector('.bookmark-btn');
+      const memoBtn = unit.querySelector('.memo-btn');
+      const memoBox = unit.querySelector('.memo-box');
+      const memoInput = memoBox.querySelector('.memo-input');
+      bookmarkBtn.classList.toggle('active', s.bookmarked);
+      memoBtn.classList.toggle('active', !!s.memo);
+      if (document.activeElement !== memoInput) memoInput.value = s.memo;
+      memoBox.classList.toggle('hidden', !s.memo && document.activeElement !== memoInput);
+    }});
+  }}
+  articleSync.onChange(applyArticleStatus);
 </script>
 
 <header>
@@ -442,10 +630,12 @@ def render_html(articles_by_category: Dict[str, List[dict]], generated_at: datet
     {generated_at.year}년 {month}월 {day}일<span class="wd">{weekday}요일</span>
   </div>
   <div class="header-tags">
-    <span class="tag">🎨 UX/프로덕트</span>
-    <span class="tag">🚗 자동차 테크</span>
-    <span class="tag">💻 IT 트렌드</span>
-    <span class="tag">📚 영어</span>
+    <button class="tag" data-target="cat-ux" onclick="onTagClick(event, this)">🎨 UX/프로덕트</button>
+    <button class="tag" data-target="cat-ai" onclick="onTagClick(event, this)">🤖 AI&로보틱스</button>
+    <button class="tag" data-target="cat-mobility" onclick="onTagClick(event, this)">🚗 모빌리티</button>
+    <button class="tag" data-target="cat-it" onclick="onTagClick(event, this)">💻 IT/개발</button>
+    <a class="tag tag-link" href="vocab_all.html">📚 영어</a>
+    <a class="tag tag-link" href="saved.html">🔖 보관함</a>
   </div>
   <p class="header-count">기사 {total}개 · {time_str} 업데이트</p>
 </header>

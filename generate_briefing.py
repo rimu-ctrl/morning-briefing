@@ -3,6 +3,7 @@
 모닝 브리핑 생성기
 - docs/index.html      : 오늘의 기사 + 영어 패널 (GitHub Pages)
 - docs/vocab_all.html  : 전체 단어 아카이브
+- docs/saved.html      : 보관한 기사 + 메모 모아보기
 """
 
 import os
@@ -23,6 +24,7 @@ PROJECT_DIR   = Path(__file__).parent
 DOCS_DIR      = PROJECT_DIR / "docs"
 BRIEFING_PATH = DOCS_DIR / "index.html"
 ARCHIVE_PATH  = DOCS_DIR / "vocab_all.html"
+SAVED_PATH    = DOCS_DIR / "saved.html"
 KEYWORD       = "okrimu"
 
 
@@ -60,6 +62,9 @@ def render_vocab_archive() -> str:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>영어 아카이브</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/supabase-config.js"></script>
+  <script src="assets/vocab-sync.js"></script>
   <style>
     *, *::before, *::after {{ box-sizing: border-box; margin: 0; padding: 0; }}
     body {{ font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", sans-serif;
@@ -182,35 +187,178 @@ def render_vocab_archive() -> str:
 <footer>총 {len(all_words) + len(all_idioms)}개 · 알파벳 순</footer>
 
 <script>
-  const STATUS_KEY = 'vocabStatus';
   let currentFilter = 'all';
-  function getStatus() {{ return JSON.parse(localStorage.getItem(STATUS_KEY) || '{{}}'); }}
-  function saveStatus(s) {{ localStorage.setItem(STATUS_KEY, JSON.stringify(s)); }}
-  function toggleStar(wid) {{ const s=getStatus(); s[wid]=s[wid]==='starred'?null:'starred'; if(!s[wid])delete s[wid]; saveStatus(s); applyStatus(); }}
-  function toggleCheck(wid) {{ const s=getStatus(); s[wid]=s[wid]==='learned'?null:'learned'; if(!s[wid])delete s[wid]; saveStatus(s); applyStatus(); }}
   function setFilter(f) {{ currentFilter=f; document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active')); event.target.classList.add('active'); applyStatus(); }}
   function applyStatus() {{
-    const s=getStatus(); let lc=0, sc=0;
+    let lc=0, sc=0;
     document.querySelectorAll('.av').forEach(el=>{{
-      const wid=el.dataset.word.replace(/ /g,'_').replace(/\//g,'_');
-      const st=s[wid];
-      el.classList.toggle('is-starred',st==='starred'); el.classList.toggle('is-learned',st==='learned');
-      el.querySelector('.star').textContent=st==='starred'?'★':'☆';
-      el.querySelector('.check').textContent=st==='learned'?'●':'○';
-      if(st==='learned')lc++; if(st==='starred')sc++;
+      const wid = vocabSync.wordIdOf(el.dataset.word);
+      const st = vocabSync.statusOf(wid);
+      el.classList.toggle('is-starred', st.starred); el.classList.toggle('is-learned', st.learned);
+      el.querySelector('.star').textContent = st.starred ? '★' : '☆';
+      el.querySelector('.check').textContent = st.learned ? '●' : '○';
+      if(st.learned) lc++; if(st.starred) sc++;
       let show=true;
-      if(currentFilter==='starred')show=st==='starred';
-      else if(currentFilter==='learned')show=st==='learned';
-      else if(currentFilter==='todo')show=!st;
+      if(currentFilter==='starred')show=st.starred;
+      else if(currentFilter==='learned')show=st.learned;
+      else if(currentFilter==='todo')show=!st.starred && !st.learned;
       el.classList.toggle('hidden',!show);
     }});
     document.getElementById('learned-count').textContent=lc;
     document.getElementById('starred-count').textContent=sc;
   }}
-  document.addEventListener('DOMContentLoaded', applyStatus);
+  vocabSync.onChange(applyStatus);
 </script>
 </body>
 </html>"""
+
+
+def render_saved_archive() -> str:
+    html = """<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>보관함</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/supabase-config.js"></script>
+  <script src="assets/article-sync.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", sans-serif;
+            background: #f0f2f5; color: #1a1a2e; }
+    /* 잠금 화면 */
+    #lock-screen {
+      position: fixed; inset: 0; z-index: 9999;
+      background: linear-gradient(135deg, #0d1117 0%, #1a1a2e 60%, #16213e 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lock-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+                 border-radius: 20px; padding: 2.5rem 2rem; text-align: center; width: 320px; }
+    .lock-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .lock-title { color: #fff; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .lock-sub { color: rgba(255,255,255,0.4); font-size: 0.78rem; margin-bottom: 1.5rem; }
+    .lock-input { width: 100%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+                   border-radius: 10px; color: #fff; font-size: 1rem; padding: 0.7rem 1rem;
+                   text-align: center; letter-spacing: 0.1em; outline: none; transition: border-color 0.2s; }
+    .lock-input:focus { border-color: #4361ee; }
+    .lock-input.error { border-color: #e63946; animation: shake 0.3s; }
+    .lock-btn { margin-top: 1rem; width: 100%; background: #4361ee; border: none; border-radius: 10px;
+                 color: #fff; font-size: 0.95rem; font-weight: 700; padding: 0.75rem;
+                 cursor: pointer; transition: background 0.2s; }
+    .lock-btn:hover { background: #3451d1; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-6px)} 75%{transform:translateX(6px)} }
+    header { background: linear-gradient(135deg, #0d1117, #4361ee); color: #fff; padding: 1.8rem 2rem; }
+    .hd-top { display: flex; align-items: center; gap: 1rem; }
+    .back-btn { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.8rem;
+                 border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 12px; }
+    .back-btn:hover { background: rgba(255,255,255,0.1); }
+    h1 { font-size: 1.5rem; font-weight: 800; }
+    .hd-sub { font-size: 0.8rem; opacity: 0.55; margin-top: 0.4rem; }
+    main { max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .saved-list { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+    .sv { background: #fff; border-radius: 14px; padding: 1rem 1.1rem;
+           border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    .sv-top { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.6rem; }
+    .sv-title { flex: 1; font-size: 0.92rem; font-weight: 650; line-height: 1.5; color: #1a1a2e; text-decoration: none; }
+    .sv-title:hover { text-decoration: underline; }
+    .sv-remove {
+      flex-shrink: 0; background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 20px;
+      padding: 3px 10px; font-size: 0.68rem; font-weight: 600; color: #9ca3af;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .sv-remove:hover { background: #fef2f2; border-color: #fecaca; color: #dc2626; }
+    .sv-memo {
+      width: 100%; min-height: 64px; resize: vertical; border: none;
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
+      padding: 0.65rem 0.8rem;
+      font-family: inherit; font-size: 0.82rem; color: #78350f; line-height: 1.6; outline: none;
+    }
+    .sv-memo::placeholder { color: #d6a85c; }
+    .empty { color: #bbb; font-size: 0.85rem; text-align: center; padding: 3rem 0; }
+    footer { text-align: center; padding: 3rem; font-size: 0.73rem; color: #bbb; }
+  </style>
+</head>
+<body>
+
+<div id="lock-screen">
+  <div class="lock-box">
+    <div class="lock-icon">🔖</div>
+    <p class="lock-title">보관함</p>
+    <p class="lock-sub">키워드를 입력하세요</p>
+    <input type="password" id="lock-input" class="lock-input"
+           placeholder="keyword" autocomplete="off"
+           onkeydown="if(event.key==='Enter')unlock()">
+    <button class="lock-btn" onclick="unlock()">열기</button>
+  </div>
+</div>
+<script>
+  (function(){
+    const KEY='__KEYWORD__', AUTH='brief_auth';
+    if(localStorage.getItem(AUTH)==='1') document.getElementById('lock-screen').style.display='none';
+    window.unlock=function(){
+      const inp=document.getElementById('lock-input');
+      if(inp.value===KEY){ localStorage.setItem(AUTH,'1'); document.getElementById('lock-screen').style.display='none'; }
+      else { inp.classList.add('error'); inp.value=''; setTimeout(()=>inp.classList.remove('error'),400); }
+    };
+  })();
+</script>
+
+<header>
+  <div class="hd-top">
+    <a href="index.html" class="back-btn">← 오늘의 브리핑</a>
+    <h1>🔖 보관함</h1>
+  </div>
+  <p class="hd-sub">내가 보관한 기사와 메모</p>
+</header>
+
+<main>
+  <ul class="saved-list" id="saved-list">
+    <li class="empty">불러오는 중…</li>
+  </ul>
+</main>
+
+<footer>보관한 기사는 기기와 상관없이 동기화됩니다</footer>
+
+<script>
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str || '';
+    return div.innerHTML;
+  }
+
+  function render() {
+    const items = articleSync.getBookmarked();
+    const list = document.getElementById('saved-list');
+    if (items.length === 0) {
+      list.innerHTML = '<li class="empty">보관한 기사가 없습니다.</li>';
+      return;
+    }
+    list.innerHTML = items.map(item => `
+      <li class="sv" data-url="${escapeHtml(item.url)}" data-title="${escapeHtml(item.title)}">
+        <div class="sv-top">
+          <a class="sv-title" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>
+          <button class="sv-remove" onclick="removeBookmark(this)">🔖 해제</button>
+        </div>
+        <textarea class="sv-memo" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="saveMemo(this)">${escapeHtml(item.memo)}</textarea>
+      </li>`).join('');
+  }
+
+  window.removeBookmark = function(btn) {
+    const unit = btn.closest('.sv');
+    articleSync.toggleBookmark(unit.dataset.url, unit.dataset.title);
+  };
+
+  window.saveMemo = function(textarea) {
+    const unit = textarea.closest('.sv');
+    articleSync.setMemo(unit.dataset.url, unit.dataset.title, textarea.value);
+  };
+
+  articleSync.onChange(render);
+</script>
+</body>
+</html>"""
+    return html.replace("__KEYWORD__", KEYWORD)
 
 
 # ── GitHub push ───────────────────────────────────────────────────────────────
@@ -253,10 +401,14 @@ def main():
     archive_html = render_vocab_archive()
     ARCHIVE_PATH.write_text(archive_html, encoding="utf-8")
 
+    saved_html = render_saved_archive()
+    SAVED_PATH.write_text(saved_html, encoding="utf-8")
+
     total = sum(len(v) for v in articles_by_cat.values())
     print(f"\n✓ 기사 {total}개 생성")
     print(f"✓ 브리핑  → {BRIEFING_PATH}")
     print(f"✓ 아카이브 → {ARCHIVE_PATH}")
+    print(f"✓ 보관함  → {SAVED_PATH}")
 
     git_push()
 

@@ -16,48 +16,57 @@ FEEDS = {
         {"url": "https://www.nngroup.com/feed/rss/",              "lang": "en", "source": "Nielsen Norman"},
         {"url": "https://alistapart.com/main/feed/",              "lang": "en", "source": "A List Apart"},
         {"url": "https://www.smashingmagazine.com/feed/",         "lang": "en", "source": "Smashing Mag"},
-        {"url": "https://www.creativebloq.com/rss.xml",           "lang": "en", "source": "Creative Bloq"},
         {"url": "https://feeds.feedburner.com/uxmovement",        "lang": "en", "source": "UX Movement"},
-        {"url": "https://www.fastcompany.com/design/rss",         "lang": "en", "source": "Fast Co Design"},
+        {"url": "https://uxplanet.org/feed",                      "lang": "en", "source": "UX Planet"},
+        {"url": "https://www.producthunt.com/feed",               "lang": "en", "source": "Product Hunt"},
         # ── 국내 ────────────────────────────────────
-        {"url": "https://news.google.com/rss/search?q=UX+디자인+트렌드&hl=ko&gl=KR&ceid=KR:ko",   "lang": "ko", "source": "Google News"},
-        {"url": "https://news.google.com/rss/search?q=프로덕트+디자인+서비스&hl=ko&gl=KR&ceid=KR:ko", "lang": "ko", "source": "Google News"},
-        {"url": "https://news.google.com/rss/search?q=UI+UX+앱+서비스&hl=ko&gl=KR&ceid=KR:ko",     "lang": "ko", "source": "Google News"},
+        {"url": "https://yozm.wishket.com/magazine/feed/",                                          "lang": "ko", "source": "요즘IT"},
+        {"url": "https://news.google.com/rss/search?q=UX+디자인+트렌드&hl=ko&gl=KR&ceid=KR:ko",       "lang": "ko", "source": "Google News"},
+        {"url": "https://news.google.com/rss/search?q=프로덕트+디자인+서비스&hl=ko&gl=KR&ceid=KR:ko",  "lang": "ko", "source": "Google News"},
     ],
-    "자동차/모빌리티 테크": [
-        # ── 영문 일반 자동차 ──────────────────────────
+    "AI & 로보틱스": [
+        # ── 영문 전문지 ──────────────────────────────
+        {"url": "https://www.technologyreview.com/feed/",                       "lang": "en", "source": "MIT Tech Review"},
+        {"url": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss", "lang": "en", "source": "IEEE Spectrum"},
+        {"url": "https://www.therobotreport.com/feed/",                         "lang": "en", "source": "The Robot Report"},
+        {"url": "https://techcrunch.com/category/artificial-intelligence/feed/","lang": "en", "source": "TechCrunch AI"},
+        {"url": "https://feeds.feedburner.com/venturebeat/SZYF",                "lang": "en", "source": "VentureBeat"},
+        # ── 국내 ────────────────────────────────────
+        {"url": "http://www.aitimes.com/rss/allArticle.xml",                                              "lang": "ko", "source": "AI타임스"},
+        {"url": "https://www.irobotnews.com/rss/allArticle.xml",                                          "lang": "ko", "source": "로봇신문"},
+        {"url": "https://news.google.com/rss/search?q=생성형+AI+서비스+플랫폼&hl=ko&gl=KR&ceid=KR:ko",       "lang": "ko", "source": "Google News"},
+        {"url": "https://news.google.com/rss/search?q=피지컬+AI+로봇+자동화&hl=ko&gl=KR&ceid=KR:ko",         "lang": "ko", "source": "Google News"},
+    ],
+    "모빌리티 & 자율주행": [
+        # ── 영문 일반 모빌리티 ────────────────────────
         {"url": "https://techcrunch.com/category/transportation/feed/",                                          "lang": "en", "source": "TechCrunch",       "ivi": False},
         {"url": "https://electrek.co/feed/",                                                                     "lang": "en", "source": "Electrek",         "ivi": False},
-        {"url": "https://www.caranddriver.com/rss/all.xml/",                                                     "lang": "en", "source": "Car and Driver",    "ivi": False},
+        {"url": "https://spectrum.ieee.org/feeds/topic/transportation.rss",                                     "lang": "en", "source": "IEEE Spectrum",    "ivi": False},
         {"url": "https://www.autonews.com/arc/outboundfeeds/rss/?outputType=xml",                               "lang": "en", "source": "Automotive News",   "ivi": False},
-        {"url": "https://news.google.com/rss/search?q=automotive+software+EV&hl=en&gl=US&ceid=US:en",           "lang": "en", "source": "Google News EN",    "ivi": False},
+        {"url": "https://news.google.com/rss/search?q=autonomous+driving+robotaxi+CES&hl=en&gl=US&ceid=US:en",  "lang": "en", "source": "Google News EN",    "ivi": False},
         # ── 영문 IVI 특화 ─────────────────────────────
         {"url": "https://news.google.com/rss/search?q=IVI+infotainment+automotive&hl=en&gl=US&ceid=US:en",      "lang": "en", "source": "Google News EN",    "ivi": True},
         {"url": "https://news.google.com/rss/search?q=Android+Automotive+AAOS+HMI&hl=en&gl=US&ceid=US:en",     "lang": "en", "source": "Google News EN",    "ivi": True},
-        {"url": "https://news.google.com/rss/search?q=in-vehicle+display+cockpit+UX&hl=en&gl=US&ceid=US:en",   "lang": "en", "source": "Google News EN",    "ivi": True},
-        # ── 국내 일반 자동차 ──────────────────────────
+        # ── 국내 일반 모빌리티 ────────────────────────
         {"url": "http://www.autoherald.co.kr/rss/allArticle.xml",                                                "lang": "ko", "source": "오토헤럴드",         "ivi": False},
-        {"url": "https://news.google.com/rss/search?q=전기차+자율주행+모빌리티&hl=ko&gl=KR&ceid=KR:ko",            "lang": "ko", "source": "Google News",      "ivi": False},
+        {"url": "http://www.motorgraph.com/rss/allArticle.xml",                                                  "lang": "ko", "source": "모터그래프",         "ivi": False},
+        {"url": "https://news.google.com/rss/search?q=자율주행+로보택시+모빌리티+혁신&hl=ko&gl=KR&ceid=KR:ko",     "lang": "ko", "source": "Google News",      "ivi": False},
         # ── 국내 IVI 특화 ─────────────────────────────
         {"url": "https://news.google.com/rss/search?q=차량용+인포테인먼트+IVI+HMI&hl=ko&gl=KR&ceid=KR:ko",        "lang": "ko", "source": "Google News",      "ivi": True},
         {"url": "https://news.google.com/rss/search?q=AAOS+안드로이드+오토모티브+차량용+소프트웨어&hl=ko&gl=KR&ceid=KR:ko", "lang": "ko", "source": "Google News", "ivi": True},
-        {"url": "https://news.google.com/rss/search?q=커넥티드카+헤드유닛+차량+디스플레이&hl=ko&gl=KR&ceid=KR:ko",  "lang": "ko", "source": "Google News",      "ivi": True},
     ],
-    "IT/테크 트렌드": [
+    "IT/개발 테크": [
         # ── 영문 전문지 ──────────────────────────────
-        {"url": "https://www.wired.com/feed/rss",                        "lang": "en", "source": "Wired"},
-        {"url": "https://www.technologyreview.com/feed/",                "lang": "en", "source": "MIT Tech Review"},
         {"url": "https://feeds.arstechnica.com/arstechnica/index",       "lang": "en", "source": "Ars Technica"},
-        {"url": "https://feeds.feedburner.com/venturebeat/SZYF",         "lang": "en", "source": "VentureBeat"},
-        {"url": "https://techcrunch.com/feed/",                          "lang": "en", "source": "TechCrunch"},
-        {"url": "https://www.theverge.com/rss/index.xml",                "lang": "en", "source": "The Verge"},
-        {"url": "https://www.fastcompany.com/rss",                       "lang": "en", "source": "Fast Company"},
-        {"url": "http://rss.cnn.com/rss/cnn_tech.rss",                   "lang": "en", "source": "CNN Tech"},
+        {"url": "https://www.theregister.com/headlines.atom",            "lang": "en", "source": "The Register"},
+        {"url": "https://feed.infoq.com/",                                "lang": "en", "source": "InfoQ"},
+        {"url": "https://stackoverflow.blog/feed/",                       "lang": "en", "source": "Stack Overflow Blog"},
+        {"url": "https://github.blog/feed/",                              "lang": "en", "source": "GitHub Blog"},
+        {"url": "https://www.zdnet.com/news/rss.xml",                     "lang": "en", "source": "ZDNet"},
         # ── 국내 ────────────────────────────────────
-        {"url": "https://www.mk.co.kr/rss/30100041/",                                           "lang": "ko", "source": "매일경제"},
-        {"url": "https://news.google.com/rss/search?q=AI+IT+스타트업+기술&hl=ko&gl=KR&ceid=KR:ko",  "lang": "ko", "source": "Google News"},
-        {"url": "https://news.google.com/rss/search?q=인공지능+플랫폼+빅테크&hl=ko&gl=KR&ceid=KR:ko", "lang": "ko", "source": "Google News"},
-        {"url": "https://news.google.com/rss/search?q=테크+스타트업+IT산업&hl=ko&gl=KR&ceid=KR:ko",  "lang": "ko", "source": "Google News"},
+        {"url": "https://feeds.feedburner.com/zdkorea",                                          "lang": "ko", "source": "지디넷코리아"},
+        {"url": "https://rss.etnews.com/Section901.xml",                                         "lang": "ko", "source": "전자신문"},
+        {"url": "https://news.google.com/rss/search?q=소프트웨어+개발+클라우드+인프라&hl=ko&gl=KR&ceid=KR:ko", "lang": "ko", "source": "Google News"},
     ],
 }
 
@@ -67,38 +76,48 @@ CATEGORY_KEYWORDS: Dict[str, Dict[str, List[str]]] = {
         "en": ["ux", "user experience", "design", "interface", "usability", "figma",
                "prototype", "wireframe", "accessibility", "design system", "product design",
                "ui ", "interaction design", "user research", "persona", "journey", "heuristic",
-               "typography", "visual design", "branding", "creative"],
+               "typography", "visual design", "branding", "product launch", "app design"],
         "ko": ["디자인", "UX", "사용자", "인터페이스", "경험", "프로덕트", "UI", "와이어프레임",
                "프로토타입", "사용성", "접근성", "시각", "아이덴티티", "브랜딩", "인터랙션",
                "피그마", "서비스디자인"],
     },
-    "자동차/모빌리티 테크": {
+    "AI & 로보틱스": {
+        "en": ["ai", "artificial intelligence", "machine learning", "llm", "generative ai",
+               "robot", "robotics", "automation", "physical ai", "humanoid", "neural network",
+               "deep learning", "openai", "anthropic", "gemini", "chatgpt", "ai agent",
+               "computer vision", "nlp", "language model", "ai model", "foundation model"],
+        "ko": ["AI", "인공지능", "로봇", "로보틱스", "생성형", "머신러닝", "딥러닝", "자동화",
+               "휴머노이드", "챗봇", "에이전트", "피지컬", "거대언어모델", "초거대"],
+    },
+    "모빌리티 & 자율주행": {
         "en": ["car", "vehicle", "automotive", "electric", " ev ", "autonomous", "self-driving",
                "mobility", "aaos", "infotainment", "tesla", "rivian", "waymo", "cruise",
-               "connected car", "transportation", "truck", "fleet", "charging", "battery",
+               "robotaxi", "connected car", "transportation", "charging", "battery",
                "lidar", "radar", "oem", "tier1", "sdv"],
         "ko": ["자동차", "차량", "전기차", "자율주행", "모빌리티", "인포테인먼트", "커넥티드",
-               "AAOS", "SDV", "OTA", "차량용", "충전", "배터리", "완성차", "오토", "카",
-               "운전", "도로", "교통"],
+               "AAOS", "SDV", "OTA", "차량용", "충전", "배터리", "완성차", "로보택시",
+               "운전", "도로"],
     },
-    "IT/테크 트렌드": {
-        "en": ["ai", "artificial intelligence", "tech", "software", "startup", "api",
-               "llm", "machine learning", "data", "chip", "gpu", "cloud", "saas",
-               "openai", "google", "microsoft", "apple", "meta", "amazon", "nvidia",
-               "cybersecurity", "blockchain", "platform", "app", "mobile", "developer",
-               "algorithm", "model", "robot", "automation"],
-        "ko": ["AI", "인공지능", "소프트웨어", "스타트업", "플랫폼", "클라우드", "데이터",
-               "앱", "IT", "반도체", "챗봇", "모델", "빅테크", "테크", "개발자", "알고리즘",
-               "자동화", "로봇", "사이버보안", "블록체인"],
+    "IT/개발 테크": {
+        "en": ["software", "developer", "engineering", "open source", "framework",
+               "database", "cloud", "saas", "devops", "infrastructure", "programming",
+               "github", "kubernetes", "cybersecurity", "linux", "backend", "api",
+               "frontend", "enterprise software", "chip", "semiconductor", "data center"],
+        "ko": ["소프트웨어", "개발자", "오픈소스", "클라우드", "인프라", "보안",
+               "반도체", "서버", "데이터베이스", "프로그래밍", "엔터프라이즈", "데이터센터"],
     },
 }
 
 # 전문 미디어는 필터링 면제 (항상 관련 기사만 다루므로)
+# Product Hunt·VentureBeat처럼 주제가 넓은 매체는 빼고 키워드 필터를 통과해야만 채택되도록 함 (품질 우선)
 TRUSTED_SOURCES = {
-    "UX Collective", "Nielsen Norman", "A List Apart", "Smashing Mag",
-    "Creative Bloq", "UX Movement", "Fast Co Design",
-    "Automotive News", "Car and Driver", "Electrek", "오토헤럴드",
-    "MIT Tech Review", "Ars Technica", "VentureBeat",
+    "UX Collective", "Nielsen Norman", "A List Apart", "Smashing Mag", "UX Movement",
+    "UX Planet", "요즘IT",
+    "MIT Tech Review", "IEEE Spectrum", "The Robot Report", "TechCrunch AI",
+    "AI타임스", "로봇신문",
+    "Automotive News", "Electrek", "오토헤럴드", "모터그래프",
+    "Ars Technica", "The Register", "InfoQ", "Stack Overflow Blog", "GitHub Blog", "ZDNet",
+    "지디넷코리아", "전자신문",
 }
 
 
@@ -287,7 +306,7 @@ def extract_summary(entry) -> str:
     return best[:400] if len(best) >= 80 else ""
 
 
-def fetch_feed(config: dict, max_age_hours: int = 72) -> List[Dict]:
+def fetch_feed(config: dict, max_age_hours: int = 48) -> List[Dict]:
     articles = []
     cutoff = datetime.now(timezone.utc) - timedelta(hours=max_age_hours)
 
@@ -352,7 +371,7 @@ def fetch_all(articles_per_category: int = 10) -> Dict[str, List[Dict]]:
                 unique.append(a)
 
         # 자동차 카테고리는 IVI 40% 비율 적용
-        if category == "자동차/모빌리티 테크":
+        if category == "모빌리티 & 자율주행":
             selected = select_automotive(unique, total=articles_per_category)
         else:
             ko = [a for a in unique if a["lang"] == "ko"]
@@ -365,7 +384,7 @@ def fetch_all(articles_per_category: int = 10) -> Dict[str, List[Dict]]:
         ivi_cnt = len([a for a in selected if a.get("is_ivi")])
         kr_cnt  = len([a for a in selected if a["lang"] == "ko"])
         en_cnt  = len([a for a in selected if a["lang"] == "en"])
-        ivi_str = f", IVI {ivi_cnt}개" if category == "자동차/모빌리티 테크" else ""
+        ivi_str = f", IVI {ivi_cnt}개" if category == "모빌리티 & 자율주행" else ""
         print(f"    → {len(selected)}개 (KR {kr_cnt}, EN {en_cnt}{ivi_str})")
 
     return result

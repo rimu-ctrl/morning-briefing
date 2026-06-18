@@ -1,11 +1,12 @@
 """
 영어 단어(WORDS)와 숙어/표현(IDIOMS)을 날짜 기반으로 각각 20개/10개 선택합니다.
+매일 겹치지 않는 묶음으로 순환하므로 단어는 5일, 숙어는 4일 주기로 완전히 새로워집니다.
 """
 
 from datetime import date
 from typing import List, Dict
 
-# ── 단어 (80개) ────────────────────────────────────────────────────────────────
+# ── 단어 (100개) ───────────────────────────────────────────────────────────────
 WORDS: List[Dict] = [
     {"word": "abstraction",    "type": "n",     "meaning": "추상화; 핵심만 남기고 세부를 감추는 것",          "example": "Good API design relies on abstraction to hide complexity."},
     {"word": "accessibility",  "type": "n",     "meaning": "접근성",                                         "example": "Designing for accessibility benefits all users, not just those with disabilities."},
@@ -91,20 +92,36 @@ WORDS: List[Dict] = [
     {"word": "verbatim",       "type": "adv",   "meaning": "그대로, 원문 그대로",                            "example": "Quote user feedback verbatim in your research report for authenticity."},
     {"word": "viable",         "type": "adj",   "meaning": "실행 가능한",                                    "example": "We need a viable MVP that can be shipped within one sprint."},
     {"word": "whitespace",     "type": "n",     "meaning": "여백 (디자인에서의 빈 공간)",                    "example": "Strategic use of whitespace improves readability and visual hierarchy."},
+    {"word": "affinity",       "type": "n",     "meaning": "유사성, 친화도 (affinity diagram의)",            "example": "We grouped the research notes into themes using an affinity diagram."},
+    {"word": "cadence",        "type": "n",     "meaning": "(작업의) 리듬, 주기",                           "example": "The team settled into a two-week release cadence."},
+    {"word": "churn",          "type": "n",     "meaning": "이탈(률)",                                       "example": "Confusing onboarding was the biggest driver of churn."},
+    {"word": "cohort",         "type": "n",     "meaning": "코호트 (특정 기준으로 묶인 사용자 집단)",        "example": "We compared retention across the January and February cohorts."},
+    {"word": "delight",        "type": "v/n",   "meaning": "기쁨을 주다; (사용자를) 감동시키는 요소",        "example": "A small confetti animation delighted users after checkout."},
+    {"word": "edge case",      "type": "n",     "meaning": "예외 상황, 극단적인 경우",                       "example": "QA found an edge case where the form crashed with an empty file."},
+    {"word": "empathy",        "type": "n",     "meaning": "공감",                                           "example": "Empathy interviews revealed pain points we'd never have guessed."},
+    {"word": "extensible",     "type": "adj",   "meaning": "확장 가능한 (구조·코드가)",                      "example": "We built the component library to be extensible for future brands."},
+    {"word": "ideate",         "type": "v",     "meaning": "아이디어를 내다, 구상하다",                      "example": "The workshop's first hour was spent ideating freely, without judgment."},
+    {"word": "inference",      "type": "n",     "meaning": "추론 (AI 모델이 결과를 도출하는 과정)",          "example": "Running inference on-device reduced latency significantly."},
+    {"word": "latent space",   "type": "n",     "meaning": "잠재 공간 (AI 모델이 데이터 특징을 압축해 표현하는 공간)", "example": "Similar images cluster together in the model's latent space."},
+    {"word": "mockup",         "type": "n",     "meaning": "목업, 시각적 시제품",                            "example": "We reviewed three mockups before picking a direction to prototype."},
+    {"word": "multimodal",     "type": "adj",   "meaning": "멀티모달 (텍스트·이미지·음성을 함께 처리하는)",  "example": "The new multimodal model can describe an image and answer questions about it."},
+    {"word": "retention",      "type": "n",     "meaning": "잔존율, 사용자 유지율",                          "example": "Improving day-7 retention mattered more than chasing new signups."},
+    {"word": "teleoperation",  "type": "n",     "meaning": "원격 조작 (사람이 멀리서 로봇·차량을 조작하는 것)", "example": "Some robotaxis fall back to teleoperation when they get stuck."},
+    {"word": "telemetry",      "type": "n",     "meaning": "원격 측정 데이터 (시스템 상태·사용 데이터 수집)", "example": "Vehicle telemetry showed the sensor was misaligned after the crash."},
 ]
 
-# ── 숙어/표현 (30개) ───────────────────────────────────────────────────────────
+# ── 숙어/표현 (40개) ───────────────────────────────────────────────────────────
 IDIOMS: List[Dict] = [
     {"word": "at the end of the day",       "type": "idiom", "meaning": "결국, 결론적으로",                          "example": "At the end of the day, user satisfaction is the only metric that matters."},
     {"word": "back to the drawing board",   "type": "idiom", "meaning": "처음부터 다시 시작하다",                   "example": "The user tests failed completely — it's back to the drawing board."},
     {"word": "ballpark figure",             "type": "idiom", "meaning": "대략적인 수치·견적",                       "example": "Can you give me a ballpark figure for the dev effort required?"},
-    {"word": "bandwidth",                   "type": "n (fig)","meaning": "여유 시간·여력 (비유적)",                  "example": "I don't have the bandwidth to take on another project this sprint."},
+    {"word": "bandwidth",                   "type": "n",     "meaning": "여유 시간·여력 (비유적)",                  "example": "I don't have the bandwidth to take on another project this sprint."},
     {"word": "bite off more than you can chew","type":"idiom","meaning": "감당할 수 없을 만큼 많이 맡다",           "example": "We bit off more than we could chew by targeting three platforms at once."},
     {"word": "boil the ocean",              "type": "idiom", "meaning": "불필요하게 범위를 넓히다",                  "example": "We don't need to boil the ocean — focus on the top 3 user flows first."},
     {"word": "bring to the table",          "type": "idiom", "meaning": "기여하다, 가치를 제공하다",                "example": "Strong visual storytelling is what she brings to the table."},
     {"word": "circle back",                 "type": "idiom", "meaning": "나중에 다시 논의하다",                     "example": "Let's circle back on pricing once we have more user data."},
     {"word": "deep dive",                   "type": "idiom", "meaning": "깊이 있는 분석·탐구",                     "example": "We did a deep dive into competitor apps before defining our strategy."},
-    {"word": "dog fooding",                 "type": "idiom", "meaning": "자사 제품을 직접 사용해 테스트하다",       "example": "Dog fooding the app daily helps us catch bugs before users do."},
+    {"word": "eat your own dog food",       "type": "idiom", "meaning": "자사 제품을 직접 사용해보다",             "example": "We eat our own dog food — the whole team uses the beta build daily."},
     {"word": "double down",                 "type": "idiom", "meaning": "더 강하게 밀어붙이다, 배로 노력하다",     "example": "After the positive A/B test, we doubled down on that design direction."},
     {"word": "flip the script",             "type": "idiom", "meaning": "기존 방식을 완전히 바꾸다",               "example": "Instead of surveying, we flipped the script and had users teach us live."},
     {"word": "game changer",                "type": "idiom", "meaning": "판도를 바꾸는 것",                         "example": "Real-time collaboration in Figma was a game changer for design teams."},
@@ -125,19 +142,38 @@ IDIOMS: List[Dict] = [
     {"word": "run it up the flagpole",      "type": "idiom", "meaning": "아이디어를 제안해 반응을 보다",          "example": "Let's run the new onboarding concept up the flagpole in tomorrow's review."},
     {"word": "scope creep",                 "type": "n",     "meaning": "범위가 점진적으로 확장되는 현상",         "example": "Scope creep killed the timeline — we need clearer sign-off on requirements."},
     {"word": "touch base",                  "type": "idiom", "meaning": "간단히 연락하다, 확인하다",               "example": "Let's touch base on Friday to see where the project stands."},
+    {"word": "ahead of the curve",          "type": "idiom", "meaning": "시대를 앞서가는, 선도하는",               "example": "Adopting AI tools early kept the team ahead of the curve."},
+    {"word": "cut corners",                 "type": "idiom", "meaning": "(품질을 희생하며) 절차를 줄이다, 대충 하다", "example": "Don't cut corners on accessibility testing just to hit the deadline."},
+    {"word": "get the ball rolling",        "type": "idiom", "meaning": "시작하다, 착수하다",                       "example": "Let's get the ball rolling with a quick kickoff call tomorrow."},
+    {"word": "in the loop",                 "type": "idiom", "meaning": "정보를 공유받는, 소식을 아는 상태인",     "example": "Please keep the design team in the loop on any scope changes."},
+    {"word": "make or break",               "type": "idiom", "meaning": "성패를 좌우하는",                         "example": "The first 30 seconds of onboarding can make or break retention."},
+    {"word": "on the fence",                "type": "idiom", "meaning": "결정을 못 내리고 망설이는",               "example": "Stakeholders were still on the fence about the pricing model."},
+    {"word": "push the envelope",           "type": "idiom", "meaning": "한계를 뛰어넘다, 혁신을 추구하다",        "example": "The concept car pushed the envelope on what an in-car display could do."},
+    {"word": "quick win",                   "type": "idiom", "meaning": "빠르게 얻을 수 있는 성과",                "example": "Renaming that confusing button was an easy quick win."},
+    {"word": "rule of thumb",                "type": "idiom", "meaning": "경험에 기반한 대략적인 기준",             "example": "As a rule of thumb, keep onboarding under five screens."},
+    {"word": "think outside the box",       "type": "idiom", "meaning": "고정관념을 깨고 창의적으로 생각하다",     "example": "The brief asked us to think outside the box for the new nav pattern."},
 ]
 
 
+WORDS_PER_DAY = 20
+IDIOMS_PER_DAY = 10
+
+
 def get_daily_words(target_date: date = None) -> dict:
-    """날짜를 시드로 오늘의 단어 20개 + 숙어 10개를 반환합니다."""
+    """날짜를 시드로 오늘의 단어 20개 + 숙어 10개를 반환합니다.
+    겹치지 않는 묶음 단위로 순환해 매일 완전히 새로운 세트가 나오도록 합니다
+    (단어는 WORDS 길이/20일 주기, 숙어는 IDIOMS 길이/10일 주기로 순환)."""
     d = target_date or date.today()
     ordinal = d.toordinal()
 
-    w_start = ordinal % len(WORDS)
-    i_start = ordinal % len(IDIOMS)
+    w_groups = len(WORDS) // WORDS_PER_DAY
+    i_groups = len(IDIOMS) // IDIOMS_PER_DAY
 
-    words  = [WORDS[(w_start + i) % len(WORDS)]  for i in range(20)]
-    idioms = [IDIOMS[(i_start + i) % len(IDIOMS)] for i in range(10)]
+    w_idx = ordinal % w_groups
+    i_idx = ordinal % i_groups
+
+    words  = WORDS[w_idx * WORDS_PER_DAY : (w_idx + 1) * WORDS_PER_DAY]
+    idioms = IDIOMS[i_idx * IDIOMS_PER_DAY : (i_idx + 1) * IDIOMS_PER_DAY]
 
     return {"words": words, "idioms": idioms}
 

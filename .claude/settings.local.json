@@ -3,7 +3,8 @@
     "allow": [
       "Bash(launchctl load *)",
       "Bash(launchctl list *)",
-      "Read(//Users/rikook/Desktop/**)"
+      "Read(//Users/rikook/Desktop/**)",
+      "Bash(gh --version)"
     ]
   }
 }
