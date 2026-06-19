@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>모닝 브리핑 — 2026.06.18</title>
+  <title>모닝 브리핑 — 2026.06.19</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -36,7 +36,7 @@
       margin: 0 auto;
       padding: 2rem 1.5rem 5rem;
       display: grid;
-      grid-template-columns: 1fr 460px;
+      grid-template-columns: 1fr 300px;
       gap: 1.8rem;
       align-items: start;
     }
@@ -147,52 +147,23 @@
       transition: background 0.15s;
     }
     .vocab-archive-btn:hover { background: rgba(255,255,255,0.15); }
-
-    /* ── 단어 퀴즈 ── */
-    .quiz-box {
-      margin: 0.9rem 1.2rem; padding: 0.9rem 1rem;
-      background: linear-gradient(135deg, #f8faff, #eef0fd);
-      border: 1px solid #e0e7ff; border-radius: 12px;
-    }
-    .quiz-label { font-size: 0.66rem; font-weight: 700; color: #4361ee; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; }
-    .quiz-word { font-size: 1.1rem; font-weight: 800; color: #1a1a2e; margin-bottom: 0.7rem; }
-    .quiz-options { display: flex; flex-direction: column; gap: 0.4rem; }
-    .quiz-opt {
-      text-align: left; background: #fff; border: 1px solid #dde1ea; border-radius: 8px;
-      padding: 0.5rem 0.7rem; font-size: 0.78rem; color: #374151; cursor: pointer;
-      font-family: inherit; transition: all 0.15s;
-    }
-    .quiz-opt:hover:not(:disabled) { border-color: #4361ee; background: #f8faff; }
-    .quiz-opt:disabled { cursor: default; opacity: 0.6; }
-    .quiz-opt.quiz-correct { background: #f0fdf4; border-color: #22c55e; color: #15803d; opacity: 1; font-weight: 600; }
-    .quiz-opt.quiz-wrong { background: #fef2f2; border-color: #ef4444; color: #b91c1c; opacity: 1; }
-    .quiz-feedback { margin-top: 0.7rem; padding-top: 0.6rem; border-top: 1px dashed #d8dcef; }
-    .quiz-fb-title { font-size: 0.8rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.3rem; }
-    .quiz-fb-example { font-size: 0.72rem; color: #6b7280; font-style: italic; line-height: 1.5; }
-    .quiz-next {
-      margin-top: 0.7rem; background: #4361ee; color: #fff; border: none; border-radius: 8px;
-      padding: 0.45rem 0.9rem; font-size: 0.76rem; font-weight: 700; cursor: pointer;
-      font-family: inherit;
-    }
-    .quiz-next:hover { background: #3451d1; }
-
     .vocab-section-label {
       font-size: 0.68rem; font-weight: 700; color: #9ca3af;
       letter-spacing: 0.08em; text-transform: uppercase;
       padding: 0.6rem 1.2rem 0.3rem;
       background: #f9fafb; border-top: 1px solid #f3f4f6;
     }
-    .vocab-list {
-      list-style: none; padding: 0.4rem 0.8rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;
-    }
+    .vocab-list { list-style: none; padding: 0; }
+    .vocab-list::-webkit-scrollbar { width: 4px; }
+    .vocab-list::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 2px; }
 
-    .vi { padding: 0.6rem 0.7rem; border: 1px solid #f3f4f6; border-radius: 8px; transition: background 0.15s; }
+    .vi { padding: 0.65rem 1.2rem; border-bottom: 1px solid #f3f4f6; transition: background 0.15s; }
+    .vi:last-child { border-bottom: none; }
     .vi.is-learned { background: #f0fdf4; }
     .vi.is-starred { background: #fffbeb; }
     .vi-top { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.15rem; }
     .vi-num { font-size: 0.6rem; color: #d1d5db; font-weight: 700; width: 1.1rem; flex-shrink: 0; }
-    .vi-word { font-size: 0.86rem; font-weight: 700; color: #1a1a2e; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+    .vi-word { font-size: 0.86rem; font-weight: 700; color: #1a1a2e; flex: 1; }
     .vi-type { font-size: 0.6rem; color: #4361ee; background: #eef0fd; padding: 1px 5px; border-radius: 3px; font-weight: 600; flex-shrink: 0; }
     .vi-actions { display: flex; gap: 0.25rem; margin-left: 0.3rem; }
     .vi-btn {
@@ -203,8 +174,8 @@
     .vi-btn:hover { color: #6b7280; }
     .vi.is-starred .vi-btn.star { color: #f59e0b; }
     .vi.is-learned .vi-btn.check { color: #22c55e; }
-    .vi-meaning { font-size: 0.76rem; color: #374151; font-weight: 500; margin-bottom: 0.2rem; overflow-wrap: break-word; }
-    .vi-example { font-size: 0.71rem; color: #9ca3af; line-height: 1.5; font-style: italic; overflow-wrap: break-word; }
+    .vi-meaning { font-size: 0.76rem; color: #374151; font-weight: 500; margin-bottom: 0.2rem; }
+    .vi-example { font-size: 0.71rem; color: #9ca3af; line-height: 1.5; font-style: italic; }
 
     /* ── 잠금 화면 ── */
     #lock-screen {
@@ -254,7 +225,6 @@
     }
     @media (max-width: 420px) {
       .grid { grid-template-columns: 1fr; }
-      .vocab-list { grid-template-columns: 1fr; }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -355,17 +325,17 @@
 <header>
   <p class="header-label">☀ Morning Briefing</p>
   <div class="header-date">
-    2026년 6월 18일<span class="wd">목요일</span>
+    2026년 6월 19일<span class="wd">금요일</span>
   </div>
   <div class="header-tags">
     <button class="tag" data-target="cat-ux" onclick="onTagClick(event, this)">🎨 UX/프로덕트</button>
     <button class="tag" data-target="cat-ai" onclick="onTagClick(event, this)">🤖 AI&로보틱스</button>
     <button class="tag" data-target="cat-mobility" onclick="onTagClick(event, this)">🚗 모빌리티</button>
     <button class="tag" data-target="cat-it" onclick="onTagClick(event, this)">💻 IT/개발</button>
-    <a class="tag tag-link" href="vocab_all.html">📚 영어</a>
+    <button class="tag" data-target="cat-vocab" onclick="onTagClick(event, this)">📚 영어</button>
     <a class="tag tag-link" href="saved.html">🔖 보관함</a>
   </div>
-  <p class="header-count">기사 40개 · 10:31 업데이트</p>
+  <p class="header-count">기사 40개 · 14:12 업데이트</p>
 </header>
 
 <div class="layout">
@@ -387,7 +357,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">2분 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">AI 시대의 시지프스: 멈추지 못하는 완벽주의자를 위한 안내서</p>
             <div class="keywords"><span class="kw">#AI</span><span class="kw">#시대의</span><span class="kw">#시지프스</span><span class="kw">#멈추지</span></div>
@@ -422,7 +392,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">2분 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">GEO 콘텐츠 전략: SEO 키워드 보다 AI '맥락' 설계하는 법</p>
             <div class="keywords"><span class="kw">#GEO</span><span class="kw">#콘텐츠</span><span class="kw">#전략</span><span class="kw">#SEO</span></div>
@@ -457,7 +427,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">2분 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">나만의 유틸리티 타입 만들기: Mapped Type, Conditional Type</p>
             <div class="keywords"><span class="kw">#나만의</span><span class="kw">#유틸리티</span><span class="kw">#타입</span><span class="kw">#만들기</span></div>
@@ -492,7 +462,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">2분 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">'토큰 맥싱'의 시대는 끝났다: 메타·아마존·우버의 선택</p>
             <div class="keywords"><span class="kw">#'토큰</span><span class="kw">#맥싱'의</span><span class="kw">#시대는</span><span class="kw">#끝났다</span></div>
@@ -527,7 +497,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">요즘IT</span>
-              <span class="ago">2분 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">AI 챗봇을 도입했는데, 왜 업무는 그대로일까</p>
             <div class="keywords"><span class="kw">#AI</span><span class="kw">#챗봇을</span><span class="kw">#도입했는데</span><span class="kw">#업무는</span></div>
@@ -552,78 +522,6 @@
           <ul class="kr-bullets"><li>AI 챗봇 도입이 24시간 접수 가능하게 하지만, 업무의 근본적인 변화는 일어나지 않을 수 있다는 점을 강조합니다.</li><li>챗봇이 새로운 채널을 추가하는 데 그치면, 후속 과정인 보험 판별이나 서류 정리는 여전히 수작업으로 남아 효율성이 떨어질 수 있습니다.</li><li>이를 해결하기 위해 회사는 업무 프로세스를 체계적으로 분석하고 변화에 적응해야 합니다.</li><li>보험 대행사 TPA KOREA는 하루 200건 접수 체계를 개선하기 위한 방법을 모색하며, 전략적 질문을 던지는 중요성을 보여줍니다.</li><li>이러한 접근은 단순한 기술 도입을 넘어 조직 전체의 업무 방식을 혁신해야 한다는 과제를 제시합니다.</li></ul>
         </div>
       </div>
-      <div class="article-unit" data-url="https://uxdesign.cc/a2ui-under-the-hood-designing-for-the-new-era-of-radically-adaptive-ui-cebbf5f32fbe?source=rss----138adf9c44c---4">
-        <a href="https://uxdesign.cc/a2ui-under-the-hood-designing-for-the-new-era-of-radically-adaptive-ui-cebbf5f32fbe?source=rss----138adf9c44c---4" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://cdn-images-1.medium.com/max/1024/1*QMlFF7T7Jm_BYAqEDSMvyA.jpeg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🎨</span>';this.parentElement.style.background='linear-gradient(135deg, #4361ee, #7209b7)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">UX Collective</span>
-              <span class="ago">2시간 전</span>
-            </div>
-            <p class="card-title">A2UI under the hood: Designing for the new era of radically adaptive UI</p>
-            <div class="keywords"><span class="kw">#Designing</span><span class="kw">#UI</span><span class="kw">#under</span><span class="kw">#radically</span></div>
-            <p class="summary">An introduction for designersAs a designer, I am optimistic about this one, and that is not my usual reflex with AI interface design.You have probably never heard of it. That is fine, almost no designer has. A2UI still lives in developer corners, written about in code. The idea underneath is worth meeting early, though, because it changes what we do.So let me start with the idea, not the acronym.T</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>A2UI는 디자이너에게 생소할 수 있지만, AI 기반의 적응형 UI 디자인에 있어 중요한 개념입니다.</li><li>이 새로운 접근법은 사용자의 상황과 필요에 따라 UI를 극적으로 변화시킬 수 있는 잠재력을 가지고 있습니다.</li><li>디자이너로서 A2UI에 대한 이해는 앞으로의 디자인 트렌드와 사용자 경험 향상에 큰 도움이 될 것입니다.</li><li>특히, 이를 조기에 파악함으로써 더 혁신적이고 개인화된 디자인을 구현할 수 있습니다.</li><li>A2UI가 본격적으로 적용되면 UI 디자인의 방향성이 크게 바뀔 것임을 유념해야 합니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://uxdesign.cc/while-everyone-talks-about-ai-design-is-gaining-power-a6fd0db3f0a2?source=rss----138adf9c44c---4">
-        <a href="https://uxdesign.cc/while-everyone-talks-about-ai-design-is-gaining-power-a6fd0db3f0a2?source=rss----138adf9c44c---4" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://cdn-images-1.medium.com/max/1024/1*QlHeDNeINnbcfqg6QdMMXw.png" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🎨</span>';this.parentElement.style.background='linear-gradient(135deg, #4361ee, #7209b7)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">UX Collective</span>
-              <span class="ago">2시간 전</span>
-            </div>
-            <p class="card-title">While everyone talks about AI, design is gaining power</p>
-            <div class="keywords"><span class="kw">#While</span><span class="kw">#AI</span><span class="kw">#everyone</span><span class="kw">#talks</span></div>
-            <p class="summary">Some of the world’s biggest technology companies are quietly elevating design from a support function to a strategic one.Something interesting has been happening in the background of all the AI hype, and I think it deserves more attention — especially after seeing Silke Bochat, Savannah College of Art and Design LinkedIn post.While everyone is focused on models, benchmarks, and the race to build A</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>세계 주요 IT 기업들이 디자인을 단순한 지원 기능에서 전략적 요소로 격상시키고 있어, 디자인의 중요성이 증가하고 있습니다.</li><li>AI 기술에 대한 관심이 집중되는 가운데, 디자인의 역할 변화가 특히 주목받아야 할 필요성이 강해지고 있습니다.</li><li>이러한 변화는 사용자 경험과 인터페이스의 품질을 더욱 높일 수 있는 기회를 제공하며, 결국 기업의 경쟁력을 강화하는 요소로 작용할 것입니다.</li><li>디자인의 전략적 강화는 단순한 시각적 요소를 넘어, 전체 제품 개발 과정에 대한 접근 방식을 혁신할 가능성을 열어줍니다.</li><li>앞으로는 디자인과 기술이 더 긴밀히 결합되어, 고객의 요구에 보다 민첩하게 대응하는 구조가 만들어질 것으로 예상됩니다.</li></ul>
-        </div>
-      </div>
       <div class="article-unit" data-url="https://uxplanet.org/design-md-best-practices-c00325e8b23a?source=rss----819cc2aaeee0---4">
         <a href="https://uxplanet.org/design-md-best-practices-c00325e8b23a?source=rss----819cc2aaeee0---4" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img">
@@ -635,7 +533,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               
               <span class="source">UX Planet</span>
-              <span class="ago">11시간 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">DESIGN.md Best Practices</p>
             <div class="keywords"><span class="kw">#DESIGN</span><span class="kw">#Best</span><span class="kw">#Practices</span></div>
@@ -660,44 +558,8 @@
           <ul class="kr-bullets"><li>DESIGN.md 파일이 AI 기반 UI 디자인 프로젝트에서 점점 더 중요한 역할을 하고 있습니다.</li><li>이 파일은 디자인 프로세스를 표준화하는 데 도움을 주어 팀 간 협업을 원활하게 합니다.</li><li>AI 도구와의 연계를 통해 더 빠르고 효율적인 디자인 작업이 가능해졌습니다.</li><li>최근 이 파일의 최적 사용법을 이해하는 것이 경쟁력을 유지하는 데 필수적입니다.</li><li>디자인 일관성을 높임으로써 사용자 경험이 개선되어 최종 제품의 품질이 향상될 것입니다.</li></ul>
         </div>
       </div>
-      <div class="article-unit" data-url="https://uxdesign.cc/lord-of-the-ttl-chips-26657f628126?source=rss----138adf9c44c---4">
-        <a href="https://uxdesign.cc/lord-of-the-ttl-chips-26657f628126?source=rss----138adf9c44c---4" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://cdn-images-1.medium.com/max/2600/0*qSh5wqWlR-NiK3-7" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🎨</span>';this.parentElement.style.background='linear-gradient(135deg, #4361ee, #7209b7)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">UX Collective</span>
-              <span class="ago">1일 전</span>
-            </div>
-            <p class="card-title">Lord of the TTL chips</p>
-            <div class="keywords"><span class="kw">#Lord</span><span class="kw">#TTL</span><span class="kw">#chips</span></div>
-            <p class="summary">One Steve to rule them all, One Steve to find them, One Bill to bring them all, and in the darkness bind them (or, the role of the 7400&#x2026;</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>7400 시리즈 TTL 칩은 현대 전자기기의 기초를 이루며, 특히 디지털 회로 설계에서 여전히 중요한 역할을 합니다.</li><li>이 칩들이 어떻게 작동하는지를 이해하는 것은, 최적의 하드웨어 설계를 위해 필수적이라는 점에서 중요합니다.</li><li>기술 발전에도 불구하고 기본적인 원리를 지속적으로 활용하면서도 신기술과의 통합을 고려할 필요성을 제기합니다.</li><li>효율적인 디자인을 위한 과거의 교훈을 현대 UX/UI 프로젝트에 적용함으로써 창의적인 해결책을 찾는 데 활용할 수 있습니다.</li><li>이 기사는 아날로그와 디지털의 경계에서의 이해가 더욱 중요한 시대를 예고합니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://www.producthunt.com/products/idmly">
-        <a href="https://www.producthunt.com/products/idmly" class="card" target="_blank" rel="noopener noreferrer">
+      <div class="article-unit" data-url="https://www.producthunt.com/products/wolfram-mathematica">
+        <a href="https://www.producthunt.com/products/wolfram-mathematica" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img no-img" style="background:linear-gradient(135deg, #4361ee, #7209b7)">
         <span class="ph-emoji">🎨</span>
       </div>
@@ -708,9 +570,9 @@
               <span class="source">Product Hunt</span>
               <span class="ago">1일 전</span>
             </div>
-            <p class="card-title">idmly</p>
-            <div class="keywords"><span class="kw">#idmly</span></div>
-            <p class="summary">Turn any HTML/CSS design into an editable InDesign file
+            <p class="card-title">Wolfram Language 15</p>
+            <div class="keywords"><span class="kw">#Wolfram</span><span class="kw">#Language</span></div>
+            <p class="summary">Computational language built for humans and AI agents
           
           
             Discussion
@@ -733,33 +595,29 @@
         
         <div class="kr-summary">
           <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>idmly는 HTML/CSS 디자인을 쉽게 수정 가능한 InDesign 파일로 변환해 주는 새로운 툴을 소개합니다.</li><li>이 도구는 디자이너들이 웹 디자인을 인쇄 매체로 손쉽게 전환할 수 있도록 도와, 다양한 플랫폼에서의 활용도를 높여줍니다.</li><li>특히, 인쇄물 제작 과정에서의 시간과 노력을 크게 줄여줄 것으로 기대되며, 효율적인 작업 흐름을 지원합니다.</li><li>디자이너들은 더 이상 코딩 지식이 없더라도 웹 디자인을 효과적으로 레이아웃할 수 있는 기회를 얻습니다.</li><li>이로 인해 디자인의 경계가 허물어지고, 디지털과 인쇄의 통합이 가속화될 것입니다.</li></ul>
+          <ul class="kr-bullets"><li>Wolfram Language 15는 인간과 AI 에이전트를 위해 설계된 계산 언어임.</li><li>자연어 처리와 머신러닝 기능이 강화되어 사용자가 쉽게 접근 가능.</li><li>향상된 도구와 라이브러리를 통해 복잡한 데이터 분석을 지원함.</li><li>사용자 경험 개선을 위해 인터페이스가 직관적으로 발전됨.</li><li>다양한 분야에서의 활용 가능성을 바탕으로 혁신을 촉진함.</li></ul>
         </div>
       </div>
-      </div>
-    </section>
-    <section class="section" id="cat-ai" data-category="ai">
-      <h2 class="section-title" style="color:#e63946">
-        <span class="section-bar" style="background:#e63946"></span>
-        🤖 AI & 로보틱스
-        <span class="section-count">10개</span>
-      </h2>
-      <div class="grid">
-      <div class="article-unit" data-url="https://www.irobotnews.com/news/articleView.html?idxno=46956">
-        <a href="https://www.irobotnews.com/news/articleView.html?idxno=46956" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
-        <span class="ph-emoji">🤖</span>
+      <div class="article-unit" data-url="https://www.producthunt.com/products/clipdone">
+        <a href="https://www.producthunt.com/products/clipdone" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #4361ee, #7209b7)">
+        <span class="ph-emoji">🎨</span>
       </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
+              <span class="lang" style="background:#457b9d">EN</span>
               
-              <span class="source">로봇신문</span>
-              <span class="ago">-491분 전</span>
+              <span class="source">Product Hunt</span>
+              <span class="ago">2일 전</span>
             </div>
-            <p class="card-title">[부고]브릴스 전진 대표 부친상</p>
-            <div class="keywords"><span class="kw">#부고]브릴스</span><span class="kw">#전진</span><span class="kw">#대표</span><span class="kw">#부친상</span></div>
-            <p class="summary">- 訃 告 - 브릴스 전진 대표 부친상- 고인: 故 전영덕 님(향년 75 세)- 빈소: 인천 청기와장례식장(송림점) VIP 101호실 (인천시 동구 방축로177번길 23) ☎ 032-583-4444- 발인: 2026년 6월 20일(토) 05시 30분- 장지: 인천가족공원</p>
+            <p class="card-title">ClipDone</p>
+            <div class="keywords"><span class="kw">#ClipDone</span></div>
+            <p class="summary">Automatic short-form video editing
+          
+          
+            Discussion
+            |
+            Link</p>
             <div class="card-toolbar">
               <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
                 <span class="tb-icon">🔖</span> 보관
@@ -777,9 +635,98 @@
         
         <div class="kr-summary">
           <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>브릴스의 전진 대표의 부친상 소식이 전해졌습니다.</li><li>고인은 故 전영덕 님으로, 향년 75세로 별세하셨습니다.</li><li>빈소는 인천 청기와장례식장 VIP 101호실에 마련되어 있으며, 발인은 6월 20일 오전 5시 30분입니다.</li><li>이러한 개인적 슬픔 속에서도 회사에 미치는 영향은 적지 않을 것이며, 대표의 경영에 집중하기 어려운 상황이 발생할 수도 있습니다.</li><li>업계 관계자들은 조의를 표하고, 전진 대표의 회복을 기원을 보내는 분위기가 감돌 것으로 보입니다.</li></ul>
+          <ul class="kr-bullets"><li>ClipDone은 자동으로 짧은 형식의 비디오를 편집하는 소프트웨어입니다.</li><li>사용자가 개입할 필요 없이 AI 기술을 활용해 영상 편집을 간소화합니다.</li><li>이 도구는 시간을 절약하며 보다 효율적인 콘텐츠 제작을 지원합니다.</li><li>사용자는 편집 결과물을 빠르게 리뷰하고 공유할 수 있습니다.</li><li>ClipDone은 콘텐츠 제작자 및 마케팅 전문가에게 유용할 것으로 기대됩니다.</li></ul>
         </div>
       </div>
+      <div class="article-unit" data-url="https://www.producthunt.com/products/android">
+        <a href="https://www.producthunt.com/products/android" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #4361ee, #7209b7)">
+        <span class="ph-emoji">🎨</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">Product Hunt</span>
+              <span class="ago">2일 전</span>
+            </div>
+            <p class="card-title">Android 17</p>
+            <div class="keywords"><span class="kw">#Android</span></div>
+            <p class="summary">Android becomes an intelligence system
+          
+          
+            Discussion
+            |
+            Link</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>안드로이드가 지능형 시스템으로 발전하고 있음.</li><li>다양한 적용 분야에서 인공지능 기능이 통합되고 있음.</li><li>사용자 경험 향상을 위한 인터페이스 개선이 이루어짐.</li><li>효율성과 생산성 증대를 위한 자동화 기술이 도입되고 있음.</li><li>미래의 기술 발전 방향에 대한 논의가 이어지고 있음.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://www.producthunt.com/products/henji">
+        <a href="https://www.producthunt.com/products/henji" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #4361ee, #7209b7)">
+        <span class="ph-emoji">🎨</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">Product Hunt</span>
+              <span class="ago">2일 전</span>
+            </div>
+            <p class="card-title">Henji</p>
+            <div class="keywords"><span class="kw">#Henji</span></div>
+            <p class="summary">AI replies that are trained to sound like you
+          
+          
+            Discussion
+            |
+            Link</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>Henji는 사용자의 스타일에 맞춰 훈련된 AI 답변 시스템이다.</li><li>이 시스템은 개인화된 커뮤니케이션을 통해 사용자의 음성을 모방한다.</li><li>AI를 활용하여 더욱 자연스럽고 개인적인 대화를 가능하게 한다.</li><li>기술의 발전은 사용자 경험을 혁신적으로 변화시킬 것으로 기대된다.</li><li>개인의 언어적 특성을 반영한 AI의 활용 가능성이 주목받고 있다.</li></ul>
+        </div>
+      </div>
+      </div>
+    </section>
+    <section class="section" id="cat-ai" data-category="ai">
+      <h2 class="section-title" style="color:#e63946">
+        <span class="section-bar" style="background:#e63946"></span>
+        🤖 AI & 로보틱스
+        <span class="section-count">10개</span>
+      </h2>
+      <div class="grid">
       <div class="article-unit" data-url="https://www.aitimes.com/news/articleView.html?idxno=211815">
         <a href="https://www.aitimes.com/news/articleView.html?idxno=211815" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
@@ -790,7 +737,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">AI타임스</span>
-              <span class="ago">-328분 전</span>
+              <span class="ago">22시간 전</span>
             </div>
             <p class="card-title">[6월17일] 앤트로픽을 둘러싼 미국의 달라진 시선..."AI 안전론의 역설"</p>
             <div class="keywords"><span class="kw">#6월17일</span><span class="kw">#앤트로픽을</span><span class="kw">#둘러싼</span><span class="kw">#미국의</span></div>
@@ -825,7 +772,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">AI타임스</span>
-              <span class="ago">-323분 전</span>
+              <span class="ago">22시간 전</span>
             </div>
             <p class="card-title">달라진 페이스북… ‘AI 모드’로 어떻게 바뀌었나</p>
             <div class="keywords"><span class="kw">#달라진</span><span class="kw">#페이스북…</span><span class="kw">#‘AI</span><span class="kw">#모드’로</span></div>
@@ -860,7 +807,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">AI타임스</span>
-              <span class="ago">-239분 전</span>
+              <span class="ago">23시간 전</span>
             </div>
             <p class="card-title">앤트로픽 서울 사무소 공식 개소..."수출 통제 리스크 없을 것"</p>
             <div class="keywords"><span class="kw">#앤트로픽</span><span class="kw">#서울</span><span class="kw">#사무소</span><span class="kw">#공식</span></div>
@@ -895,7 +842,7 @@
               <span class="lang" style="background:#e63946">KR</span>
               
               <span class="source">AI타임스</span>
-              <span class="ago">-224분 전</span>
+              <span class="ago">23시간 전</span>
             </div>
             <p class="card-title">KAIST, 압축 시각 정보 ‘고해상도’로 복원하는 AI 개발…”온디바이스 메모리 효율 향상”</p>
             <div class="keywords"><span class="kw">#KAIST</span><span class="kw">#압축</span><span class="kw">#시각</span><span class="kw">#정보</span></div>
@@ -920,21 +867,21 @@
           <ul class="kr-bullets"><li>KAIST의 연구팀이 제한된 GPU 메모리로 AI 시각 성능을 향상시키는 기술 '업샘플 애니띵'을 개발했습니다.</li><li>이 기술은 AI와 컴퓨터 비전 분야에서 메모리 효율을 크게 개선할 가능성을 보여줍니다.</li><li>연구 결과는 국제 학회에서 수상하면서 그 활용성과 중요성을 입증했습니다.</li><li>이러한 기술 발전은 휴머노이드 로봇과 자율주행 시스템 같은 첨단 AI 응용 분야에 직접적인 영향을 미칠 것입니다.</li><li>앞으로 메모리 사용량을 절감하면서도 고성능 AI 솔루션을 개발할 수 있는 기회가 열렸습니다.</li></ul>
         </div>
       </div>
-      <div class="article-unit" data-url="https://techcrunch.com/2026/06/17/how-to-turn-off-ai-in-your-google-docs/">
-        <a href="https://techcrunch.com/2026/06/17/how-to-turn-off-ai-in-your-google-docs/" class="card" target="_blank" rel="noopener noreferrer">
+      <div class="article-unit" data-url="https://www.aitimes.com/news/articleView.html?idxno=211836">
+        <a href="https://www.aitimes.com/news/articleView.html?idxno=211836" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
         <span class="ph-emoji">🤖</span>
       </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
+              <span class="lang" style="background:#e63946">KR</span>
               
-              <span class="source">TechCrunch AI</span>
-              <span class="ago">8분 전</span>
+              <span class="source">AI타임스</span>
+              <span class="ago">1일 전</span>
             </div>
-            <p class="card-title">How to turn off AI in your Google Docs</p>
-            <div class="keywords"><span class="kw">#How</span><span class="kw">#AI</span><span class="kw">#Google</span><span class="kw">#Docs</span></div>
-            <p class="summary">Here's what you need to do to get those pesky "write with Gemini" pop-ups to go away.</p>
+            <p class="card-title">KAIST “‘전력 10분의 1’ 액체 냉각 기술 개발…데이터센터 적용 가능”</p>
+            <div class="keywords"><span class="kw">#KAIST</span><span class="kw">#“‘전력</span><span class="kw">#10분의</span><span class="kw">#1’</span></div>
+            <p class="summary">한국과학기술원(KAIST, 총장 이광형)은 김성진 기계공학과 교수팀과 이익진 AX학과 교수팀이 공동 연구를 통해 기존 ‘매니폴드 마이크로채널(MMC)’ 냉각 기술의 한계를 극복하는 초고효율 액체 냉각 기술을 개발했다고 18일 밝혔다.매니폴드 마이크로채널은 머리카락보다 가는 미세 물길인 ‘마이크로채널’에 냉각수를 흘려 열을 제거하는 기술이다. 냉각수를 여러 지점에 동시 공급할 수 있어, 냉각 효율도 높일 수 있는 것이 특징이다.연구진은 기존에는 냉각수가 일부 채널에 집중되는 문제가 있었다고 지적했다. 이에, 냉각수가 모든 채널에 고르</p>
             <div class="card-toolbar">
               <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
                 <span class="tb-icon">🔖</span> 보관
@@ -952,43 +899,7 @@
         
         <div class="kr-summary">
           <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>Google 문서에서 AI 기능을 비활성화하는 방법이 소개되었습니다.</li><li>사용자가 'Gemini'와 같은 AI 지원의 편집 기능을 끌 수 있어 혼란을 줄일 수 있습니다.</li><li>이러한 기능을 차단함으로써, 사용자는 문서 작성에 더 집중할 수 있는 환경을 조성할 수 있습니다.</li><li>특히, AI의 개입이 부담스러웠던 사용자들에게는 더 나은 생산성을 가져올 것입니다.</li><li>결국 사용자의 작업 스타일에 맞는 최적의 도구를 선택할 수 있는 선택권이 강화됩니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://venturebeat.com/data/aws-enters-the-context-layer-race-with-a-graph-that-learns-from-agents-not-manual-curation">
-        <a href="https://venturebeat.com/data/aws-enters-the-context-layer-race-with-a-graph-that-learns-from-agents-not-manual-curation" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://images.ctfassets.net/jdtwqhzvc2n1/3io1fRBUqBtb0b4g3PWP1u/23d64118a63ed9f4388e51d688f32ab8/context-smk1.jpg?w=300&q=30" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🤖</span>';this.parentElement.style.background='linear-gradient(135deg, #e63946, #f3722c)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">VentureBeat</span>
-              <span class="ago">3시간 전</span>
-            </div>
-            <p class="card-title">AWS enters the context layer race with a graph that learns from agents, not manual curation</p>
-            <div class="keywords"><span class="kw">#AWS</span><span class="kw">#enters</span><span class="kw">#context</span><span class="kw">#layer</span></div>
-            <p class="summary">Building a context layer between enterprise data stores and AI agents is bespoke work, with no standard service to automate or maintain the graphs over time. Amazon is making a direct play to change that.Amazon on Wednesday entered the space, announcing a series of three products it&#x27;s positioning as a context intelligence stack for AI agents. The centerpiece is AWS Context, a new knowledge gr</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>AWS가 AI 에이전트를 위한 컨텍스트 레이어 구축에 나서며, 수동적인 정보 관리 방식을 변화시키려는 새로운 제품군을 발표했습니다.</li><li>핵심 제품인 AWS Context는 기업 데이터와 AI 에이전트 간의 최적의 연결을 제공, 기업들이 데이터를 더 효율적으로 활용할 수 있도록 지원합니다.</li><li>이 새로운 접근 방식은 기업들이 기존의 수작업으로 진행했던 데이터 관리 방식을 자동화할 수 있게 하여, 더 빠르고 정확한 의사결정이 가능해질 것입니다.</li><li>AWS의 진출은 기업들이 AI 활용의 파급력을 극대화할 수 있는 기회를 제공하며, 경쟁력 확보에 큰 영향을 미칠 것으로 예상됩니다.</li><li>앞으로 AWS Context와 같은 솔루션이 더 많은 기업 환경에 확산되면, 데이터 기반 의사결정의 패러다임이 크게 바뀔 것입니다.</li></ul>
+          <ul class="kr-bullets"><li>KAIST가 초고효율 액체 냉각 기술을 개발하여 데이터센터에 적용 가능성을 열었다.</li><li>이 기술은 기존의 매니폴드 마이크로채널 냉각 기술의 한계를 극복했다.</li><li>미세 물길인 마이크로채널을 활용해 냉각 효율을 높이고 열 제거를 효과적으로 수행한다.</li><li>연구진은 냉각수가 고르게 분배되지 않는 문제를 해결했다.</li><li>이 기술은 전력 소비를 10분의 1로 줄일 수 있는 가능성을 제시한다.</li></ul>
         </div>
       </div>
       <div class="article-unit" data-url="https://techcrunch.com/2026/06/17/roelof-botha-joins-spacexs-board-of-directors/">
@@ -1001,7 +912,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               
               <span class="source">TechCrunch AI</span>
-              <span class="ago">4시간 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">Roelof Botha joins SpaceX’s board of directors</p>
             <div class="keywords"><span class="kw">#Roelof</span><span class="kw">#Botha</span><span class="kw">#joins</span><span class="kw">#SpaceX</span></div>
@@ -1036,7 +947,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               
               <span class="source">TechCrunch AI</span>
-              <span class="ago">5시간 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">After unveiling ridiculously expensive AR glasses, Snap’s stock takes a dive</p>
             <div class="keywords"><span class="kw">#After</span><span class="kw">#AR</span><span class="kw">#Snap</span><span class="kw">#unveiling</span></div>
@@ -1071,7 +982,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               
               <span class="source">TechCrunch AI</span>
-              <span class="ago">5시간 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">NEA’s Tiffany Luck says enterprises are still figuring out their AI ROI</p>
             <div class="keywords"><span class="kw">#NEA</span><span class="kw">#Tiffany</span><span class="kw">#Luck</span><span class="kw">#AI</span></div>
@@ -1096,6 +1007,77 @@
           <ul class="kr-bullets"><li>AI 사용을 극대화하려는 기업들의 열풍이 있었지만, 이제 결산을 해야 할 시점에 다다랐습니다.</li><li>기업들이 AI 투자 대비 수익(Return on Investment, ROI)을 어떻게 측정해야 할지 고민하고 있는 상황입니다.</li><li>Uber와 같은 대기업이 예산을 급속도로 소진하면서, 예기치 못한 비용 증가에 대한 경각심이 필요해졌습니다.</li><li>일부 기업은 AI 구독 서비스의 조정이나 내부 평가 시스템 중단과 같은 조치를 취하며 비용 절감을 모색 중입니다.</li><li>이러한 변화는 기업들이 지속 가능한 AI 전략을 마련하도록 압박하고 있으며, 효율적인 자원 배분의 중요성을 더욱 부각시키고 있습니다.</li></ul>
         </div>
       </div>
+      <div class="article-unit" data-url="https://techcrunch.com/2026/06/17/world-leaders-want-american-ai-they-just-dont-want-america-to-be-able-to-turn-it-off/">
+        <a href="https://techcrunch.com/2026/06/17/world-leaders-want-american-ai-they-just-dont-want-america-to-be-able-to-turn-it-off/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #e63946, #f3722c)">
+        <span class="ph-emoji">🤖</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">TechCrunch AI</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">World leaders want American AI. They just don’t want America to be able to turn it off.</p>
+            <div class="keywords"><span class="kw">#World</span><span class="kw">#American</span><span class="kw">#AI</span><span class="kw">#They</span></div>
+            <p class="summary">French President Macron and Indian PM Modi raised alarms at the G7 summit that the U.S. could cut off access to American AI overnight  — a fear the Anthropic blackout just made real.</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>프랑스 대통령 마크롱과 인도 총리 모디가 G7 정상 회의에서 미국의 AI 접근 차단 가능성에 대한 우려를 표명.</li><li>최근 Anthropic의 차단 사례가 이 우려를 현실로 나타냈음.</li><li>세계 지도자들은 미국 AI의 필요성을 인정하지만, 통제력에 대한 불안감을 가지고 있음.</li><li>이로 인해 AI 기술의 국제적 접근성과 협력 문제에 대한 논의가 필요해짐.</li><li>AI 기술의 글로벌 분배와 의존성에 대한 새로운 고민이 대두되고 있음.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem">
+        <a href="https://venturebeat.com/technology/anthropic-ships-major-claude-design-overhaul-with-design-system-imports-code-round-trips-and-a-fix-for-its-token-burning-problem" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img">
+        <img src="https://images.ctfassets.net/jdtwqhzvc2n1/A7rh9k4f5l3OFsViB4gjc/8c1c2679504faa38007e3e334377755f/image__1___1_.png?w=300&q=30" alt="" loading="lazy"
+             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🤖</span>';this.parentElement.style.background='linear-gradient(135deg, #e63946, #f3722c)'">
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">VentureBeat</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">Anthropic ships major Claude Design overhaul with design system imports, code round-trips, and a fix for its token-burning problem</p>
+            <div class="keywords"><span class="kw">#Anthropic</span><span class="kw">#Claude</span><span class="kw">#Design</span><span class="kw">#ships</span></div>
+            <p class="summary">When Anthropic quietly released Claude Design in April as a &quot;research preview,&quot; it generated the kind of instant traction most product teams dream about: more than one million users in its first week. It also generated a problem. The tool consumed tokens so voraciously that a PCWorld reviewer burned through 80 percent of his weekly Claude Pro allowance in roughly 25 minutes, producing ju</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>Anthropic이 Claude Design의 주요 개편을 발표하며 설계 시스템 도입 및 코드 개선을 포함.</li><li>Claude Design은 출시 첫 주에 100만 명 이상의 사용자를 기록하며 큰 인기를 끌었다.</li><li>그러나 과도한 토큰 소모로 사용자들이 문제를 겪고 있다.</li><li>한 리뷰어는 25분 만에 주간 할당량의 80%를 소진했다고 보고.</li><li>이번 업데이트는 이러한 토큰 소모 문제를 해결하기 위한 수정이 포함되어 있다.</li></ul>
+        </div>
+      </div>
       </div>
     </section>
     <section class="section" id="cat-mobility" data-category="mobility">
@@ -1105,250 +1087,6 @@
         <span class="section-count">10개</span>
       </h2>
       <div class="grid">
-      <div class="article-unit" data-url="http://www.autoherald.co.kr/news/articleView.html?idxno=60821">
-        <a href="http://www.autoherald.co.kr/news/articleView.html?idxno=60821" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://cdn.autoherald.co.kr/news/photo/202606/60821_116492_1032.jpeg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">오토헤럴드</span>
-              <span class="ago">-521분 전</span>
-            </div>
-            <p class="card-title">현대차, 월드컵으로 ‘스포츠워싱’ 논란... 멕시코전 앞두고 시위 비상</p>
-            <div class="keywords"><span class="kw">#현대차</span><span class="kw">#월드컵으로</span><span class="kw">#‘스포츠워싱’</span><span class="kw">#논란</span></div>
-            <p class="summary">멕시코 환경단체가 현대차에 철강을 공급하는&nbsp;테르니움과의 거래를 이유로 한국 대표팀의 멕시코전이 열리는 경기장에서 집회를 연다고 예고해 긴장감이 높아지고 있다. (오토헤럴드 DB)
-
-
-
-[오토헤럴드 김흥식 기자] 2026 FIFA 북중미 월드컵이 열기를 더해가는 가운데 현대자동차가 멕시코에서 예상치 못한 논란에 휘말렸다. 멕시코와 한국의 조별리그 맞대결을 앞두고 현지 시민단체들이 현대차를 겨냥한 항의 시위를 예고하면서다.
-
-영국 가디언에 따르면 시위대는 18일(현지시간) 멕시코 과달라하라에서 열리는 멕시코와 한국의 월드컵 조별리그 경기에 앞서 현대차를 상대로 집회를 개최할 예정이다. 현대차가 남미 철강기업 테르니움(Ternium)과 거래 관계를 유지하고 있다는 것에 항의하는 시위다.&nbsp;
-
-환경</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>최근 현대차가 멕시코에서 스포츠워싱 논란에 휘말렸습니다, 이는 환경단체들이 현대차의 철강 공급업체와의 거래를 문제 삼고 있는 상황입니다.</li><li>2026 FIFA 월드컵을 앞두고 이러한 반대 시위가 발생하는 것은 현대차의 브랜드 이미지에 심각한 영향을 미칠 수 있습니다.</li><li>멕시코에서 예정된 한국과의 경기 전, 단체들이 현지에서 대규모 집회를 예고하고 있어 상황이 더욱 긴박해졌습니다.</li><li>시위는 환경 이슈에 대한 사회적 경각심을 높이는 한편, 기업의 지속 가능성을 다시 한번 고려하게 만드는 계기가 될 것입니다.</li><li>현대차는 글로벌 마케팅 전략을 재점검하고, 친환경 경영에 대한 메시지를 강화할 필요성이 커지고 있습니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="http://www.autoherald.co.kr/news/articleView.html?idxno=60820">
-        <a href="http://www.autoherald.co.kr/news/articleView.html?idxno=60820" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://cdn.autoherald.co.kr/news/photo/202606/60820_116488_215.jpg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">오토헤럴드</span>
-              <span class="ago">-515분 전</span>
-            </div>
-            <p class="card-title">BMW 미래가 달린 첫 번째 전기차, 노이어 클라쎄 'iX3' 국내 상륙</p>
-            <div class="keywords"><span class="kw">#BMW</span><span class="kw">#미래가</span><span class="kw">#달린</span><span class="kw">#번째</span></div>
-            <p class="summary">BMW코리아가 차세대 프리미엄 순수전기 SAV '더 뉴 BMW iX3'를 국내 시장에 공식 출시한다고 18일 밝혔다(BMW)
-
-
-
-[오토헤럴드 김훈기 기자] BMW코리아가 차세대 프리미엄 순수전기 SAV '더 뉴 BMW iX3'를 국내 시장에 공식 출시한다고 18일 밝혔다.&nbsp;&nbsp;더 뉴 iX3는 BMW의 상징적 헤리티지를 기반으로 기술과 주행 경험, 디자인 전반에 걸쳐 새로운 혁신을 이룬 '노이어 클라쎄(Neue Klasse)'의 첫 번째 양산형 모델이다.&nbsp;
-
-더 뉴 BMW iX3 외관은 시대를 초월한 디자인과 미래지향적인 감각이 조화를 이루며 BMW만의 정체성을 새롭게 구현했다. 특히 BMW 특유의 정교한 차체 설계를 통해 0.24Cd라는 동급 프리미엄 모델 최고 수준의 공기저항계수</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>BMW가 차세대 전기차 '더 뉴 iX3'를 국내에 출시하며 전기차 시장에서의 경쟁력을 확보했습니다.</li><li>'노이어 클라쎄'로 불리는 이 모델은 BMW의 혁신적인 기술과 디자인 철학을 반영하여 업그레이드된 고객 경험을 제공합니다.</li><li>특히, 공기저항계수를 동급 최상위인 0.24Cd로 설정하여 효율성을 극대화한 점이 주목할 만합니다.</li><li>이러한 변화는 BMW의 브랜드 이미지뿐만 아니라 지속 가능한 이동 수단에 대한 소비자의 기대에도 부응하는 방향입니다.</li><li>iX3의 출시는 BMW가 전기차 시장에서의 입지를 더욱 견고히 하려는 전략의 일환으로, 향후 모델에도 긍정적인 영향을 미칠 것으로 예상됩니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="http://www.autoherald.co.kr/news/articleView.html?idxno=60818">
-        <a href="http://www.autoherald.co.kr/news/articleView.html?idxno=60818" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://cdn.autoherald.co.kr/news/photo/202606/60818_116487_4010.png" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">오토헤럴드</span>
-              <span class="ago">-486분 전</span>
-            </div>
-            <p class="card-title">스텔란티스·우버·웨이브 3자 동맹 '자율주행 서비스 공동 개발'</p>
-            <div class="keywords"><span class="kw">#스텔란티스·우버·웨이브</span><span class="kw">#3자</span><span class="kw">#동맹</span><span class="kw">#'자율주행</span></div>
-            <p class="summary">스텔란티스와 우버, 영국 자율주행 스타트업 웨이브가 손잡고 레벨 4 로보택시 개발 및 서비스 확대에 나선다(스텔란티스)
-
-
-
-[오토헤럴드 김훈기 기자] 글로벌 자율주행 시장이 본격적인 상용화 단계에 진입한 가운데 스텔란티스와 우버, 영국 자율주행 스타트업 웨이브(Wayve)가 손잡고 레벨 4(Level 4) 로보택시 개발 및 서비스 확대에 나선다.&nbsp;
-
-이들 3자 협력은 차량 제조와 인공지능(AI), 모빌리티 플랫폼이 결합된 새로운 형태의 동맹으로, 업계에서는 웨이모와 테슬라를 견제하기 위한 '로보택시 연합군'이 등장했다는 평가가 나온다.&nbsp;
-
-최근 이들 3사는 글로벌 규모의 레벨 4 자율주행 로보택시 개발 및 운영을 위한 양해각서(MOU)를 체결했다고 밝혔다. 이번 협력에서 스텔란티스는 자율</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>스텔란티스, 우버, 웨이브가 협력해 레벨 4 자율주행 로보택시 개발에 나섭니다.</li><li>이들은 차량 제조, AI, 모빌리티 플랫폼의 융합을 통해 새로운 형태의 동맹을 형성하며, 자율주행 시장에서 경쟁력을 강화하고 있습니다.</li><li>이 협력은 웨이모와 테슬라와 같은 다국적 기업들과의 경쟁을 의식한 전략으로 해석됩니다.</li><li>자율주행 서비스의 상용화가 더욱 가속화될 것으로 보이며, 이는 소비자에게 더 안전하고 편리한 이동 수단을 제공할 것입니다.</li><li>이러한 동향은 UX/UI 디자이너들에게도 사용자 경험 혁신의 기회를 열어줄 것입니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="http://www.autoherald.co.kr/news/articleView.html?idxno=60815">
-        <a href="http://www.autoherald.co.kr/news/articleView.html?idxno=60815" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://cdn.autoherald.co.kr/news/photo/202606/60815_116478_2022.jpg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              <span class="ivi-badge">IVI</span>
-              <span class="source">오토헤럴드</span>
-              <span class="ago">-420분 전</span>
-            </div>
-            <p class="card-title">"가상 변속까지 넣었다" 포르쉐, 더 감성적인 2027년형 타이칸 공개</p>
-            <div class="keywords"><span class="kw">#"가상</span><span class="kw">#변속까지</span><span class="kw">#넣었다"</span><span class="kw">#포르쉐</span></div>
-            <p class="summary">포르쉐가 순수전기 스포츠 세단 타이칸의 상품성을 대폭 강화한 2027년형 모델을 공개했다(포르쉐)
-
-
-
-[오토헤럴드 김훈기 기자] 포르쉐가 순수전기 스포츠 세단 타이칸의 상품성을 대폭 강화한 2027년형 모델을 공개했다. 단순한 주행거리 개선을 넘어 실제 변속감을 구현한 'E-시프트(E-Shift)' 기능과 AI 기반 음성 비서, 향상된 인포테인먼트 시스템 등을 적용하며 전기 스포츠카의 감성 영역까지 한층 끌어올렸다.
-
-먼저 이번 모델의 가장 큰 특징은 새로운 E-시프트 기능을 통해 감성적인 주행 경험을 한층 강화한 부분이다. 해당 기능은 실제 변속감을 구현한 가상 기어 변속과 재해석된 포르쉐 일렉트릭 스포츠 사운드, 가상 회전계를 결합해 더욱 몰입감 있는 다감각적 주행 경험을 제공한다. 또한 GT 스포츠 </p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>포르쉐가 2027년형 타이칸을 공개하며 전기 스포츠카의 감성을 크게 강화했습니다.</li><li>'E-시프트' 기술을 통해 실제 변속처럼 느껴지는 경험을 제공함으로써 운전의 즐거움을 높였습니다.</li><li>AI 기반 음성 비서와 향상된 인포테인먼트 시스템은 사용자 편의성을 크게 향상시켜 보다 스마트한 드라이빙 환경을 조성합니다.</li><li>이러한 변화는 단순히 성능 향상을 넘어, 드라이버와 차량 간의 감정적 연결을 더욱 깊게 만들어줍니다.</li><li>포르쉐는 전기차 시장에서의 경쟁력을 강화하며, 감성적 경험이 중요한 요소로 자리 잡을 것임을 시사하고 있습니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://electrek.co/2026/06/17/illinois-put-community-solar-on-a-150-year-old-coal-mine/">
-        <a href="https://electrek.co/2026/06/17/illinois-put-community-solar-on-a-150-year-old-coal-mine/" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://electrek.co/wp-content/uploads/sites/3/2026/06/Nexamp-and-TPE-Ribbon-Cutting-Aerial.jpg?quality=82&#038;strip=all&#038;w=1600" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">Electrek</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">Illinois put community solar on a 150-year-old coal mine</p>
-            <div class="keywords"><span class="kw">#Illinois</span><span class="kw">#community</span><span class="kw">#solar</span></div>
-            <p class="summary">An old coal mine in Illinois is now generating community solar power for hundreds of households and businesses.</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>일리노이의 150년 된 석탄 광산이 이제 커뮤니티 태양광 발전소로 변모하여 수백 가구와 기업에 전력을 공급하고 있습니다.</li><li>이러한 변화는 최근 에너지 전환의 일환으로, 기존의 오염된 지역을 재활용해 지속 가능한 에너지원으로 활용하는 새로운 모델을 제시합니다.</li><li>지역 주민들에게는 저렴하고 깨끗한 전기를 제공하여 에너지 비용 절감과 환경 보호에 기여하게 됩니다.</li><li>이와 같은 재생 가능 에너지 프로젝트는 탄소 배출 감소를 목표로 하며, 환경적 지속 가능성을 높이는 중요한 사례가 될 것입니다.</li><li>커뮤니티의 에너지 자립성을 강화하고, 석탄 산업의 후유증을 극복하는 데 도움을 줄 수 있는 점에서 의미가 큽니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://electrek.co/2026/06/17/bluetti-fridgepower-fridge-outages-retail/">
-        <a href="https://electrek.co/2026/06/17/bluetti-fridgepower-fridge-outages-retail/" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://electrek.co/wp-content/uploads/sites/3/2026/04/BLUETTI-FridgePower-1.jpg?quality=82&#038;strip=all&#038;w=1600" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">Electrek</span>
-              <span class="ago">2시간 전</span>
-            </div>
-            <p class="card-title">BLUETTI’s $2.2M-crowdfunded FridgePower dedicated fridge backup arrives at retail</p>
-            <div class="keywords"><span class="kw">#BLUETTI</span><span class="kw">#crowdfunded</span><span class="kw">#FridgePower</span><span class="kw">#dedicated</span></div>
-            <p class="summary">Summer storms and tornadoes are increasing outage risks across the US, leaving households vulnerable to massive food spoilage, compromised essential medications, and the loss of expensive premium meats. But earlier this spring, BLUETTI introduced the ultimate answer to grid vulnerability – the FridgePower, a dedicated refrigerator battery backup. After crushing its crowdfunding phase with $2.2 mil</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>최근 여름 폭풍과 토네이도로 인한 정전 위험이 증가하면서 가정에서 식품 부패 및 필수 약품 손실이 우려되고 있다.</li><li>BLUETTI는 이러한 문제를 해결하기 위해 FridgePower라는 전용 냉장고 배터리 백업 제품을 출시했다.</li><li>이 제품은 220만 달러의 크라우드펀딩 목표를 초과 달성하며 소비자들의 관심을 끌었다.</li><li>FridgePower의 등장은 정전 상황에서도 신선도를 유지하고 중요한 자산을 보호하는 데 큰 역할을 할 것으로 예상된다.</li><li>이는 가정의 안전과 편의를 높여주며, 특히 극단적인 기후에서 필수적인 해결책이 될 것이다.</li></ul>
-        </div>
-      </div>
       <div class="article-unit" data-url="https://electrek.co/2026/06/17/musk-exercises-2018-tesla-pay-package-116-billion/">
         <a href="https://electrek.co/2026/06/17/musk-exercises-2018-tesla-pay-package-116-billion/" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img">
@@ -1360,7 +1098,7 @@
               <span class="lang" style="background:#457b9d">EN</span>
               
               <span class="source">Electrek</span>
-              <span class="ago">3시간 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">Elon Musk gets a $116 billion Tesla payday</p>
             <div class="keywords"><span class="kw">#Elon</span><span class="kw">#Musk</span><span class="kw">#Tesla</span><span class="kw">#billion</span></div>
@@ -1386,6 +1124,114 @@ But he didn’t sell a single share to do it — and the stock he received is lo
           <ul class="kr-bullets"><li>엘론 머스크가 2018년 테슬라 CEO 보상 패키지를 전량 행사해 약 1,160억 달러의 종이 이익을 얻었습니다.</li><li>이는 그가 3억0396만0630주를 취득한 것으로, 테슬라 주식의 가치 상승이 그의 개인 자산에 막대한 영향을 준 사례입니다.</li><li>머스크는 주식을 매도하지 않았고, 이 주식은 2028년까지 잠금 상태로 유지됩니다.</li><li>이러한 비유동성은 향후 주가 변화에 대한 그의 전략적 접근을 보여주며, 시장 내 신뢰와 안정성을 반영할 수 있습니다.</li><li>테슬라 주식의 가치가 계속 상승할 경우, 이러한 상황은 머스크와 테슬라의 위치를 더욱 강화할 수 있습니다.</li></ul>
         </div>
       </div>
+      <div class="article-unit" data-url="https://electrek.co/2026/06/17/electrify-america-biggest-battery-storage-charging-hub/">
+        <a href="https://electrek.co/2026/06/17/electrify-america-biggest-battery-storage-charging-hub/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img">
+        <img src="https://electrek.co/wp-content/uploads/sites/3/2026/06/electrifyamerica-santabarbara-overheadimage.jpg?quality=82&#038;strip=all&#038;w=1600" alt="" loading="lazy"
+             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">Electrek</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">Electrify America opens its biggest battery-backed charging station</p>
+            <div class="keywords"><span class="kw">#Electrify</span><span class="kw">#America</span><span class="kw">#opens</span><span class="kw">#biggest</span></div>
+            <p class="summary">Electrify America just opened a new “large-format” EV charging station in downtown Santa Barbara, California, adding 20 DC fast chargers and the company’s largest public battery energy storage system to date.</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>Electrify America가 캘리포니아 샌타바바라에 대형 EV 충전소를 개설함.</li><li>새로운 충전소에는 20개의 DC 고속 충전기가 설치됨.</li><li>이 충전소는 회사 최초로 대규모 배터리 에너지 저장 시스템을 갖추고 있음.</li><li>지역 내 전기차 충전 인프라 확장에 기여할 것으로 기대됨.</li><li>전기차 수요 증가에 대응하기 위한 전략적인 투자로 분석됨.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://electrek.co/2026/06/17/bmw-i3-orders-open-months-ahead-of-schedule-demand-builds/">
+        <a href="https://electrek.co/2026/06/17/bmw-i3-orders-open-months-ahead-of-schedule-demand-builds/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img">
+        <img src="https://electrek.co/wp-content/uploads/sites/3/2026/06/BMW-i3-orders.jpeg?quality=82&#038;strip=all&#038;w=1400" alt="" loading="lazy"
+             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">Electrek</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">BMW will open i3 orders this week, months ahead of schedule, as demand takes off</p>
+            <div class="keywords"><span class="kw">#BMW</span><span class="kw">#orders</span><span class="kw">#months</span><span class="kw">#ahead</span></div>
+            <p class="summary">The new i3 was set to go on sale this fall, but BMW will open them months ahead of schedule because demand is so strong.</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>BMW가 새로운 i3 주문을 이번 주에 시작할 예정입니다.</li><li>이는 원래 이 가을에 출시될 계획이었으나, 수요가 급증하여 조기 개시합니다.</li><li>시장의 높은 수요에 따라 BMW는 생산 및 판매 전략을 조정하고 있습니다.</li><li>i3 모델은 전기차 시장에서의 경쟁력을 강화하는 중요한 역할을 할 것으로 보입니다.</li><li>소비자 반응과 판매 성과가 향후 전기차 라인업에 영향을 미칠 가능성이 있습니다.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://www.autonews.com/retail/nada/an-nada-ftc-helps-dealers-0617/">
+        <a href="https://www.autonews.com/retail/nada/an-nada-ftc-helps-dealers-0617/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img">
+        <img src="https://crain-crain-prod.web.arc-cdn.net/resizer/xnI5ij66dCw2NBPt68ONsEJeAFM=/0x800/cloudfront-us-east-1.images.arcpublishing.com/crain/LG62YTG6TVAKNOVC4V6EXDQUT4.jpg" alt="" loading="lazy"
+             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>🚗</span>';this.parentElement.style.background='linear-gradient(135deg, #0a9396, #005f73)'">
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">Automotive News</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">Why FTC ad rules could be good for dealers, according to NADA’s Mike Stanton</p>
+            <div class="keywords"><span class="kw">#Why</span><span class="kw">#FTC</span><span class="kw">#NADA</span><span class="kw">#Mike</span></div>
+            <p class="summary">YPSILANTI, Mich. — The Federal Trade Commission’s rules on deceptive advertising — which it formally warned 97 dealership groups about this year — can improve dealers’ business, the CEO of the National Automobile Dealers Association said. “To win the marketplace, we have got to be where customers want to go. Customers say on average they don’t like car dealers, but they love their car dealers,” NA</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>FTC의 기만 광고 규정이 자동차 딜러들에게 긍정적인 영향을 미칠 수 있다는 주장이 제기됨.</li><li>NADA의 최고경영자 마이크 스탠턴은 이러한 규칙이 딜러의 비즈니스를 개선할 수 있다고 언급함.</li><li>고객들은 딜러에 대한 부정적인 인식을 가지고 있지만, 선호하는 딜러에 대한 애정은 높다는 점 강조.</li><li>시장에서의 경쟁력 강화를 위해 고객이 원하는 방향으로 나아가야 한다는 메시지 전달.</li><li>97개 딜러 그룹에 대한 경고가 FTC의 착한 광고 규제를 나타냄.</li></ul>
+        </div>
+      </div>
       <div class="article-unit" data-url="https://electrek.co/2026/06/17/another-day-another-illegal-billion-dollar-bribe-to-raise-your-electricity-prices/">
         <a href="https://electrek.co/2026/06/17/another-day-another-illegal-billion-dollar-bribe-to-raise-your-electricity-prices/" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img">
@@ -1397,7 +1243,7 @@ But he didn’t sell a single share to do it — and the stock he received is lo
               <span class="lang" style="background:#457b9d">EN</span>
               <span class="ivi-badge">IVI</span>
               <span class="source">Electrek</span>
-              <span class="ago">8시간 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">Another day, another illegal billion-dollar bribe to raise your electricity prices</p>
             <div class="keywords"><span class="kw">#Another</span><span class="kw">#illegal</span><span class="kw">#billion</span><span class="kw">#dollar</span></div>
@@ -1422,6 +1268,111 @@ But he didn’t sell a single share to do it — and the stock he received is lo
           <ul class="kr-bullets"><li>최근에 미국 내무부는 한 가스 회사와 불법 계약을 체결하여 청정 해상 풍력 발전 개발을 중단하고 더 비싸고 환경 오염이 심한 가스를 선택했습니다.</li><li>이 결정은 미국 세금으로 거의 10억 달러에 해당하는 금액이 해당 기업에 지원됨을 의미하며, 이는 시민들에게 필수적인 전기 공급을 제한할 수 있습니다.</li><li>이러한 움직임은 친환경 에너지로의 전환을 저해하고, 궁극적으로 사회적 비용을 증가시킬 수 있어 환경 정책에 부정적인 영향을 미칠 가능성이 큽니다.</li><li>많은 시민들이 필요한 전기를 확보하기 어려워질 상황에 직면하게 되면서, 에너지 가격의 추가적인 상승이 우려됩니다.</li><li>이 사건은 가스 산업이 여전히 우선시되는 가운데, 지속 가능한 에너지 정책의 필요성을 더욱 부각시키고 있습니다.</li></ul>
         </div>
       </div>
+      <div class="article-unit" data-url="https://www.motorgraph.com/news/articleView.html?idxno=43947">
+        <a href="https://www.motorgraph.com/news/articleView.html?idxno=43947" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #0a9396, #005f73)">
+        <span class="ph-emoji">🚗</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              
+              <span class="source">모터그래프</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">시작의 스케일이 커지는 모든 순간, 올 뉴 포드 익스페디션</p>
+            <div class="keywords"><span class="kw">#시작의</span><span class="kw">#스케일이</span><span class="kw">#커지는</span><span class="kw">#모든</span></div>
+            <p class="summary">에프엘오토코리아(FL Auto Korea Company, FLAK)가 포드의 플래그십 SUV 올 뉴 포드 익스페디션 플래티넘을 공식 출시한다.지난 1996년 처음 선보인 익스페디션은 넓은 공간과 강력한 엔진, 탄탄한 견인력을 갖춘 초대형 SUV로 출시 당시 북미 풀 사이즈 SUV 시장에 새로운 활력을 불어넣은 모델이다. 올해로 출시 30주년을 맞는 익스페디션은 누적 약 300만 대에 이르는 글로벌 판매량을 기록해 스테디셀러 모델로 자리매김했다. 국내에는 2021년 4세대 모델로 소개되었으며, 여유로운 3열을 갖춘 SUV 수요를 만족</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>에프엘오토코리아가 올 뉴 포드 익스페디션 플래티넘을 공식 출시함.</li><li>익스페디션은 1996년 출시 이후 북미 시장에서 큰 인기를 끌며 30주년을 맞음.</li><li>이 모델은 넓은 공간, 강력한 엔진, 뛰어난 견인력으로 유명.</li><li>약 300만 대의 글로벌 판매량을 기록해 스테디셀러로 자리매김.</li><li>국내에는 2021년 4세대 모델이 도입되어 SUV 수요를 만족.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://www.motorgraph.com/news/articleView.html?idxno=43949">
+        <a href="https://www.motorgraph.com/news/articleView.html?idxno=43949" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #0a9396, #005f73)">
+        <span class="ph-emoji">🚗</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              
+              <span class="source">모터그래프</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">미쉐린, 르망 24시 내구 레이스 통산 35번째 종합 우승</p>
+            <div class="keywords"><span class="kw">#미쉐린</span><span class="kw">#르망</span><span class="kw">#24시</span><span class="kw">#내구</span></div>
+            <p class="summary">미쉐린이 르망 24시(Le Mans 24 Hours) 내구 레이스에서 통산 35번째 종합 우승을 거두며 타이어 제조사 역사상 최다 우승 신기록을 달성했다. 지난 6월 13일부터 14일까지 프랑스 르망에 위치한 라 사르트 서킷에서 개최된 이번 대회에서 미쉐린은 하이퍼카 클래스에 혁신적인 최신 세대 미쉐린 파일롯 스포츠 엔듀런스(Michelin Pilot Sport Endurance) 타이어를 공급, 24시간 동안 치러진 레이스 드라마에 적극적으로 기여했다.미쉐린은 지난 100년이 넘는 기간 동안 모터스포츠를 통해 미래 모빌리티를 위한</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>미쉐린이 르망 24시 내구 레이스에서 통산 35번째 종합 우승을 달성함.</li><li>이는 타이어 제조사 역사상 최다 우승 신기록으로 기록됨.</li><li>대회는 6월 13일부터 14일까지 프랑스 르망에서 개최됨.</li><li>미쉐린은 하이퍼카 클래스에 혁신적인 파일롯 스포츠 엔듀런스 타이어를 공급함.</li><li>100년 이상 모터스포츠를 통해 미래 모빌리티에 기여하고 있음.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://www.motorgraph.com/news/articleView.html?idxno=43953">
+        <a href="https://www.motorgraph.com/news/articleView.html?idxno=43953" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #0a9396, #005f73)">
+        <span class="ph-emoji">🚗</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              
+              <span class="source">모터그래프</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">포르쉐 공식 딜러 SSCL, 누적 출고 5만 대 달성</p>
+            <div class="keywords"><span class="kw">#포르쉐</span><span class="kw">#공식</span><span class="kw">#딜러</span><span class="kw">#SSCL</span></div>
+            <p class="summary">포르쉐 공식 딜러 SSCL(스투트가르트스포츠카㈜) 가 누적 출고 5만 대를 달성하며 국내 포르쉐 대표 딜러사로서의 독보적인 입지를 다시 한번 입증했다. 이번 성과는 2005년 설립 이후 약 20년간 축적해 온 고객 신뢰와 차별화된 서비스 경쟁력이 만들어낸 상징적인 기록이다.이러한 성과의 배경에는 국내 최대 수준의 고객 접점과 차별화된 서비스 역량이 자리하고 있다. SSCL은 국내 포르쉐 공식 딜러사 가운데 가장 많은 5개 전시장과 6개 서비스센터를 운영하고 있으며, 포르쉐 인증 중고차 센터와 국내 최초로 선보인 포르쉐 스튜디오 4곳</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>SSCL(스투트가르트스포츠카㈜), 포르쉐 공식 딜러로 누적 출고 5만 대 달성.</li><li>2005년 설립 이후 20년간 쌓아온 고객 신뢰와 차별화된 서비스가 기초.</li><li>국내 최대 규모의 고객 접점과 서비스 역량이 성공의 배경.</li><li>5개 전시장과 6개 서비스센터 운영, 포르쉐 인증 중고차 센터 보유.</li><li>포르쉐 스튜디오 4곳을 국내 최초로 선보이며 시장 선도.</li></ul>
+        </div>
+      </div>
       <div class="article-unit" data-url="https://electrek.co/2026/06/17/rivian-ceo-self-driving-prices-fall-tesla-fsd/">
         <a href="https://electrek.co/2026/06/17/rivian-ceo-self-driving-prices-fall-tesla-fsd/" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img">
@@ -1433,7 +1384,7 @@ But he didn’t sell a single share to do it — and the stock he received is lo
               <span class="lang" style="background:#457b9d">EN</span>
               <span class="ivi-badge">IVI</span>
               <span class="source">Electrek</span>
-              <span class="ago">9시간 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">Rivian CEO signals self-driving prices, like Tesla’s, will fall</p>
             <div class="keywords"><span class="kw">#Rivian</span><span class="kw">#CEO</span><span class="kw">#Tesla</span><span class="kw">#signals</span></div>
@@ -1470,7 +1421,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
               <span class="lang" style="background:#e63946">KR</span>
               <span class="ivi-badge">IVI</span>
               <span class="source">오토헤럴드</span>
-              <span class="ago">12시간 전</span>
+              <span class="ago">1일 전</span>
             </div>
             <p class="card-title">테슬라 FSD 데이터 '왜곡 논란' 美 의회까지 고강도 조사 촉구</p>
             <div class="keywords"><span class="kw">#테슬라</span><span class="kw">#FSD</span><span class="kw">#데이터</span><span class="kw">#'왜곡</span></div>
@@ -1512,274 +1463,8 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         <span class="section-count">10개</span>
       </h2>
       <div class="grid">
-      <div class="article-unit" data-url="https://www.zdnet.com/article/how-i-block-ads-with-cheap-raspberry-pi-alternative/">
-        <a href="https://www.zdnet.com/article/how-i-block-ads-with-cheap-raspberry-pi-alternative/" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
-        <span class="ph-emoji">💻</span>
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">ZDNet</span>
-              <span class="ago">10분 전</span>
-            </div>
-            <p class="card-title">I programmed a $7 ESP32-S3 board to block all computer's web ads - and it took just minutes</p>
-            <div class="keywords"><span class="kw">#programmed</span><span class="kw">#board</span><span class="kw">#block</span><span class="kw">#computer</span></div>
-            <p class="summary">Raspberry Pi boards have gotten expensive, so I've been looking for cheaper alternatives. I found one in a tiny ESP32-S3 board.</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>최근 라즈베리 파이가 비싸지면서 쳇바퀴 같은 비용 문제를 해결하기 위해 저렴한 ESP32-S3 보드가 주목받고 있습니다.</li><li>이 보드는 간단한 프로그래밍만으로 웹 광고를 차단할 수 있어 사용자에게 큰 가치를 제공합니다.</li><li>저렴한 하드웨어로도 고급 기능을 구현할 수 있다는 점에서 DIY 기술이 더욱 확산될 것으로 보입니다.</li><li>이러한 기술은 광고 차단을 원하는 사용자에게 즉각적인 해결책을 제공하여 웹 환경을 개선하는 데 기여할 수 있습니다.</li><li>궁극적으로, 비용 효율적인 솔루션이 증가함에 따라 더 많은 사람들이 DIY 프로젝트에 도전할 가능성이 높아집니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://www.zdnet.com/article/sennheiser-momentum-5-battery-repair/">
-        <a href="https://www.zdnet.com/article/sennheiser-momentum-5-battery-repair/" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
-        <span class="ph-emoji">💻</span>
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">ZDNet</span>
-              <span class="ago">21분 전</span>
-            </div>
-            <p class="card-title">Sennheiser just gave me a compelling reason to put away my Bose and Sony headphones for good</p>
-            <div class="keywords"><span class="kw">#Sennheiser</span><span class="kw">#Bose</span><span class="kw">#Sony</span><span class="kw">#compelling</span></div>
-            <p class="summary">As audio quality reaches technological limits, brands are exploring alternative features.</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>센하이저가 오디오 품질 개선에 한계를 느끼며 새로운 기능에 집중하고 있음을 보여줍니다.</li><li>다른 브랜드들이 Bose와 Sony와의 경쟁에서 차별화를 위해 다양한 혁신적 요소를 모색하고 있다는 점이 주목할 만합니다.</li><li>소비자들은 이제 단순한 음질 향상뿐만 아니라 추가적인 사용자 경험을 추구하게 될 것입니다.</li><li>이는 단순히 오디오 제품 시장에서의 경쟁 구도를 변화시킬 뿐만 아니라, UX/UI 디자인에서도 새로운 방향성을 제시할 가능성이 큽니다.</li><li>향후 헤드폰 선택 시 음질뿐만 아니라 다양한 기능과 경험이 중요한 기준으로 부각될 전망입니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://zdnet.co.kr/view/?no=20260618083024">
-        <a href="https://zdnet.co.kr/view/?no=20260618083024" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://image.zdnet.co.kr/2025/09/10/e79429058802507d815441d1599fcf3c.jpg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>💻</span>';this.parentElement.style.background='linear-gradient(135deg, #7209b7, #3a0ca3)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">지디넷코리아</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">"듀얼 카메라 아이폰 에어 2, 내년 봄 나온다"</p>
-            <div class="keywords"><span class="kw">#"듀얼</span><span class="kw">#카메라</span><span class="kw">#아이폰</span><span class="kw">#에어</span></div>
-            <p class="summary">[지디넷코리아]애플이 2027년 봄 출시를 목표로 슬림형 스마트폰 &apos;아이폰 에어&apos; 2세대 모델을 개발 중이라고 블룸버그 통신이 17일(현지시간) 소식통을 인용해 보도했다.
-보도에 따르면 코드명 &apos;V62&apos;로 알려진 차세대 아이폰 에어의 시제품에는 초광각 촬영을 지원하는 두 번째 후면 카메라가 추가된 것으로 전해졌다. 해당 제품은 현재 애플 내부에서 고급 테스트 단계에 들어간 상태다.
-
-신형 아이폰 에어는 올 가을 출시될 아이폰에 탑재되는 A20 프로 칩의 변형 버전을 사용할 것으로 알려졌다. 애플은 카메라 성능과 배터리 사용 시간을 차세대 아이폰 에어의 핵심 개선 사항으로 보고 있다. 관계자들에 따르면 현재 사용자들이 가장 많이 지적하는 부분은 단일 후면 카메라 구성이다.
-</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>애플이 내년 봄에 듀얼 카메라를 갖춘 '아이폰 에어' 2세대를 출시할 계획을 밝혔습니다.</li><li>이 모델은 초광각 카메라를 추가해 사진 촬영의 다양성을 높일 것으로 예상됩니다.</li><li>새로운 A20 프로 칩 변형이 탑재되어 성능 향상이 기대되며, 이는 경쟁력 있는 제품을 시장에 내놓기 위한 전략입니다.</li><li>특히, 카메라 성능과 배터리 수명 개선이 사용자들의 요구에 직접적으로 대응하며, 시장에서의 입지를 강화할 것으로 보입니다.</li><li>아이폰 에어 2세대는 단일 카메라의 한계를 넘어, 소비자들에게 더욱 매력적인 선택지를 제공할 것입니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://www.zdnet.com/article/amazon-echo-devices-smart-home-prime-day-2026-deals/">
-        <a href="https://www.zdnet.com/article/amazon-echo-devices-smart-home-prime-day-2026-deals/" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
-        <span class="ph-emoji">💻</span>
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
-              
-              <span class="source">ZDNet</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">I found 6 useful Amazon gadgets that are up to 68% off - including a $100 TV</p>
-            <div class="keywords"><span class="kw">#Amazon</span><span class="kw">#TV</span><span class="kw">#found</span><span class="kw">#useful</span></div>
-            <p class="summary">Amazon is discounting its smart home prices ahead of Prime Day, and these deals on Echo, Ring, and other brands are actually worth your money.</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>아마존이 프라임 데이를 앞두고 스마트 홈 기기 할인 행사를 진행하며, Echo와 Ring 같은 브랜드의 가격이 최대 68%까지 인하되었습니다.</li><li>이러한 할인은 소비자들에게 최신 기술을 합리적인 가격에 입수할 수 있는 기회를 제공하여, 스마트 홈으로의 전환을 더욱 촉진할 것입니다.</li><li>이로 인해 경쟁 업체들도 비슷한 할인 전략을 펼칠 가능성이 높아져, 전반적인 시장 가격에도 영향을 미칠 수 있습니다.</li><li>소비자들은 품질 높은 스마트 기기를 저렴하게 구매할 수 있는 기회를 놓치지 않도록 관심을 가져야 합니다.</li><li>디자이너로서, 이러한 트렌드를 반영한 UX/UI 디자인 요소를 고려하는 것이 중요합니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://zdnet.co.kr/view/?no=20260618085947">
-        <a href="https://zdnet.co.kr/view/?no=20260618085947" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://image.zdnet.co.kr/2026/06/18/3fc0eebb2d64fff78e0384f8360042ce.jpg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>💻</span>';this.parentElement.style.background='linear-gradient(135deg, #7209b7, #3a0ca3)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">지디넷코리아</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">"크게 보고, 더 크게 대한민국"...신세계백화점, 멕시코·남아공전 생중계</p>
-            <div class="keywords"><span class="kw">#"크게</span><span class="kw">#보고</span><span class="kw">#크게</span><span class="kw">#대한민국"...신세계백화점</span></div>
-            <p class="summary">[지디넷코리아]"크게 보고, 더 크게 대한민국 응원하자."
-신세계백화점이 본점 외벽에 조성된 1300㎡ 규모 초대형 스크린에서 대한민국 축구 국가대표팀 경기를 생중계한다.
-신세계백화점은 오는 19일 2026 피파 북중미 월드컵 멕시코전과 25일 남아공전을 경기 시간에 맞춰 ‘신세계스퀘어’ 초대형 스크린으로 생중계한다. 현장에서는 관람객들을 위한 응원 공간과 참여형 행사도 진행된다.
-신세계스퀘어는 신세계백화점 본점 외벽에 조성된 초대형 미디어 파사드다. K팝 아티스트 뮤직비디오를 비롯한 다양한 콘텐츠를 선보여 왔다.
-
-신세계백화점은 이번 행사를 통해 신세계스퀘어를 K콘텐츠 명소를 넘어 전 세계인이 함께 즐기는 글로벌 이벤트의 무대로 확장한다는 구상이다. 특히 외국인 관광객이 많은 상권 특성을 활용해 국내 고객</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>신세계백화점이 초대형 스크린을 통해 대한민국 축구 국가대표팀 경기를 생중계하며, 이를 통해 고객 경험을 높이고 있습니다.</li><li>2026 피파 북중미 월드컵 경기가 생중계되는 이 이벤트는 고객과 지역 사회의 응집력을 강화하는 데 중요한 역할을 합니다.</li><li>신세계스퀘어는 단순한 쇼핑 장소를 넘어, 글로벌 K콘텐츠의 핵심 무대로 자리매김하려는 전략을 보여줍니다.</li><li>특히 외국인 관광객이 많아지는 시점에 이러한 이벤트를 진행함으로써 브랜드 인지도를 높일 수 있는 기회를 창출하고 있습니다.</li><li>이와 같은 경험 중심의 마케팅은 향후 다양한 이벤트와 콘텐츠를 통해 고객 유치 및 충성도 확보에 도움이 될 것으로 기대됩니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://zdnet.co.kr/view/?no=20260618081155">
-        <a href="https://zdnet.co.kr/view/?no=20260618081155" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://image.zdnet.co.kr/2023/06/09/88bcbd41dd86bf889702ba70b7ccf6e2.jpg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>💻</span>';this.parentElement.style.background='linear-gradient(135deg, #7209b7, #3a0ca3)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">지디넷코리아</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">메모리 값 폭등에 애플도 백기…"가격 인상 불가피"</p>
-            <div class="keywords"><span class="kw">#메모리</span><span class="kw">#폭등에</span><span class="kw">#애플도</span><span class="kw">#백기…"가격</span></div>
-            <p class="summary">[지디넷코리아]팀 쿡 애플 최고경영자(CEO)가 메모리와 스토리지 가격 급등으로 인해 향후 제품 가격 인상이 불가피할 수 있다고 밝혔다고 월스트리트저널(WSJ)이 17일(현지시간) 보도했다.
-쿡 CEO는 WSJ와의 인터뷰에서 "안타깝게도 가격 인상은 불가피하다"며 "우리는 그동안 비용 상승분을 최대한 흡수해 고객 부담을 줄이기 위해 노력해 왔지만, 더 이상 현재 상황을 유지하기 어려워졌다"고 말했다.
-
-다만 그는 어떤 제품의 가격이 오를지, 인상 폭이 어느 정도일지는 구체적으로 언급하지 않았다. 이에 따라 업계에서는 오는 9월 공개가 예상되는 아이폰18 프로와 아이폰18 프로 맥스를 비롯해 아이패드와 맥 제품군 가격 인상 가능성에 주목하고 있다.
-애플은 최근 맥 미니 기본 모델을 단종시키며 시작 가격을 59</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>애플 CEO 팀 쿡이 메모리와 스토리지 가격 상승으로 인해 향후 제품 가격 인상이 불가피하다고 밝혔다.</li><li>이 발표는 애플이 고객 부담을 최소화하기 위해 노력해왔으나, 현재 상황으로는 더 이상 가격을 유지할 수 없다는 점을 시사한다.</li><li>가격 인상의 구체적인 제품과 범위는 언급되지 않았지만, 업계에서는 아이폰18 시리즈와 아이패드, 맥 제품군에 가격 인상이 예상되고 있다.</li><li>이러한 변화는 소비자들에게 비용 부담을 가중시킬 것으로 보이며, 애플의 가격 전략 재조정이 필요할 것으로 예상된다.</li><li>기업의 가격 인상은 전반적인 IT 업계의 소비 패턴에도 영향을 미칠 수 있어 주목이 필요하다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://zdnet.co.kr/view/?no=20260618091450">
-        <a href="https://zdnet.co.kr/view/?no=20260618091450" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://image.zdnet.co.kr/2026/06/18/a7a654f86fc42dbb0aaba248d814efeb.jpg" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>💻</span>';this.parentElement.style.background='linear-gradient(135deg, #7209b7, #3a0ca3)'">
-      </div>
-          <div class="card-body">
-            <div class="card-meta">
-              <span class="lang" style="background:#e63946">KR</span>
-              
-              <span class="source">지디넷코리아</span>
-              <span class="ago">1시간 전</span>
-            </div>
-            <p class="card-title">섬유로 만든 압전센서 유연성 6배…1만회 접어도 "이상무"</p>
-            <div class="keywords"><span class="kw">#섬유로</span><span class="kw">#만든</span><span class="kw">#압전센서</span><span class="kw">#유연성</span></div>
-            <p class="summary">[지디넷코리아]배터리 걱정없는 압전섬유센서가 개발됐다. 섬유로 만들어 최대 6배까지 늘어난다. 전자피부나 소프트 로봇 제작 등에 활용 가능할 전망이다.
-기술 개발은 김미소 KAIST 기계공학과 교수 연구팀이 수행했다. 기존 압전 섬유 센서 내구성을 훨씬 뛰어넘는다. 1만회 반복 작업에도 성능저하가 없는 것이 확인됐다.
-핵심은 코일에 리프와 그리프 매듭 기법을 응용한 것. 리프 매듭은 잎이 겹쳐진 것처럼 납작하게 계속 잇는 구조고, 그리프 매듭은 강하게 움켜쥐듯 고정하는 결속 방식이다.
-
-연구팀은 먼저 압전 나노섬유 내부에 탄성 고분자 미세 입자를 넣어 서로 촘촘하게 맞물리는 구조를 만들었다. 이는 벨크로(찍찍이)처럼 구조들이 서로 지지해주는 효과를 내며, 센서가 반복적으로 늘어나더라도 원래 형태로 회복할 수</p>
-            <div class="card-toolbar">
-              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
-                <span class="tb-icon">🔖</span> 보관
-              </button>
-              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
-                <span class="tb-icon">📝</span> 메모
-              </button>
-            </div>
-          </div>
-        </a>
-        <div class="memo-box hidden">
-          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
-          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
-        </div>
-        
-        <div class="kr-summary">
-          <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>KAIST 연구팀이 섬유 기반의 압전 센서를 개발하여 유연성이 기존 제품보다 6배 증가했습니다.</li><li>이 센서는 전자피부나 소프트 로봇 등 다양한 분야에서의 활용 가능성을 열어줍니다.</li><li>특히 1만 회의 반복 작업에서도 성능 저하가 없다는 점은 내구성과 실용성을 크게 향상시킵니다.</li><li>혁신적인 리프와 그리프 매듭 기법을 적용해 센서 구조의 유연성을 확보한 것이 주요한 기술적 성과입니다.</li><li>이러한 기술 발전은 웨어러블 디바이스 및 로봇 기술의 진화를 가속화할 것으로 기대됩니다.</li></ul>
-        </div>
-      </div>
-      <div class="article-unit" data-url="https://zdnet.co.kr/view/?no=20260618091351">
-        <a href="https://zdnet.co.kr/view/?no=20260618091351" class="card" target="_blank" rel="noopener noreferrer">
+      <div class="article-unit" data-url="https://www.etnews.com/20260619000196">
+        <a href="https://www.etnews.com/20260619000196" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
         <span class="ph-emoji">💻</span>
       </div>
@@ -1787,12 +1472,12 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
             <div class="card-meta">
               <span class="lang" style="background:#e63946">KR</span>
               
-              <span class="source">지디넷코리아</span>
-              <span class="ago">1시간 전</span>
+              <span class="source">전자신문</span>
+              <span class="ago">17분 전</span>
             </div>
-            <p class="card-title">[인사] 한국전력공사</p>
-            <div class="keywords"><span class="kw">#인사</span><span class="kw">#한국전력공사</span></div>
-            
+            <p class="card-title">코스피, 장중 9000 아래로 떨어져…변동성 확대</p>
+            <div class="keywords"><span class="kw">#코스피</span><span class="kw">#장중</span><span class="kw">#9000</span><span class="kw">#아래로</span></div>
+            <p class="summary">코스피가 장중 9000선 아래로 떨어지며 변동성이 확대됐다. 19일 오후 1시 51분 코스피는 1.51% 떨어진 8928.02에 거래되고 있다. 코스피는 전날 보다 200포인트 뛴 9288.89에 장을 시작해 9385.59까지 올랐다가 오후 들어서며 지수가 급격히 떨어졌다. 코스닥은 코스피보다 낙폭을 더 키웠다. 코스닥은 전일 대비 5.06% 떨어진 950.26에 거래되고 있다. 미국과 이란의 후속 협상 개시 지연이 영향을 끼친 것으로 보인다.</p>
             <div class="card-toolbar">
               <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
                 <span class="tb-icon">🔖</span> 보관
@@ -1810,24 +1495,24 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         
         <div class="kr-summary">
           <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>한국전력공사가 최근 인사이동을 단행하며 새로운 리더십을 선보였다.</li><li>이 변화는 조직의 혁신과 효율성을 높이기 위한 전략의 일환으로 해석된다.</li><li>특히, 지속 가능한 에너지 전환에 중점을 두고 있어 미래 지향적인 방향을 제시한다.</li><li>새로운 경영진은 변화하는 시장 환경에 발맞춰 전력 공급 방향을 재조정할 것으로 보인다.</li><li>이러한 인사는 에너지 산업 전체에 긍정적인 영향을 미칠 것으로 기대되며, 경쟁력을 강화할 기반을 마련하고 있다.</li></ul>
+          <ul class="kr-bullets"><li>코스피가 장중 9000선 아래로 떨어져 변동성 확대.</li><li>19일 오후 1시 51분 기준, 코스피는 1.51% 하락한 8928.02.</li><li>장 시작 시 9288.89에서 9385.59로 상승하다가 오후 급락.</li><li>코스닥은 전일 대비 5.06% 하락한 950.26으로 더 큰 낙폭 기록.</li><li>미국과 이란의 후속 협상 개시 지연이 주요 원인으로 분석.</li></ul>
         </div>
       </div>
-      <div class="article-unit" data-url="https://www.zdnet.com/article/firefox-android-tab-groups/">
-        <a href="https://www.zdnet.com/article/firefox-android-tab-groups/" class="card" target="_blank" rel="noopener noreferrer">
+      <div class="article-unit" data-url="https://www.etnews.com/20260619000185">
+        <a href="https://www.etnews.com/20260619000185" class="card" target="_blank" rel="noopener noreferrer">
           <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
         <span class="ph-emoji">💻</span>
       </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
+              <span class="lang" style="background:#e63946">KR</span>
               
-              <span class="source">ZDNet</span>
-              <span class="ago">1시간 전</span>
+              <span class="source">전자신문</span>
+              <span class="ago">40분 전</span>
             </div>
-            <p class="card-title">The Firefox browser for Android just got 3 useful features - including an ad block tracker</p>
-            <div class="keywords"><span class="kw">#The</span><span class="kw">#Firefox</span><span class="kw">#Android</span><span class="kw">#browser</span></div>
-            <p class="summary">You can now arrange your tabs into organized groups, manage your settings more easily, and see which trackers Firefox has blocked.</p>
+            <p class="card-title">메리츠금융 “MBK, 홈플러스 부실경영 책임 채권단에게 전가”</p>
+            <div class="keywords"><span class="kw">#메리츠금융</span><span class="kw">#“MBK</span><span class="kw">#홈플러스</span><span class="kw">#부실경영</span></div>
+            <p class="summary">19일 메리츠금융그룹은 전일 MBK파트너스와 홈플러스측이 발표한 입장문에 대해 '사실관계를 심각하게 왜곡하며 대주주의 부실경영 책임을 채권단에 전가하려는 주장'이라고 정면 반박했다. 메리츠는 “이번 사안의 본질은 재무적 여력이 충분한 최대주주가 스스로 돈이 없다고 주장하며 홈플러스 회생에 필요한 책임을 채권자에게 떠넘기고 있다는 점”이라고 말했다. 이어 “MBK는 자본시장과 사모펀드 제도의 가장 큰 수혜자 중 하나였음에도, 정작 투자 실패와 경</p>
             <div class="card-toolbar">
               <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
                 <span class="tb-icon">🔖</span> 보관
@@ -1845,25 +1530,59 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         
         <div class="kr-summary">
           <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>안드로이드용 Firefox 브라우저에 새로 추가된 기능으로 탭을 조직적으로 그룹화할 수 있게 되어 사용성이 향상되었습니다.</li><li>설정 관리가 쉬워져 사용자들이 보다 직관적으로 브라우저를 조정할 수 있게 되었습니다.</li><li>광고 차단 기능이 강화되어 프로필에 따라 차단된 트래커를 명확히 볼 수 있어 개인 정보 보호가 더욱 강화됩니다.</li><li>이는 사용자들이 보다 안전하고 효율적으로 웹 서핑을 할 수 있도록 돕는 변화입니다.</li><li>특히, 광고와 트래킹 문제에 대한 인식이 높아지면서 이러한 기능들이 더욱 중요해질 것입니다.</li></ul>
+          <ul class="kr-bullets"><li>메리츠금융그룹은 MBK파트너스와 홈플러스의 입장문을 반박했다.</li><li>MBK는 대주주의 부실경영 책임을 채권단에 전가하려 한다고 주장했다.</li><li>메리츠는 최대주주가 홈플러스 회생 책임을 채권자에게 떠넘기고 있다고 밝혔다.</li><li>MBK는 자본시장과 사모펀드 제도의 수혜자였으나 투자 실패를 겪었다.</li><li>이번 사안은 대주주의 재무적 여력이 충분함에도 책임 회피가 문제라는 점을 강조했다.</li></ul>
         </div>
       </div>
-      <div class="article-unit" data-url="https://www.theregister.com/ai-and-ml/2026/06/18/estonia-intends-to-recognize-ai-agents-with-digital-ids/5258087">
-        <a href="https://www.theregister.com/ai-and-ml/2026/06/18/estonia-intends-to-recognize-ai-agents-with-digital-ids/5258087" class="card" target="_blank" rel="noopener noreferrer">
-          <div class="card-img">
-        <img src="https://image.theregister.com/?imageId=4094163&width=800" alt="" loading="lazy"
-             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>💻</span>';this.parentElement.style.background='linear-gradient(135deg, #7209b7, #3a0ca3)'">
+      <div class="article-unit" data-url="https://www.etnews.com/20260619000179">
+        <a href="https://www.etnews.com/20260619000179" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
+        <span class="ph-emoji">💻</span>
       </div>
           <div class="card-body">
             <div class="card-meta">
-              <span class="lang" style="background:#457b9d">EN</span>
+              <span class="lang" style="background:#e63946">KR</span>
               
-              <span class="source">The Register</span>
+              <span class="source">전자신문</span>
+              <span class="ago">55분 전</span>
+            </div>
+            <p class="card-title">중앙일보, 220억규모 어음 1차 부도…“예금 잔액 부족”</p>
+            <div class="keywords"><span class="kw">#중앙일보</span><span class="kw">#220억규모</span><span class="kw">#어음</span><span class="kw">#1차</span></div>
+            <p class="summary">중앙일보가 220억원 규모의 기업어음(CP) 조기상환 요청을 이행하지 못하면서 1차 부도 처리됐다고 공시했다. 19일 금융감독원 전자공시시스템에 따르면 전날 중앙일보는 “18일 채권자의 어음 지급 제시가 있었으나, 당사의 예금 부족으로 결제 대금을 변제하지 못해 18일자로 1차 어음 부도 처리되었음을 확인했다”고 밝혔다. 부도 처리된 어음은 한양증권이 보유한 중앙일보 CP다. 기존 만기일은 올해 12월 7일(120억원 규모)과 내년 3월 30일</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>중앙일보가 220억원 규모의 기업어음을 조기상환하지 못해 1차 부도로 처리됨.</li><li>예금 부족으로 인해 어음 지급 요청을 이행하지 못한 것으로 알려짐.</li><li>부도 발생일은 18일이며, 해당 어음은 한양증권이 보유 중.</li><li>만기일은 올해 12월 7일(120억원)과 내년 3월 30일로 예정되어 있음.</li><li>금융감독원에 공시된 내용으로, 중앙일보의 재정 상황에 대한 우려 표출.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://www.etnews.com/20260619000140">
+        <a href="https://www.etnews.com/20260619000140" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
+        <span class="ph-emoji">💻</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              
+              <span class="source">전자신문</span>
               <span class="ago">2시간 전</span>
             </div>
-            <p class="card-title">Estonia intends to recognize AI agents with digital IDs</p>
-            <div class="keywords"><span class="kw">#Estonia</span><span class="kw">#AI</span><span class="kw">#intends</span><span class="kw">#recognize</span></div>
-            <p class="summary">Estonia plans to allow AI agents to have their own digital identities so they can act on behalf of people in a way that can be verified and audited. The initiative, backed by the country's Eesti.ai advisory board, calls for the development of ID codes that AI agents can use to take actions, subject to some unspecified authorization and task delegation process. Academics and corporate technical fol</p>
+            <p class="card-title">밴스, 스위스행 돌연 연기…이란과 종전협상 또 꼬였다</p>
+            <div class="keywords"><span class="kw">#밴스</span><span class="kw">#스위스행</span><span class="kw">#돌연</span><span class="kw">#연기…이란과</span></div>
+            <p class="summary">미국 백악관이 이란과의 핵 협상 후속 실무 협의를 위해 예정됐던 J.D. 밴스 부통령의 스위스 방문이 연기됐다고 밝혔다. 백악관은 18일(현지시간) 성명을 통해 밴스 부통령이 이날 저녁 스위스로 출발하지 않을 예정이라고 발표했다. 당초 밴스 부통령은 19일 스위스에서 열릴 예정인 이란 비핵화와 대이란 제재 해제 관련 후속 협상을 주도하기 위해 방문할 계획이었다. 백악관 대변인은 “실무 대화를 위한 계획이 아직 최종 확정되지 않았다”며 “이 같은</p>
             <div class="card-toolbar">
               <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
                 <span class="tb-icon">🔖</span> 보관
@@ -1881,7 +1600,223 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         
         <div class="kr-summary">
           <p class="kr-label">🇰🇷 핵심 요약</p>
-          <ul class="kr-bullets"><li>에스토니아 정부가 AI 에이전트에게 디지털 ID를 부여하는 방안을 추진 중입니다.</li><li>이러한 결정은 AI가 개인을 대신해 신뢰할 수 있는 방식으로 행동할 수 있도록 하기 위한 것으로, 투명성과 감사 가능성을 높이는 데 기여할 것입니다.</li><li>디지털 ID는 AI 에이전트의 신뢰도를 높여 기업과 개인이 AI를 보다 안전하게 활용하는데 중요한 역할을 하게 될 것입니다.</li><li>이와 같은 기술적 진전은 앞으로 AI의 법적 지위와 윤리에 대한 논의에도 큰 영향을 미칠 것으로 보입니다.</li><li>에스토니아의 이 같은 노력은 다른 국가들의 정책 변화에도 자극을 줄 수 있으며, 이는 전 세계적으로 AI 활용의 기준을 재정립할 가능성을 내포하고 있습니다.</li></ul>
+          <ul class="kr-bullets"><li>J.D. 밴스 부통령의 스위스 방문이 연기되었음.</li><li>방문 목적은 이란 비핵화 및 제재 해제 관련 후속 협상 주도.</li><li>백악관은 실무 대화 계획이 아직 확정되지 않았다고 발표.</li><li>이란과의 협상이 다소 복잡해진 상황.</li><li>일정 연기는 협상 진행에 부정적인 영향을 미칠 가능성 존재.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://www.etnews.com/20260619000138">
+        <a href="https://www.etnews.com/20260619000138" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
+        <span class="ph-emoji">💻</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#e63946">KR</span>
+              
+              <span class="source">전자신문</span>
+              <span class="ago">2시간 전</span>
+            </div>
+            <p class="card-title">오픈AI, 챗GPT 광고 노출 시작…무료·Go 요금제 대상</p>
+            <div class="keywords"><span class="kw">#오픈AI</span><span class="kw">#챗GPT</span><span class="kw">#광고</span><span class="kw">#노출</span></div>
+            <p class="summary">오픈AI가 생성형 인공지능(AI) 서비스 '챗GPT' 광고 파일럿을 한국 시장으로 확대했다. 광고는 미국·영국·캐나다·호주·뉴질랜드에서 먼저 도입된 바 있다. 챗GPT 무료 서비스와 고(Go) 요금제를 사용하는 성인 사용자 대상 노출한다. 챗GPT 플러스·프로·비즈니스·엔터프라이즈·에듀 요금제 이용자에게는 광고가 표시되지 않는다. 오픈AI는 미국을 비롯한 초기 파일럿 시장에서 이용자 의도를 기반으로 한 대화형 환경을 통해 고객과 만나고자 하는</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>오픈AI가 챗GPT 광고 노출을 한국 시장으로 확대했다.</li><li>광고는 무료 서비스와 고(Go) 요금제를 사용하는 성인 사용자에게만 제공된다.</li><li>챗GPT 플러스, 프로, 비즈니스, 엔터프라이즈, 에듀 요금제 이용자에게는 광고가 표시되지 않는다.</li><li>광고는 미국, 영국, 캐나다, 호주, 뉴질랜드에서 먼저 도입되었다.</li><li>오픈AI는 이용자 의도를 기반으로 한 대화형 환경을 통해 고객과의 연결을 강화하고자 한다.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://www.zdnet.com/article/fastest-charge-power-banks-lab-tested/">
+        <a href="https://www.zdnet.com/article/fastest-charge-power-banks-lab-tested/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
+        <span class="ph-emoji">💻</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">ZDNet</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">There are hundreds of power banks on the market, but this one is the fastest at recharging</p>
+            <div class="keywords"><span class="kw">#There</span><span class="kw">#hundreds</span><span class="kw">#power</span><span class="kw">#banks</span></div>
+            <p class="summary">ZDNET's latest Lab Award goes to the power bank that charged to 100% the fastest.</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>ZDNET의 최신 연구에서 가장 빠르게 100% 충전되는 보조 배터리가 선정됨.</li><li>시장에 수백 개의 보조 배터리가 있지만, 속도 면에서 이 제품이 우수함.</li><li>충전 속도는 소비자 선택에 중요한 요소로 주목받고 있음.</li><li>해당 보조 배터리는 효율성과 성능에서 높은 평가를 받음.</li><li>혁신적인 기술이 적용되어 빠른 충전이 가능함.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://arstechnica.com/science/2026/06/amazon-quera-promise-useful-quantum-error-correction-by-2028/">
+        <a href="https://arstechnica.com/science/2026/06/amazon-quera-promise-useful-quantum-error-correction-by-2028/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img">
+        <img src="https://cdn.arstechnica.net/wp-content/uploads/2026/06/Libra-internals44-copy-500x500.jpeg" alt="" loading="lazy"
+             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>💻</span>';this.parentElement.style.background='linear-gradient(135deg, #7209b7, #3a0ca3)'">
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">Ars Technica</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">Sooner than expected? Useful quantum error correction promised for 2028.</p>
+            <div class="keywords"><span class="kw">#Sooner</span><span class="kw">#Useful</span><span class="kw">#expected</span><span class="kw">#quantum</span></div>
+            <p class="summary">Quantum computing news usually picks up near the end of the year, as companies try to provide evidence that they are hitting benchmarks on time. However, there have been interesting announcements as the summer starts this year, from incremental progress to attention-grabbing promises. As we did earlier this month, Ars has a rundown of some of the most significant announcements.
+These include a pro</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>2028년까지 유용한 양자 오류 수정 기술이 개발될 가능성이 제시됨.</li><li>올해 여름, 양자 컴퓨팅 분야에서 주목할 만한 진전과 약속들이 발표됨.</li><li>여러 기업들이 기준 달성 증거를 제공하려는 움직임이 활발해짐.</li><li>양자 컴퓨팅 관련 뉴스는 연말에 집중되곤 하지만, 올해는 여름에도 주요 발표가 이어짐.</li><li>이는 양자 기술의 발전을 가속화할 수 있는 중요한 신호로 해석됨.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://arstechnica.com/tech-policy/2026/06/california-says-att-lied-to-fcc-in-attempt-to-shut-off-old-phone-network/">
+        <a href="https://arstechnica.com/tech-policy/2026/06/california-says-att-lied-to-fcc-in-attempt-to-shut-off-old-phone-network/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img">
+        <img src="https://cdn.arstechnica.net/wp-content/uploads/2026/06/woman-dialing-phone-500x500.jpg" alt="" loading="lazy"
+             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>💻</span>';this.parentElement.style.background='linear-gradient(135deg, #7209b7, #3a0ca3)'">
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">Ars Technica</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">California says AT&T lied to FCC in attempt to shut off old phone network</p>
+            <div class="keywords"><span class="kw">#California</span><span class="kw">#AT</span><span class="kw">#FCC</span><span class="kw">#attempt</span></div>
+            <p class="summary">California state regulators say AT&amp;T lied to the Federal Communications Commission in an attempt to shut off its old copper phone network without providing an adequate replacement.
+"AT&amp;T asserts that California seeks to prohibit or hinder wireline carriers from discontinuing copper facilities and investing in fiber," said a June 15 filing by the state of California and the California Publi</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>캘리포니아 주 규제당국은 AT&T가 FCC에 거짓 정보를 제공했다고 주장함.</li><li>AT&T는 구리 전화 네트워크 중단 시 충분한 대체 서비스를 제공하지 않았다는 비판을 받고 있음.</li><li>주정부는 AT&T의 고전적인 전화 서비스 중단을 막으려는 조치를 취하고 있음.</li><li>AT&T는 캘리포니아가 와이어라인 통신사들의 구리 시설 중단을 금지하고 있다고 반발함.</li><li>이 사건은 통신 인프라 변화와 관련된 규제 문제를 부각시키고 있음.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://www.zdnet.com/article/i-tested-fast-chargers-with-best-iphone-samsung-oneplus-phones/">
+        <a href="https://www.zdnet.com/article/i-tested-fast-chargers-with-best-iphone-samsung-oneplus-phones/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img no-img" style="background:linear-gradient(135deg, #7209b7, #3a0ca3)">
+        <span class="ph-emoji">💻</span>
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">ZDNet</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">Does your phone charge as fast as advertised? I measured the latest iPhone, Samsung, OnePlus</p>
+            <div class="keywords"><span class="kw">#Does</span><span class="kw">#Samsung</span><span class="kw">#phone</span><span class="kw">#charge</span></div>
+            <p class="summary">Phone makers love to advertise fast-charging speeds. I tested three flagship phones with OEM and Anker chargers to see what their claims really mean.</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>최신 아이폰, 삼성, 원플러스 플래그십 폰의 충전 속도를 테스트함.</li><li>제조사들은 빠른 충전 속도를 광고하지만 실제 성능은 다를 수 있음.</li><li>OEM 충전기와 Anker 충전기를 사용하여 비교 실험 진행.</li><li>몇몇 모델은 광고된 속도에 미치지 못하거나 차이가 큰 결과를 보임.</li><li>소비자들은 실제 충전 성능을 고려해야 함.</li></ul>
+        </div>
+      </div>
+      <div class="article-unit" data-url="https://arstechnica.com/security/2026/06/massive-breach-spills-credentials-for-thousands-of-sensitive-networks/">
+        <a href="https://arstechnica.com/security/2026/06/massive-breach-spills-credentials-for-thousands-of-sensitive-networks/" class="card" target="_blank" rel="noopener noreferrer">
+          <div class="card-img">
+        <img src="https://cdn.arstechnica.net/wp-content/uploads/2023/07/exploit-vulnerability-security-500x500.jpg" alt="" loading="lazy"
+             onerror="this.parentElement.innerHTML='<span class=\'ph-emoji\'>💻</span>';this.parentElement.style.background='linear-gradient(135deg, #7209b7, #3a0ca3)'">
+      </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="lang" style="background:#457b9d">EN</span>
+              
+              <span class="source">Ars Technica</span>
+              <span class="ago">1일 전</span>
+            </div>
+            <p class="card-title">Massive breach spills credentials for thousands of sensitive networks</p>
+            <div class="keywords"><span class="kw">#Massive</span><span class="kw">#breach</span><span class="kw">#spills</span><span class="kw">#credentials</span></div>
+            <p class="summary">Researchers have uncovered a massive breach of Fortinet firewalls that has given Russian-speaking attackers near-unrestricted access to some of the world’s largest and most powerful organizations, including Oracle, Chevron, Lenovo, Federal Express, a NATO defense contractor, and Fortinet itself.
+Nearly 74,000 Fortinet devices from more than 21,000 IP addresses in 194 countries have been compromise</p>
+            <div class="card-toolbar">
+              <button class="tb-btn bookmark-btn" onclick="onToggleBookmark(event, this)" title="보관">
+                <span class="tb-icon">🔖</span> 보관
+              </button>
+              <button class="tb-btn memo-btn" onclick="onToggleMemo(event, this)" title="메모">
+                <span class="tb-icon">📝</span> 메모
+              </button>
+            </div>
+          </div>
+        </a>
+        <div class="memo-box hidden">
+          <textarea class="memo-input" placeholder="이 기사에 대한 생각을 메모해보세요…" onblur="onSaveMemo(this)"></textarea>
+          <p class="memo-hint">✓ 자동 저장됨 · 다른 기기에서도 동일하게 보여요</p>
+        </div>
+        
+        <div class="kr-summary">
+          <p class="kr-label">🇰🇷 핵심 요약</p>
+          <ul class="kr-bullets"><li>포티넷 방화벽에서 발생한 대규모 데이터 유출 사건이 발견됨.</li><li>러시아어 사용 공격자들이 전 세계 주요 기업에 접근할 수 있는 권한을 확보.</li><li>영향받은 조직에는 오라클, 체브론, 레노버, 연방 특급 및 NATO 방산 계약업체 포함.</li><li>총 74,000대의 포티넷 장비가 21,000개 이상의 IP 주소에서 해킹당함.</li><li>공격자들은 매우 민감한 네트워크에 대한 거의 무제한의 접근 권한을 보유하게 됨.</li></ul>
         </div>
       </div>
       </div>
@@ -1898,19 +1833,37 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
           <a href="vocab_all.html" class="vocab-archive-btn">전체 보기 →</a>
         </div>
 
-        <div class="quiz-box">
-          <p class="quiz-label">🎯 오늘의 복습 퀴즈</p>
-          <p class="quiz-word" id="quiz-word">…</p>
-          <div class="quiz-options" id="quiz-options"></div>
-          <div class="quiz-feedback hidden" id="quiz-feedback"></div>
-          <button class="quiz-next hidden" id="quiz-next" onclick="pickQuizQuestion()">다음 문제 →</button>
-        </div>
-
         <div class="vocab-section-label">📖 단어 (20)</div>
         <ol class="vocab-list">
-        <li class="vi" data-word="abstraction">
+        <li class="vi" data-word="viable">
           <div class="vi-top">
             <span class="vi-num">01</span>
+            <span class="vi-word">viable</span>
+            <span class="vi-type">adj</span>
+            <div class="vi-actions">
+              <button class="vi-btn star" onclick="toggleStar('viable')" title="복습 표시">☆</button>
+              <button class="vi-btn check" onclick="toggleCheck('viable')" title="암기 완료">○</button>
+            </div>
+          </div>
+          <p class="vi-meaning">실행 가능한</p>
+          <p class="vi-example">"We need a viable MVP that can be shipped within one sprint."</p>
+        </li>
+        <li class="vi" data-word="whitespace">
+          <div class="vi-top">
+            <span class="vi-num">02</span>
+            <span class="vi-word">whitespace</span>
+            <span class="vi-type">n</span>
+            <div class="vi-actions">
+              <button class="vi-btn star" onclick="toggleStar('whitespace')" title="복습 표시">☆</button>
+              <button class="vi-btn check" onclick="toggleCheck('whitespace')" title="암기 완료">○</button>
+            </div>
+          </div>
+          <p class="vi-meaning">여백 (디자인에서의 빈 공간)</p>
+          <p class="vi-example">"Strategic use of whitespace improves readability and visual hierarchy."</p>
+        </li>
+        <li class="vi" data-word="abstraction">
+          <div class="vi-top">
+            <span class="vi-num">03</span>
             <span class="vi-word">abstraction</span>
             <span class="vi-type">n</span>
             <div class="vi-actions">
@@ -1923,7 +1876,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="accessibility">
           <div class="vi-top">
-            <span class="vi-num">02</span>
+            <span class="vi-num">04</span>
             <span class="vi-word">accessibility</span>
             <span class="vi-type">n</span>
             <div class="vi-actions">
@@ -1936,7 +1889,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="advocate">
           <div class="vi-top">
-            <span class="vi-num">03</span>
+            <span class="vi-num">05</span>
             <span class="vi-word">advocate</span>
             <span class="vi-type">v/n</span>
             <div class="vi-actions">
@@ -1949,7 +1902,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="affordance">
           <div class="vi-top">
-            <span class="vi-num">04</span>
+            <span class="vi-num">06</span>
             <span class="vi-word">affordance</span>
             <span class="vi-type">n</span>
             <div class="vi-actions">
@@ -1962,7 +1915,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="agile">
           <div class="vi-top">
-            <span class="vi-num">05</span>
+            <span class="vi-num">07</span>
             <span class="vi-word">agile</span>
             <span class="vi-type">adj</span>
             <div class="vi-actions">
@@ -1975,7 +1928,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="align">
           <div class="vi-top">
-            <span class="vi-num">06</span>
+            <span class="vi-num">08</span>
             <span class="vi-word">align</span>
             <span class="vi-type">v</span>
             <div class="vi-actions">
@@ -1988,7 +1941,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="ambiguous">
           <div class="vi-top">
-            <span class="vi-num">07</span>
+            <span class="vi-num">09</span>
             <span class="vi-word">ambiguous</span>
             <span class="vi-type">adj</span>
             <div class="vi-actions">
@@ -2001,7 +1954,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="benchmark">
           <div class="vi-top">
-            <span class="vi-num">08</span>
+            <span class="vi-num">10</span>
             <span class="vi-word">benchmark</span>
             <span class="vi-type">v/n</span>
             <div class="vi-actions">
@@ -2014,7 +1967,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="catalyst">
           <div class="vi-top">
-            <span class="vi-num">09</span>
+            <span class="vi-num">11</span>
             <span class="vi-word">catalyst</span>
             <span class="vi-type">n</span>
             <div class="vi-actions">
@@ -2027,7 +1980,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="cognitive load">
           <div class="vi-top">
-            <span class="vi-num">10</span>
+            <span class="vi-num">12</span>
             <span class="vi-word">cognitive load</span>
             <span class="vi-type">n</span>
             <div class="vi-actions">
@@ -2040,7 +1993,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="cohesive">
           <div class="vi-top">
-            <span class="vi-num">11</span>
+            <span class="vi-num">13</span>
             <span class="vi-word">cohesive</span>
             <span class="vi-type">adj</span>
             <div class="vi-actions">
@@ -2053,7 +2006,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="compelling">
           <div class="vi-top">
-            <span class="vi-num">12</span>
+            <span class="vi-num">14</span>
             <span class="vi-word">compelling</span>
             <span class="vi-type">adj</span>
             <div class="vi-actions">
@@ -2066,7 +2019,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="concise">
           <div class="vi-top">
-            <span class="vi-num">13</span>
+            <span class="vi-num">15</span>
             <span class="vi-word">concise</span>
             <span class="vi-type">adj</span>
             <div class="vi-actions">
@@ -2079,7 +2032,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="connotation">
           <div class="vi-top">
-            <span class="vi-num">14</span>
+            <span class="vi-num">16</span>
             <span class="vi-word">connotation</span>
             <span class="vi-type">n</span>
             <div class="vi-actions">
@@ -2092,7 +2045,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="constraint">
           <div class="vi-top">
-            <span class="vi-num">15</span>
+            <span class="vi-num">17</span>
             <span class="vi-word">constraint</span>
             <span class="vi-type">n</span>
             <div class="vi-actions">
@@ -2105,7 +2058,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="converge">
           <div class="vi-top">
-            <span class="vi-num">16</span>
+            <span class="vi-num">18</span>
             <span class="vi-word">converge</span>
             <span class="vi-type">v</span>
             <div class="vi-actions">
@@ -2118,7 +2071,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="curate">
           <div class="vi-top">
-            <span class="vi-num">17</span>
+            <span class="vi-num">19</span>
             <span class="vi-word">curate</span>
             <span class="vi-type">v</span>
             <div class="vi-actions">
@@ -2131,7 +2084,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="dependency">
           <div class="vi-top">
-            <span class="vi-num">18</span>
+            <span class="vi-num">20</span>
             <span class="vi-word">dependency</span>
             <span class="vi-type">n</span>
             <div class="vi-actions">
@@ -2142,117 +2095,13 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
           <p class="vi-meaning">의존성, 종속 관계</p>
           <p class="vi-example">"A circular dependency in the component library caused build failures."</p>
         </li>
-        <li class="vi" data-word="deploy">
-          <div class="vi-top">
-            <span class="vi-num">19</span>
-            <span class="vi-word">deploy</span>
-            <span class="vi-type">v</span>
-            <div class="vi-actions">
-              <button class="vi-btn star" onclick="toggleStar('deploy')" title="복습 표시">☆</button>
-              <button class="vi-btn check" onclick="toggleCheck('deploy')" title="암기 완료">○</button>
-            </div>
-          </div>
-          <p class="vi-meaning">배포하다</p>
-          <p class="vi-example">"We deploy to production every Friday after a full regression test."</p>
-        </li>
-        <li class="vi" data-word="deprecate">
-          <div class="vi-top">
-            <span class="vi-num">20</span>
-            <span class="vi-word">deprecate</span>
-            <span class="vi-type">v</span>
-            <div class="vi-actions">
-              <button class="vi-btn star" onclick="toggleStar('deprecate')" title="복습 표시">☆</button>
-              <button class="vi-btn check" onclick="toggleCheck('deprecate')" title="암기 완료">○</button>
-            </div>
-          </div>
-          <p class="vi-meaning">(기능·API를) 사용 중단 예정으로 표시하다</p>
-          <p class="vi-example">"The old endpoint will be deprecated in the next major release."</p>
-        </li>
         </ol>
 
         <div class="vocab-section-label">💬 숙어 &amp; 표현 (10)</div>
         <ol class="vocab-list">
-        <li class="vi" data-word="double down">
-          <div class="vi-top">
-            <span class="vi-num">21</span>
-            <span class="vi-word">double down</span>
-            <span class="vi-type">idiom</span>
-            <div class="vi-actions">
-              <button class="vi-btn star" onclick="toggleStar('double_down')" title="복습 표시">☆</button>
-              <button class="vi-btn check" onclick="toggleCheck('double_down')" title="암기 완료">○</button>
-            </div>
-          </div>
-          <p class="vi-meaning">더 강하게 밀어붙이다, 배로 노력하다</p>
-          <p class="vi-example">"After the positive A/B test, we doubled down on that design direction."</p>
-        </li>
-        <li class="vi" data-word="flip the script">
-          <div class="vi-top">
-            <span class="vi-num">22</span>
-            <span class="vi-word">flip the script</span>
-            <span class="vi-type">idiom</span>
-            <div class="vi-actions">
-              <button class="vi-btn star" onclick="toggleStar('flip_the_script')" title="복습 표시">☆</button>
-              <button class="vi-btn check" onclick="toggleCheck('flip_the_script')" title="암기 완료">○</button>
-            </div>
-          </div>
-          <p class="vi-meaning">기존 방식을 완전히 바꾸다</p>
-          <p class="vi-example">"Instead of surveying, we flipped the script and had users teach us live."</p>
-        </li>
-        <li class="vi" data-word="game changer">
-          <div class="vi-top">
-            <span class="vi-num">23</span>
-            <span class="vi-word">game changer</span>
-            <span class="vi-type">idiom</span>
-            <div class="vi-actions">
-              <button class="vi-btn star" onclick="toggleStar('game_changer')" title="복습 표시">☆</button>
-              <button class="vi-btn check" onclick="toggleCheck('game_changer')" title="암기 완료">○</button>
-            </div>
-          </div>
-          <p class="vi-meaning">판도를 바꾸는 것</p>
-          <p class="vi-example">"Real-time collaboration in Figma was a game changer for design teams."</p>
-        </li>
-        <li class="vi" data-word="give the green light">
-          <div class="vi-top">
-            <span class="vi-num">24</span>
-            <span class="vi-word">give the green light</span>
-            <span class="vi-type">idiom</span>
-            <div class="vi-actions">
-              <button class="vi-btn star" onclick="toggleStar('give_the_green_light')" title="복습 표시">☆</button>
-              <button class="vi-btn check" onclick="toggleCheck('give_the_green_light')" title="암기 완료">○</button>
-            </div>
-          </div>
-          <p class="vi-meaning">승인하다, 진행 허가를 주다</p>
-          <p class="vi-example">"The VP gave the green light to launch the redesign next quarter."</p>
-        </li>
-        <li class="vi" data-word="go the extra mile">
-          <div class="vi-top">
-            <span class="vi-num">25</span>
-            <span class="vi-word">go the extra mile</span>
-            <span class="vi-type">idiom</span>
-            <div class="vi-actions">
-              <button class="vi-btn star" onclick="toggleStar('go_the_extra_mile')" title="복습 표시">☆</button>
-              <button class="vi-btn check" onclick="toggleCheck('go_the_extra_mile')" title="암기 완료">○</button>
-            </div>
-          </div>
-          <p class="vi-meaning">기대 이상으로 노력하다</p>
-          <p class="vi-example">"Going the extra mile on micro-animations made the app feel truly premium."</p>
-        </li>
-        <li class="vi" data-word="heads up">
-          <div class="vi-top">
-            <span class="vi-num">26</span>
-            <span class="vi-word">heads up</span>
-            <span class="vi-type">idiom</span>
-            <div class="vi-actions">
-              <button class="vi-btn star" onclick="toggleStar('heads_up')" title="복습 표시">☆</button>
-              <button class="vi-btn check" onclick="toggleCheck('heads_up')" title="암기 완료">○</button>
-            </div>
-          </div>
-          <p class="vi-meaning">미리 알림, 사전 공지</p>
-          <p class="vi-example">"Just a heads up — the API will be down for maintenance tonight."</p>
-        </li>
         <li class="vi" data-word="hit the ground running">
           <div class="vi-top">
-            <span class="vi-num">27</span>
+            <span class="vi-num">21</span>
             <span class="vi-word">hit the ground running</span>
             <span class="vi-type">idiom</span>
             <div class="vi-actions">
@@ -2265,7 +2114,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="in the pipeline">
           <div class="vi-top">
-            <span class="vi-num">28</span>
+            <span class="vi-num">22</span>
             <span class="vi-word">in the pipeline</span>
             <span class="vi-type">idiom</span>
             <div class="vi-actions">
@@ -2278,7 +2127,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="keep the ball rolling">
           <div class="vi-top">
-            <span class="vi-num">29</span>
+            <span class="vi-num">23</span>
             <span class="vi-word">keep the ball rolling</span>
             <span class="vi-type">idiom</span>
             <div class="vi-actions">
@@ -2291,7 +2140,7 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
         </li>
         <li class="vi" data-word="level up">
           <div class="vi-top">
-            <span class="vi-num">30</span>
+            <span class="vi-num">24</span>
             <span class="vi-word">level up</span>
             <span class="vi-type">idiom</span>
             <div class="vi-actions">
@@ -2301,6 +2150,84 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
           </div>
           <p class="vi-meaning">실력·수준을 높이다</p>
           <p class="vi-example">"This project was a chance to level up our animation skills."</p>
+        </li>
+        <li class="vi" data-word="low-hanging fruit">
+          <div class="vi-top">
+            <span class="vi-num">25</span>
+            <span class="vi-word">low-hanging fruit</span>
+            <span class="vi-type">idiom</span>
+            <div class="vi-actions">
+              <button class="vi-btn star" onclick="toggleStar('low-hanging_fruit')" title="복습 표시">☆</button>
+              <button class="vi-btn check" onclick="toggleCheck('low-hanging_fruit')" title="암기 완료">○</button>
+            </div>
+          </div>
+          <p class="vi-meaning">쉽게 달성 가능한 목표</p>
+          <p class="vi-example">"Fixing broken links is low-hanging fruit — quick wins with real impact."</p>
+        </li>
+        <li class="vi" data-word="move the needle">
+          <div class="vi-top">
+            <span class="vi-num">26</span>
+            <span class="vi-word">move the needle</span>
+            <span class="vi-type">idiom</span>
+            <div class="vi-actions">
+              <button class="vi-btn star" onclick="toggleStar('move_the_needle')" title="복습 표시">☆</button>
+              <button class="vi-btn check" onclick="toggleCheck('move_the_needle')" title="암기 완료">○</button>
+            </div>
+          </div>
+          <p class="vi-meaning">의미 있는 차이를 만들다</p>
+          <p class="vi-example">"Small UI tweaks didn't move the needle — we needed a full redesign."</p>
+        </li>
+        <li class="vi" data-word="north star">
+          <div class="vi-top">
+            <span class="vi-num">27</span>
+            <span class="vi-word">north star</span>
+            <span class="vi-type">idiom</span>
+            <div class="vi-actions">
+              <button class="vi-btn star" onclick="toggleStar('north_star')" title="복습 표시">☆</button>
+              <button class="vi-btn check" onclick="toggleCheck('north_star')" title="암기 완료">○</button>
+            </div>
+          </div>
+          <p class="vi-meaning">핵심 목표, 지향점</p>
+          <p class="vi-example">"Our north star metric is weekly active users, not total installs."</p>
+        </li>
+        <li class="vi" data-word="on the back burner">
+          <div class="vi-top">
+            <span class="vi-num">28</span>
+            <span class="vi-word">on the back burner</span>
+            <span class="vi-type">idiom</span>
+            <div class="vi-actions">
+              <button class="vi-btn star" onclick="toggleStar('on_the_back_burner')" title="복습 표시">☆</button>
+              <button class="vi-btn check" onclick="toggleCheck('on_the_back_burner')" title="암기 완료">○</button>
+            </div>
+          </div>
+          <p class="vi-meaning">일시 보류 중인</p>
+          <p class="vi-example">"The tablet version has been on the back burner while we fix mobile."</p>
+        </li>
+        <li class="vi" data-word="on the same page">
+          <div class="vi-top">
+            <span class="vi-num">29</span>
+            <span class="vi-word">on the same page</span>
+            <span class="vi-type">idiom</span>
+            <div class="vi-actions">
+              <button class="vi-btn star" onclick="toggleStar('on_the_same_page')" title="복습 표시">☆</button>
+              <button class="vi-btn check" onclick="toggleCheck('on_the_same_page')" title="암기 완료">○</button>
+            </div>
+          </div>
+          <p class="vi-meaning">같은 이해를 공유하다</p>
+          <p class="vi-example">"Let's hold a kickoff meeting to make sure everyone is on the same page."</p>
+        </li>
+        <li class="vi" data-word="pain point">
+          <div class="vi-top">
+            <span class="vi-num">30</span>
+            <span class="vi-word">pain point</span>
+            <span class="vi-type">n</span>
+            <div class="vi-actions">
+              <button class="vi-btn star" onclick="toggleStar('pain_point')" title="복습 표시">☆</button>
+              <button class="vi-btn check" onclick="toggleCheck('pain_point')" title="암기 완료">○</button>
+            </div>
+          </div>
+          <p class="vi-meaning">불편함, 사용자가 겪는 문제</p>
+          <p class="vi-example">"The biggest pain point was the confusing filter system in search."</p>
         </li>
         </ol>
       </aside>
@@ -2317,70 +2244,8 @@ The comments, made in a new interview with WIRED, amount to a quiet warning shot
           });
         }
         vocabSync.onChange(applyStatus);
-
-        // ── 오늘의 복습 퀴즈 ──
-        const QUIZ_POOL = [{"word": "abstraction", "meaning": "추상화; 핵심만 남기고 세부를 감추는 것", "example": "Good API design relies on abstraction to hide complexity."}, {"word": "accessibility", "meaning": "접근성", "example": "Designing for accessibility benefits all users, not just those with disabilities."}, {"word": "advocate", "meaning": "지지하다; 옹호자", "example": "Designers should advocate for the user in every product meeting."}, {"word": "affordance", "meaning": "행동 유도성 (디자인이 사용법을 암시하는 속성)", "example": "The raised button shape is an affordance that invites clicking."}, {"word": "agile", "meaning": "민첩한; 애자일 방법론의", "example": "Agile teams release small updates frequently to reduce risk."}, {"word": "align", "meaning": "맞추다, 일치시키다", "example": "We need to align product goals with user needs before we start."}, {"word": "ambiguous", "meaning": "모호한, 불분명한", "example": "The brief was ambiguous, so we scheduled a clarification call."}, {"word": "benchmark", "meaning": "기준으로 삼다; 비교 기준", "example": "We benchmarked competitor apps to identify UX gaps."}, {"word": "catalyst", "meaning": "촉매, 변화를 일으키는 요인", "example": "The pandemic was a catalyst for remote-first product design."}, {"word": "cognitive load", "meaning": "인지 부하 (사용자가 처리해야 할 정신적 노력)", "example": "A cluttered UI increases cognitive load and leads to user errors."}, {"word": "cohesive", "meaning": "일관되고 통일된", "example": "A cohesive brand identity builds user trust across all platforms."}, {"word": "compelling", "meaning": "설득력 있는, 매력적인", "example": "A compelling value proposition is the foundation of good product copy."}, {"word": "concise", "meaning": "간결한", "example": "Keep error messages concise — users don't read long explanations."}, {"word": "connotation", "meaning": "함축, 내포된 의미", "example": "The color red carries a connotation of urgency in most Western interfaces."}, {"word": "constraint", "meaning": "제약 조건", "example": "Working within tight constraints often sparks the most creative solutions."}, {"word": "converge", "meaning": "수렴하다, 한 점으로 모이다", "example": "After diverging with ideas, the team converged on a single direction."}, {"word": "curate", "meaning": "엄선하다, 큐레이션하다", "example": "The dashboard curates only the most relevant KPIs for each user role."}, {"word": "dependency", "meaning": "의존성, 종속 관계", "example": "A circular dependency in the component library caused build failures."}, {"word": "deploy", "meaning": "배포하다", "example": "We deploy to production every Friday after a full regression test."}, {"word": "deprecate", "meaning": "(기능·API를) 사용 중단 예정으로 표시하다", "example": "The old endpoint will be deprecated in the next major release."}, {"word": "double down", "meaning": "더 강하게 밀어붙이다, 배로 노력하다", "example": "After the positive A/B test, we doubled down on that design direction."}, {"word": "flip the script", "meaning": "기존 방식을 완전히 바꾸다", "example": "Instead of surveying, we flipped the script and had users teach us live."}, {"word": "game changer", "meaning": "판도를 바꾸는 것", "example": "Real-time collaboration in Figma was a game changer for design teams."}, {"word": "give the green light", "meaning": "승인하다, 진행 허가를 주다", "example": "The VP gave the green light to launch the redesign next quarter."}, {"word": "go the extra mile", "meaning": "기대 이상으로 노력하다", "example": "Going the extra mile on micro-animations made the app feel truly premium."}, {"word": "heads up", "meaning": "미리 알림, 사전 공지", "example": "Just a heads up — the API will be down for maintenance tonight."}, {"word": "hit the ground running", "meaning": "즉시 열정적으로 시작하다", "example": "The new designer hit the ground running and shipped a redesign in week one."}, {"word": "in the pipeline", "meaning": "진행 중인, 계획된", "example": "A dark mode update is in the pipeline for Q3."}, {"word": "keep the ball rolling", "meaning": "진행을 계속 유지하다", "example": "Daily standups help keep the ball rolling on long projects."}, {"word": "level up", "meaning": "실력·수준을 높이다", "example": "This project was a chance to level up our animation skills."}];
-        let quizAnswered = false;
-
-        function shuffleArr(arr) {
-          for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-          }
-          return arr;
-        }
-
-        function pickQuizQuestion() {
-          quizAnswered = false;
-          const idx = Math.floor(Math.random() * QUIZ_POOL.length);
-          const correct = QUIZ_POOL[idx];
-          const rest = QUIZ_POOL.filter((_, i) => i !== idx);
-          shuffleArr(rest);
-          const options = shuffleArr([correct, ...rest.slice(0, 3)]);
-
-          document.getElementById('quiz-word').textContent = correct.word;
-          const optsEl = document.getElementById('quiz-options');
-          optsEl.innerHTML = '';
-          options.forEach(opt => {
-            const btn = document.createElement('button');
-            btn.className = 'quiz-opt';
-            btn.textContent = opt.meaning;
-            btn.onclick = () => checkQuizAnswer(btn, opt, correct);
-            optsEl.appendChild(btn);
-          });
-
-          const fb = document.getElementById('quiz-feedback');
-          fb.classList.add('hidden');
-          fb.innerHTML = '';
-          document.getElementById('quiz-next').classList.add('hidden');
-        }
-
-        function checkQuizAnswer(btn, opt, correct) {
-          if (quizAnswered) return;
-          quizAnswered = true;
-          document.querySelectorAll('.quiz-opt').forEach(o => {
-            o.disabled = true;
-            if (o.textContent === correct.meaning) o.classList.add('quiz-correct');
-          });
-          if (opt !== correct) btn.classList.add('quiz-wrong');
-
-          const fb = document.getElementById('quiz-feedback');
-          fb.innerHTML = '';
-          const title = document.createElement('p');
-          title.className = 'quiz-fb-title';
-          title.textContent = opt === correct ? '✅ 정답이에요!' : ('❌ 오답이에요! 정답은 "' + correct.meaning + '"');
-          const ex = document.createElement('p');
-          ex.className = 'quiz-fb-example';
-          ex.textContent = '"' + correct.example + '"';
-          fb.appendChild(title);
-          fb.appendChild(ex);
-          fb.classList.remove('hidden');
-          document.getElementById('quiz-next').classList.remove('hidden');
-        }
-
-        pickQuizQuestion();
       </script>
-  <footer>자동 생성 · 2026.06.18 10:31</footer>
+  <footer>자동 생성 · 2026.06.19 14:12</footer>
 </div>
 
 </body>
